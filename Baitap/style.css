@@ -1,0 +1,18 @@
+.col {
+    width: calc(25% - 4px);
+}
+
+.row {
+    display  : flex;
+    flex-wrap: wrap;
+    gap      : 5px;
+}
+
+.product {
+    padding: 10px;
+    border : 1px solid #CCC;
+}
+
+.product img {
+    width: 100%;
+}

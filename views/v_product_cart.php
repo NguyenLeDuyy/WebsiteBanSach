@@ -1,0 +1,63 @@
+<h1>Giỏ hàng</h1>
+<table border="1" style="width:100%">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Ảnh</th>
+            <th>Sản phẩm</th>
+            <th>Giá bán</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+            <th>Thao tác</th>
+        </tr>
+    <tbody>
+        <?php
+        $tong = 0;
+        $i = 1;
+        foreach ($_SESSION['cart'] as $sp) : ?>
+        <tr>
+            <td><?= $i++ ?></td>
+            <td><img src="public/img/Sach/<?= $sp['cover_image'] ?>" alt=""></td>
+            <td><?= $sp['title'] ?></td>
+            <td>
+                <?php if (isset($sp['discounted_price'])) : ?>
+                <p>
+                    <strong><?= number_format($sp['discounted_price']) ?><sup>đ</sup></strong>
+                    <del><?= number_format($sp['price']) ?><sup>đ</sup></del>
+                </p>
+                <?php else : ?>
+                <p>
+                    <?= number_format($sp['price']) ?><sup>đ</sup>
+                </p>
+                <?php endif; ?>
+            </td>
+            <td>
+                <a href="?ctrl=product&view=subQuantity&index=<?= $i - 2 ?>">-</a>
+                <?= $sp['quantity'] ?>
+                <a href="?ctrl=product&view=plusQuantity&index=<?= $i - 2 ?>">+</a>
+            </td>
+            <td>
+                <?php if (isset($sp['discounted_price'])) {
+                        $thanhTien = $sp['discounted_price'] * $sp['quantity'];
+                    } else {
+                        $thanhTien = $sp['price'] * $sp['quantity'];
+                    }
+                    $tong += $thanhTien;
+                    ?>
+                <?= number_format($thanhTien) ?><sup>đ</sup>
+            </td>
+            <td>
+                <a href="?ctrl=product&view=removeFromCart&index=<?= $i - 2 ?>">Xóa</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+    <tfoot>
+        <td colspan="5">Tổng cộng</td>
+        <td><?= number_format($tong) ?><sup>đ</sup></td>
+        <td>
+            <a href="?ctrl=product&view=removeAllFromCart">Xóa hết</a>
+        </td>
+    </tfoot>
+    </thead>
+</table>
