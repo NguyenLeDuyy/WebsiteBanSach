@@ -24,19 +24,19 @@
         </li>
 
         <?php if (!isset($_SESSION['user'])) : ?>
-            <li>
-                <a href="?ctrl=user&view=login">Đăng nhập</a>
-            </li>
-            <li>
-                <a href="?ctrl=user&view=register">Đăng ký</a>
-            </li>
+        <li>
+            <a href="?ctrl=user&view=login">Đăng nhập</a>
+        </li>
+        <li>
+            <a href="?ctrl=user&view=register">Đăng ký</a>
+        </li>
         <?php else : ?>
-            <li>
-                <a href="#">Xin chào, <?= $_SESSION['user']['fullname'] ?></a>
-            </li>
-            <li>
-                <a href="?ctrl=user&view=logout">Đăng xuất</a>
-            </li>
+        <li>
+            <a href="?ctrl=user&view=profile">Xin chào, <?= $_SESSION['user']['fullname'] ?></a>
+        </li>
+        <li>
+            <a href="?ctrl=user&view=logout">Đăng xuất</a>
+        </li>
         <?php endif; ?>
 
     </ul>

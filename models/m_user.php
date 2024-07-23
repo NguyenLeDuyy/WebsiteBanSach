@@ -21,3 +21,9 @@ function user_checkEmail($email)
     if ($user) return true;
     else return false;
 }
+
+function user_updateInfo($user_id, $fullname, $address, $phone_number, $email)
+{
+    pdo_execute("UPDATE accounts SET fullname='$fullname', phone='$phone_number', 
+    address='$address', email='$email' WHERE id=$user_id");
+}

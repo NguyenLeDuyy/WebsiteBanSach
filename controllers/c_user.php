@@ -48,6 +48,33 @@ switch ($_GET['view']) {
         unset($_SESSION['user']);
         header("Location: ?ctrl=user&view=login");
         break;
+
+    case 'profile':
+        // Xử lý dữ liệu
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $fullname = $_POST['fullname'];
+            $address = $_POST['address'];
+            $phone_number = $_POST['phone_number'];
+            $email = $_POST['Email'];
+            $password = $_POST['password'];
+            $repassword = $_POST['repassword'];
+
+            include_once 'models/m_user.php';
+            user_updateInfo($_SESSION['user']['id'], $fullname, $address, $phone_number, $email);
+            $_SESSION['user']['fullname'] = $fullname;
+            $_SESSION['user']['address'] = $address;
+            $_SESSION['user']['phone'] = $phone_number;
+            $_SESSION['user']['email'] = $email;
+
+
+            header('Location: ?ctrl=user&view=profile');
+        }
+
+        // Hiển thị ra view
+        include_once 'views/t_header.php';
+        include_once 'views/v_user_profile.php';
+        include_once 'views/t_footer.php';
+        break;
     default:
         # code...
         break;
