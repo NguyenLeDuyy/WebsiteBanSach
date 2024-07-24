@@ -59,13 +59,34 @@ switch ($_GET['view']) {
             $password = $_POST['password'];
             $repassword = $_POST['repassword'];
 
+            // print_r($_FILES);
+            // return;
+
             include_once 'models/m_user.php';
             user_updateInfo($_SESSION['user']['id'], $fullname, $address, $phone_number, $email);
+            // Cập nhật lại $_SESSION để thấy thay đổi
+            // Do trong file v_user_profile lấy thông tin từ session ra để hiển thị
             $_SESSION['user']['fullname'] = $fullname;
             $_SESSION['user']['address'] = $address;
             $_SESSION['user']['phone'] = $phone_number;
             $_SESSION['user']['email'] = $email;
 
+            if (strlen($password) > 0) { // Có đổi mật khẩu
+
+                if ($password != $repassword) {
+                    echo "Mật khẩu nhập lại không khớp!";
+                } else {
+                    user_changePassword($_SESSION['user']['id'], $password);
+                }
+            }
+
+            if ($_FILES['error'] == 0) {
+                move_uploaded_file($_FILES['avatar']['tmp_name'], "public/img/avatar/" . $_FILES['avatar']['name']);
+                user_changeAvatar($_SESSION['user']['id'], $_FILES['avatar']['name']);
+                // Cập nhật lại $_SESSION để thấy thay đổi
+                // Do trong file v_user_profile lấy thông tin từ session ra để hiển thị
+                $_SESSION['user']['avatar'] = $_FILES['avatar']['name'];
+            }
 
             header('Location: ?ctrl=user&view=profile');
         }

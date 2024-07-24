@@ -46,15 +46,12 @@ h1 {
     flex-direction: column;
     align-items   : center;
     height        : 400px;
-    /* Đặt chiều cao cố định cho sản phẩm */
 }
 
 .product img {
     max-width : 100%;
     height    : 200px;
-    /* Đặt chiều cao cố định cho ảnh */
     object-fit: cover;
-    /* Đảm bảo ảnh luôn vừa vặn trong khung */
 }
 
 .product p {
@@ -63,17 +60,10 @@ h1 {
     height     : 50px;
     text-align : center;
     margin     : 5px 10px;
-    /* Hiển thị dấu ba chấm khi văn bản quá dài */
     overflow   : hidden;
-    /* Ẩn phần dư thừa của tiêu đề nếu quá dài */
     white-space: inherit;
-    /* Không cho văn bản xuống dòng */
     object-fit : cover;
 }
-
-/* 
-.product .title {
-} */
 
 .product p {
     margin: 10px 0;
@@ -168,4 +158,62 @@ h1 {
 
 body {
     margin: 5px;
+}
+
+form .col-25 .avatar {
+    width          : 100%;
+    height         : auto;
+    border-radius  : 50%;
+    overflow       : hidden;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+}
+
+form .col-25 .avatar img {
+    width     : auto;
+    height    : 100%;
+    object-fit: cover;
+}
+
+form .col-25 .avatar img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+form .col-25 .avatar img:hover {
+    transform : scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+form .col-25 input {
+    margin: 35px;
+}
+
+form .col-75 label {
+    font-weight: bold;
+    margin-top : 10px;
+    display    : block;
+}
+
+form .col-75 input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width        : 100%;
+    padding      : 8px;
+    margin       : 10px 0;
+    border       : 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form .col-75 button {
+    background-color: #007bff;
+    color           : white;
+    padding         : 10px 20px;
+    border          : none;
+    border-radius   : 4px;
+    cursor          : pointer;
+}
+
+form .col-75 button:hover {
+    background-color: #0056b3;
 }
