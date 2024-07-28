@@ -31,8 +31,8 @@ function cartDetail_getByUserId($user_id)
 function insertCartDetail($cart_id, $product_id)
 {
     pdo_execute("INSERT INTO cart_detail (`cart_id`,`product_id`, `quantity`) VALUES
-    ($cart_id, $product_id, 1)
-    ");
+    ($cart_id, $product_id, 0)
+    "); // Phải set Quantity = 0 vì sau khi addNewCart còn có kiểm tra thêm điều kiện if ($sp['product_id'] == $book_id)
 }
 
 function addNewCart($user_id, $product_id)
@@ -43,16 +43,7 @@ function addNewCart($user_id, $product_id)
     insertCartDetail($cart['id'], $product_id);
 }
 
-function updateQuantity($cart_id, $product_id, $current_quantity)
-{
-    pdo_execute("UPDATE cart_detail 
-    SET quantity=$current_quantity+1 
-    WHERE cart_id = $cart_id 
-    AND product_id = $product_id
-    ");
-}
-
-function removeFromCart($cart_id, $product_id)
+function removeFromCartDetail($cart_id, $product_id)
 {
     pdo_execute("DELETE FROM cart_detail
         WHERE cart_id = $cart_id
@@ -64,4 +55,28 @@ function removeAllFromCart($user_id, $cart_id)
 {
     pdo_execute("DELETE FROM cart_detail WHERE cart_id = $cart_id");
     pdo_execute("DELETE FROM cart WHERE user_id = $user_id");
+}
+
+function updateQuantity($cart_id, $product_id, $current_quantity, $operator)
+{
+    if ($operator == '+') {
+        pdo_execute("UPDATE cart_detail 
+        SET quantity=$current_quantity+1 
+        WHERE cart_id = $cart_id 
+        AND product_id = $product_id
+        ");
+    }
+
+    if ($operator == '-') {
+
+        pdo_execute("UPDATE cart_detail 
+        SET quantity=$current_quantity-1 
+        WHERE cart_id = $cart_id 
+        AND product_id = $product_id
+        ");
+
+        if ($current_quantity == 0) {
+            removeFromCartDetail($cart_id, $product_id);
+        }
+    }
 }
