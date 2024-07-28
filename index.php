@@ -18,6 +18,10 @@ switch ($_GET['ctrl']) {
         include_once 'controllers/c_comment.php';
         break;
 
+    case 'cart':
+        include_once 'controllers/c_cart.php';
+        break;
+
     default:
         header('Location: ?ctrl=page&view=home');
         break;

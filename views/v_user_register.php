@@ -1,5 +1,5 @@
 <h2>Đăng ký</h2>
-<form action="" method="post">
+<form class="logout" action="" method="post">
     <label for="fullname">Họ và tên:</label><br>
     <input type="text" name="fullname" id=""><br>
 

@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CShop</title>
     <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
     <script src="public\js\jquery-3.7.1.min.js"></script>
 </head>
 
@@ -20,7 +23,7 @@
             <a href="?ctrl=page&view=about">Giới thiệu</a>
         </li>
         <li>
-            <a href="?ctrl=product&view=cart">Giỏ hàng</a>
+            <a href="?ctrl=cart&view=view">Giỏ hàng</a>
         </li>
 
         <?php if (!isset($_SESSION['user'])) : ?>

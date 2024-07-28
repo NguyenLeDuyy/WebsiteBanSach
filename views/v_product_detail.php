@@ -14,7 +14,7 @@
             <?= number_format($sp['price']) ?><sup>đ</sup>
         </p>
         <?php endif; ?>
-        <a href="?ctrl=product&view=addToCart&id=<?= $sp['id'] ?>">Thêm vào giỏ hàng</a>
+        <a href="?ctrl=cart&view=addToCart&id=<?= $sp['id'] ?>">Thêm vào giỏ hàng</a>
     </div>
 </div>
 <hr>
