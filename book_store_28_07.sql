@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 27, 2024 at 04:18 PM
+-- Generation Time: Jul 28, 2024 at 09:49 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -95,8 +95,21 @@ CREATE TABLE `cart` (
   `id` int NOT NULL,
   `user_id` int NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `cart_status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`, `created_at`, `updated_at`, `cart_status`) VALUES
+(1, 1, '2024-07-27 17:00:00', '2024-07-28 00:51:45', 'active'),
+(2, 2, '2024-07-27 17:00:00', '2024-07-28 00:51:52', 'abandon'),
+(3, 3, '2024-07-27 17:00:00', '2024-07-28 00:53:28', 'paid'),
+(5, 3, '2024-07-28 01:47:32', '2024-07-28 01:47:32', 'active'),
+(6, 3, '2024-07-28 01:55:16', '2024-07-28 01:55:16', 'active'),
+(21, 4, '2024-07-28 07:59:44', '2024-07-28 07:59:44', 'active');
 
 -- --------------------------------------------------------
 
@@ -110,6 +123,20 @@ CREATE TABLE `cart_detail` (
   `product_id` int NOT NULL,
   `quantity` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `cart_detail`
+--
+
+INSERT INTO `cart_detail` (`id`, `cart_id`, `product_id`, `quantity`) VALUES
+(1, 1, 3, 1),
+(2, 1, 5, 2),
+(3, 2, 1, 3),
+(4, 2, 8, 1),
+(5, 3, 4, 2),
+(6, 3, 7, 1),
+(7, 3, 2, 1),
+(29, 21, 7, 3);
 
 -- --------------------------------------------------------
 
@@ -272,13 +299,13 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `categories`

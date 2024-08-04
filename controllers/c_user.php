@@ -12,7 +12,7 @@ switch ($_GET['view']) {
                 $_SESSION['user'] = $user;
                 header('Location: ?ctrl=page&view=home');
             } else { // Đăng nhập thất bại
-                echo "Email hoặc mật khẩu không khớp!";
+                // echo "Email hoặc mật khẩu không khớp!";
             }
         }
         // Hiển thị ra view

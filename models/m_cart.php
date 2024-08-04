@@ -12,6 +12,7 @@ function cartDetail_getByUserId($user_id)
     // Chưa chắc có cart_id trong cart_detail nên lấy trong cart
     return pdo_query("SELECT
         b.id as product_id,
+        b.title as product_title,
         b.cover_image,
         b.title,
         bd.quantity,
@@ -75,7 +76,7 @@ function updateQuantity($cart_id, $product_id, $current_quantity, $operator)
         AND product_id = $product_id
         ");
 
-        if ($current_quantity == 0) {
+        if ($current_quantity == 1) {
             removeFromCartDetail($cart_id, $product_id);
         }
     }

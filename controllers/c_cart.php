@@ -9,9 +9,9 @@ switch ($_GET['view']) {
         $user_id = $_SESSION['user']['id'];
         $_SESSION['cart'] = cartDetail_getByUserId($user_id);
         $cart = cart_getByUserId_Basic($user_id);
-        $cart_id = $cart['id'];
-        echo "Cart id: " . $cart_id . "<br>";
-        print_r($_SESSION['cart']);
+        // $cart_id = $cart['id'];
+        // echo "Cart id: " . $cart_id . "<br>";
+        // print_r($_SESSION['cart']);
         // include_once 'models/m_product.php';
 
         // foreach ($_SESSION['cart'] as &$sp) {
@@ -41,17 +41,12 @@ switch ($_GET['view']) {
         if (count($_SESSION['cart']) == 0) {
             addNewCart($user_id, $book_id);
             $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            // echo "Không có sản phẩm";
         }
 
         $info = product_getById($_GET['id']);
         $_SESSION['cart'] = cartDetail_getByUserId($user_id);
         $cart = cart_getByUserId_Basic($user_id);
-        print_r($cart);
         $cart_id = $cart['id'];
-
-
-
 
         $inCart = false; // Giả sử chưa có trong giỏ hàng
         foreach ($_SESSION['cart'] as &$sp) { // Phải truyền tham biến
@@ -68,7 +63,6 @@ switch ($_GET['view']) {
             $_SESSION['cart'] = cartDetail_getByUserId($_SESSION['user']['id']);
         }
 
-        // print_r($_SESSION['cart']);
         header('Location: ?ctrl=cart&view=view');
         break;
 
@@ -116,11 +110,40 @@ switch ($_GET['view']) {
         $cart = cart_getByUserId_Basic($user_id);
         $cart_id = $cart['id'];
         updateQuantity($cart_id, $book_id, $_SESSION['cart'][$index]['quantity'], '-');
-        $_SESSION['cart'][$index]['quantity']--;
         if ($_SESSION['cart'][$index]['quantity'] == 0) {
             array_splice($_SESSION['cart'], $index, 1);
         }
         header('Location: ?ctrl=cart&view=view');
+        break;
+
+    case 'delivery_address':
+        // Xử lý dữ liệu
+
+        include_once 'models/m_cart.php';
+        $user_id = $_SESSION['user']['id'];
+        $cartItems = cartDetail_getByUserId($user_id);
+        // print_r($cartItems);
+
+        // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        //     echo "Success";
+        // }
+
+        // Hiển thị dữ liệu
+        include_once 'views/t_header.php';
+        include_once 'views/v_cart_delivery_address.php';
+        include_once 'views/t_footer.php';
+        break;
+    case 'payment':
+        // Xử lý dữ liệu
+
+        include_once 'models/m_cart.php';
+        $user_id = $_SESSION['user']['id'];
+        $cartItems = cartDetail_getByUserId($user_id);
+
+        // Hiển thị dữ liệu
+        include_once 'views/t_header.php';
+        include_once 'views/v_cart_payment.php';
+        include_once 'views/t_footer.php';
         break;
     default:
         # code...

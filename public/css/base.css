@@ -1,0 +1,80 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap'); */
+/* 
+:root {
+    --color-one : #103178;
+    --color-two : #FFC800;
+    --color-text: #5B6C8F;
+
+    --font: "Inria Serif", serif
+}
+
+body {
+    font-family: var(--font);
+    font-weight: 300;
+    font-style : normal;
+    color      : var(--color-text);
+}
+
+a {
+    text-decoration: none;
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --color-primary  : #e91e63;
+    /* Màu hồng đậm */
+    --color-secondary: #FFC800;
+    /* Màu vàng */
+    --color-neutral  : #F5F5FA;
+    /* Màu xám nhạt */
+    --color-text     : rgb(25, 25, 25);
+    /* Màu đen */
+    --color-accent   : #4CAF50;
+    /* Màu xanh lá cây để tạo điểm nhấn */
+
+    --font: "Roboto";
+}
+
+body {
+    font-family     : var(--font);
+    font-weight     : 300;
+    font-style      : normal;
+    color           : var(--color-text);
+    background-color: var(--color-neutral);
+}
+
+.container {
+    width              : 100%;
+    max-width          : 1140px;
+    /* background-color: var(--color-neutral); */
+    margin-left        : auto;
+    margin-right       : auto;
+}
+
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        max-width    : 100%;
+        padding-left : 15px;
+        padding-right: 15px;
+    }
+}
