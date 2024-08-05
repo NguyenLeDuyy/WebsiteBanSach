@@ -1,0 +1,313 @@
+/* Đảm bảo toàn bộ ul có chiều rộng 100% và sử dụng Flexbox */
+#wrapper {
+  background-color: white;
+  position        : relative;
+  margin          : 0;
+}
+
+.products {
+  display              : grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* 4 cột với kích thước bằng nhau */
+  list-style           : none;
+  padding              : 0;
+  margin               : 0;
+  margin-bottom        : 15px;
+}
+
+.products li {
+  box-sizing    : border-box;
+  /* Đảm bảo padding và border được tính vào kích thước tổng thể */
+  /* Chiều rộng và chiều cao cố định cho các phần tử sản phẩm */
+  width         : 100%;
+  /* Chiếm toàn bộ chiều rộng của cột lưới */
+  height        : 50vh;
+  /* Chiều cao cố định cho các phần tử sản phẩm */
+  display       : flex;
+  flex-direction: column;
+  /* Để các phần tử bên trong sắp xếp theo chiều dọc */
+  overflow      : hidden;
+  /* Đảm bảo không có nội dung tràn ra ngoài */
+  border        : 1px solid #ddd;
+
+}
+
+.product__item {
+  background-color: white;
+  display         : flex;
+  flex-direction  : column;
+  height          : 100%;
+  /* Chiếm hết chiều cao của phần tử chứa */
+  padding         : 10px;
+  /* Padding bên trong */
+  box-sizing      : border-box;
+  /* Đảm bảo padding được tính vào kích thước tổng thể */
+}
+
+.product__item-top {
+  position: relative;
+  overflow: hidden;
+  /* Ẩn nội dung vượt quá khung */
+}
+
+.product__item-top img {
+  width     : 100%;
+  /* Hình ảnh chiếm toàn bộ chiều rộng của phần tử chứa */
+  height    : 100%;
+  object-fit: contain;
+  display   : block;
+  /* Loại bỏ khoảng trắng dưới hình ảnh */
+}
+
+.product__info-name {
+  text-align   : center;
+  padding      : 10px 5px;
+  color        : black;
+  font-size    : 14px;
+  /* Điều chỉnh kích thước font nếu cần */
+  overflow     : hidden;
+  /* Ẩn phần nội dung bị tràn */
+  text-overflow: ellipsis;
+  /* Hiển thị "..." khi chữ bị cắt */
+  white-space  : nowrap;
+  /* Ngăn ngừa dòng chữ bị xuống dòng */
+  display      : block;
+  /* Đảm bảo phần tử chiếm toàn bộ chiều ngang */
+}
+
+
+.buy {
+  width           : 90%;
+  position        : absolute;
+  display         : block;
+  color           : white;
+  background-color: orange;
+  text-decoration : none;
+  text-align      : center;
+  border-radius   : 20px;
+  transform       : translateX(5%);
+  bottom          : -36px;
+  padding         : 5px;
+}
+
+.buy:hover {
+  background-color: #ff5722;
+  /* Màu nền khi hover */
+  cursor          : pointer;
+}
+
+.headline-name {
+  text-align: center;
+  margin    : 0;
+  margin-top: 15vh;
+}
+
+.products li:hover .buy {
+  bottom: 0px;
+}
+
+.product__item-top img {
+  margin-bottom: 30px;
+  width        : 100%;
+  /* Hình ảnh chiếm toàn bộ chiều rộng của phần tử chứa */
+  height       : 100%;
+  /* Giữ tỷ lệ khung hình */
+  display      : block;
+  /* Loại bỏ khoảng trắng dưới hình ảnh */
+}
+
+.product__info-price {
+  padding        : 10px 10px;
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+  gap            : 15px;
+}
+
+.product__info-price p {
+  color: #FFA500;
+}
+
+.product__info-price span {
+  color      : #FFA500;
+  font-weight: bold;
+  font-size  : large;
+
+}
+
+.product__info-price del {
+  margin-right: 2px;
+
+}
+
+.product__info-price del {
+  color      : black;
+  font-size  : 13px;
+  font-weight: 100;
+}
+
+
+.product__item:hover {
+  scale : 1.1;
+  border: 3px solid black;
+}
+
+.tag-icon {
+  display         : inline-flex;
+  align-items     : center;
+  justify-content : center;
+  width           : 50px;
+  /* Điều chỉnh kích thước nếu cần */
+  height          : 18px;
+  /* Điều chỉnh kích thước nếu cần */
+  background-color: #FFA500;
+  /* Màu cam */
+  color           : white;
+  border-radius   : 5px;
+  font-weight     : bold;
+  font-size       : 14px;
+  /* Điều chỉnh kích thước font nếu cần */
+  text-align      : center;
+  margin          : 5px;
+}
+
+#prev-button,
+#next-button {
+  position : absolute;
+  top      : 75%;
+  transform: translateY(-50%);
+}
+
+#prev-button {
+  left            : 20px;
+  font-size       : 40px;
+  z-index         : 1;
+  border-radius   : 20px;
+  cursor          : pointer;
+  background-color: white;
+  border          : none;
+}
+
+#next-button {
+  right           : 20px;
+  z-index         : 1;
+  font-size       : 40px;
+  border-radius   : 20px;
+  cursor          : pointer;
+  background-color: white;
+  border          : none;
+}
+
+#prev-button:hover,
+#next-button:hover {
+  background-color: #FFA500;
+}
+
+.headline img {
+  width : 100%;
+  height: 40vh;
+  border: 2px solid #ddd;
+}
+
+/* Styles for the cart button */
+#toggle-cart-btn {
+  position  : relative;
+  background: none;
+  border    : none;
+  cursor    : pointer;
+}
+
+/* Styles for the cart menu */
+#cart-menu {
+  display         : none;
+  position        : absolute;
+  top             : 0;
+  /* Align to the top of the button */
+  right           : 0;
+  /* Align to the right of the button */
+  width           : 300px;
+  background-color: #fff;
+  border          : 1px solid #ddd;
+  box-shadow      : 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index         : 1000;
+  transform       : translateY(calc(100% + 5px));
+  /* Push the menu below the button */
+}
+
+#cart-menu h2 {
+  margin          : 0;
+  padding         : 10px;
+  background-color: #f5f5f5;
+  border-bottom   : 1px solid #ddd;
+}
+
+#cart-menu table {
+  width          : 100%;
+  border-collapse: collapse;
+}
+
+#cart-menu th,
+#cart-menu td {
+  padding      : 10px;
+  border-bottom: 1px solid #ddd;
+  text-align   : left;
+}
+
+#cart-menu .cart-total {
+  padding    : 10px;
+  border-top : 1px solid #ddd;
+  font-weight: bold;
+}
+
+/* Display the cart menu when active */
+#cart-menu.show {
+  display: block;
+}
+
+
+/* Styles for the cart menu */
+#cart-menu {
+  display         : none;
+  position        : fixed;
+  top             : 0;
+  /* Align to the top of the header */
+  right           : 0;
+  /* Align to the right of the header */
+  width           : 35%;
+  background-color: #fff;
+  border          : 1px solid #ddd;
+  box-shadow      : 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index         : 10;
+  transform       : translateY(calc(30% + 5px));
+  /* Adjust if needed */
+}
+
+#cart-menu h2 {
+  margin          : 0;
+  padding         : 10px;
+  background-color: #f5f5f5;
+  border-bottom   : 1px solid #ddd;
+}
+
+#cart-menu table {
+  width          : 100%;
+  border-collapse: collapse;
+}
+
+#cart-menu th,
+#cart-menu td {
+  padding      : 10px;
+  border-bottom: 1px solid #ddd;
+  text-align   : left;
+}
+
+#cart-menu .cart-total {
+  padding    : 10px;
+  border-top : 1px solid #ddd;
+  font-weight: bold;
+}
+
+/* Display the cart menu when active */
+#cart-menu.show {
+  display: block;
+}

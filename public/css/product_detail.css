@@ -1,0 +1,227 @@
+body {
+    margin          : 0;
+    font-family     : Arial, sans-serif;
+    background-color: #eeee;
+
+}
+
+main {
+    display        : flex;
+    justify-content: center;
+    padding        : 0;
+    align-items    : center;
+}
+
+.containermain {
+
+    width           : 90%;
+    background-color: white;
+    height          : auto;
+    border-radius   : 10px;
+
+}
+
+.container--sp {
+    display: flex;
+    padding: 0px 10px;
+    gap    : 10px;
+    height : auto;
+
+}
+
+.wrapper {
+    display: flex;
+    gap    : 5px;
+    width  : 49%;
+}
+
+.price-container__label,
+.thrifty {
+    margin : 0;
+    padding: 0px;
+}
+
+.Incentives {
+    border: 2px solid #FFA500;
+}
+
+.Incentives b {
+    padding         : 10px;
+    display         : block;
+    background-color: #FFEdd8;
+}
+
+.Incentives ol {
+    margin: 0;
+
+    background-color: #FFFAF4;
+}
+
+h2 {
+    padding: 0 10px;
+}
+
+.info-basic {
+    display       : flex;
+    flex-direction: column;
+    /* Sắp xếp theo cột */
+
+    gap  : 20px;
+    width: 25%;
+}
+
+.info {
+    line-height: 30px;
+    width      : 25%;
+}
+
+.large-image img {
+    width     : 450px;
+    height    : 500px;
+    object-fit: cover;
+
+    border    : 2px solid #eeee;
+    box-sizing: border-box;
+
+}
+
+.small-images {
+    display       : flex;
+    height        : 500px;
+    flex-direction: column;
+    gap           : 10px;
+    object-fit    : cover;
+
+
+}
+
+.small-images img {
+    width     : 160px;
+    height    : 160px;
+    border    : 2px solid #eeee;
+    box-sizing: border-box;
+}
+
+.small-images img:hover {
+    cursor       : pointer;
+    border       : 3px solid #FFA500;
+    border-radius: 10px;
+}
+
+.price-container__current-price {
+    color      : #FFA500;
+    font-weight: bold;
+    font-size  : 23px;
+}
+
+.thrifty span {
+    display         : inline;
+    background-color: #FFA500;
+    border-radius   : 3px;
+    color           : white;
+}
+
+.Incentives li::marker {
+    color      : #F7A700;
+    font-weight: bold
+}
+
+.Incentives li {
+    padding: 10px;
+}
+
+#quantity {
+    text-align: center;
+    display   : inline-block;
+    width     : 30px;
+    box-sizing: border-box;
+}
+
+#cong,
+#tru {
+    border-radius: 2px;
+    border       : 2px solid #c6c5c5ee;
+}
+
+#cong:hover,
+#tru:hover {
+    cursor          : pointer;
+    background-color: #c6c5c5ee;
+}
+
+.buy {
+    padding         : 10px;
+    color           : white;
+    font-size       : 20px;
+    background-color: #FFA500;
+    box-shadow      : 0 4px 8px rgba(0, 0, 0, 0.1);
+    border          : none;
+    border-radius   : 5px;
+
+}
+
+.buy:hover {
+    cursor          : pointer;
+    background-color: #F7A700;
+}
+
+.chinhsach {
+    margin-bottom  : 10px;
+    display        : flex;
+    justify-content: space-between;
+}
+
+.one-hundred-per,
+.free-trade {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    gap            : 3px;
+    font-weight    : bold;
+    font-family    : "Font Awesome 6";
+    ;
+}
+
+.logo {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Bóng đổ cho bảng */
+
+    border       : 1px solid #eeee;
+    border-radius: 10px;
+    display      : flex;
+
+}
+
+.logo p {
+    color    : #888893;
+    font-size: small;
+}
+
+.logo img {
+    width : 70px;
+    height: 70px;
+}
+
+table {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Bóng đổ cho bảng */
+
+    font-size      : small;
+    border         : 1px solid #eeee;
+    width          : 100%;
+    border-radius  : 10px;
+    border-collapse: separate;
+    /* Giữ khoảng cách giữa các ô */
+    border-spacing : 0 30px;
+    /* Khoảng cách giữa các hàng */
+}
+
+.nxb td {
+    padding: 0px 10px;
+    border : #eeee;
+
+}
+
+tr:nth-child(odd) {
+    background: #eeee;
+}

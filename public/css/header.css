@@ -1,3 +1,57 @@
+header {
+    height          : 20vh;
+    display         : flex;
+    align-items     : center;
+    justify-content : space-around;
+    padding         : 10px 20px;
+    background-color: #f8f9fa;
+    box-shadow      : 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bg {
+    width          : 300px;
+    height         : 100px;
+    background     : url(../../public/img/cover_slide/slogan.png);
+    background-size: cover;
+    border         : none;
+}
+
+.bg:hover {
+    cursor: pointer;
+}
+
+.search-container {
+    width          : 60%;
+    flex-grow      : 1;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+}
+
+.search-container input[type="text"] {
+    width        : 100%;
+    height       : 20px;
+    padding      : 10px;
+    border       : 1px solid #ccc;
+    border-radius: 20px 0 0 20px;
+    outline      : none;
+}
+
+.search-container button {
+    padding         : 12.8px 15px;
+    height          : auto;
+    border          : none;
+    background-color: #007bff;
+    color           : white;
+    border-radius   : 0 20px 20px 0;
+    cursor          : pointer;
+    box-sizing      : border-box;
+}
+
+.search-container button:hover {
+    background-color: #0056b3;
+}
+
 #menu {
     list-style      : none;
     display         : flex;
@@ -9,7 +63,7 @@
 #menu a {
     text-decoration: none;
     padding        : 5px 10px;
-    color          : white;
+    color          : var(--color-text);
     display        : block;
     font-weight    : 600;
 }
@@ -25,36 +79,88 @@
 }
 
 .left-header {
+    width  : 20%;
     display: flex;
 }
 
 .right-header {
+    width          : 20%;
     display        : flex;
     align-self     : center;
     justify-content: space-around;
 }
 
-.right-header ul {
+.right-header .account-and-cart {
+    display   : flex;
     margin    : 0;
     list-style: none;
     padding   : 0;
-    display   : flex;
-    flex-wrap : nowrap;
 }
 
-.right-header li {
-    display    : flex;
-    align-items: center;
+.account-header,
+.cart-header {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    flex-direction : column;
+    position       : relative;
 }
 
 .right-header a {
     text-decoration: none;
     padding        : 5px 10px;
-    color          : white;
+    color          : var(--color-text);
     display        : block;
     font-weight    : 600;
 }
 
+.right-header p {
+    margin: 0;
+}
+
+.box-login-dropdown {
+    height       : auto;
+    position     : absolute;
+    display      : none;
+    top          : 72px;
+    left         : 10px;
+    background   : white;
+    padding      : 10px;
+    border-radius: 5px;
+    gap          : 5px;
+    box-shadow   : 0 0 1px gray;
+    z-index      : 1;
+}
+
+.box-login-dropdown .login-dropdown {
+    padding         : 0px;
+    margin          : 0px;
+    list-style      : none;
+    border-radius   : 5px;
+    width           : 200px;
+    background-color: white;
+}
+
+.box-login-dropdown>.login-dropdown>li {
+    text-align: center;
+    width     : auto;
+}
+
+.login-element a {
+    border-radius   : 5px;
+    background-color: var(--color-primary);
+    color           : var(--color-neutral) !important;
+    margin-bottom   : 5px;
+}
+
+.signup-element a {
+    box-shadow   : 0 0 1px gray;
+    border-radius: 5px;
+}
+
+.account-header:hover .box-login-dropdown {
+    display: block;
+}
 
 .right-header i {
     font-size: 30px;

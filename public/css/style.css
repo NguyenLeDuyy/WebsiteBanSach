@@ -213,22 +213,25 @@
 
 .user-profile .col-25 .avatar {
     width          : 100%;
-    height         : auto;
+    /* Đảm bảo chiều rộng và chiều cao bằng nhau */
+    height         : 50%;
+    /* Đảm bảo chiều rộng và chiều cao bằng nhau */
     border-radius  : 50%;
+    /* Làm cho phần tử trở thành hình tròn */
     overflow       : hidden;
     display        : flex;
     justify-content: center;
     align-items    : center;
+    transition     : transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .user-profile .col-25 .avatar img {
-    width     : auto;
+    width     : 100%;
+    /* Đảm bảo hình ảnh chiếm toàn bộ chiều rộng của phần tử cha */
     height    : 100%;
+    /* Đảm bảo hình ảnh chiếm toàn bộ chiều cao của phần tử cha */
     object-fit: cover;
-}
-
-.user-profile .col-25 .avatar img {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .user-profile .col-25 .avatar img:hover {
@@ -265,6 +268,19 @@ input[type="password"] {
     font-weight     : normal;
     font-family     : var(--font);
     background-color: white;
+}
+
+.quantity-button {
+    text-decoration: none;
+    color          : var(--color-text);
+    box-shadow     : 0 0 3px gray;
+    max-width      : 12px;
+    max-height     : 12px;
+    width          : 100%;
+    height         : 100%;
+    display        : inline-block;
+    text-align     : center;
+    padding        : 0 12px 12px 12px;
 }
 
 .cart-table th,

@@ -1,0 +1,203 @@
+/* styles.css */
+
+/* Cấu hình cơ bản */
+
+.navbar ul {
+    list-style-type: none;
+    margin         : 0;
+    padding        : 0;
+    display        : flex;
+    justify-content: center;
+}
+
+.navbar li {
+    margin: 0 15px;
+}
+
+.navbar a {
+    color          : #fff;
+    text-decoration: none;
+    font-size      : 16px;
+}
+
+/* root */
+.background-section {
+    position: relative;
+    height  : 60vh;
+    overflow: hidden;
+}
+
+.background-image {
+    position       : relative;
+    width          : 100%;
+    height         : 100%;
+    background     : url('../img/about/imgsilde1/imgslide1__4k.jpg') no-repeat center center;
+    background-size: cover;
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    padding        : 20px;
+    box-sizing     : border-box;
+}
+
+.background-image2 {
+    position       : relative;
+    width          : 100%;
+    height         : 100%;
+    background     : url('../img/about/imgsilde2/imgslide2__4k.jpg') no-repeat center center;
+    background-size: cover;
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    padding        : 20px;
+    box-sizing     : border-box;
+}
+
+.background-image3 {
+    position       : relative;
+    width          : 100%;
+    height         : 100%;
+    background     : url('../img/about/imgslide3/imgslide3__4k.jpg') no-repeat center center;
+    background-size: cover;
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    padding        : 20px;
+    box-sizing     : border-box;
+}
+
+.overlay {
+    position  : absolute;
+    top       : 0;
+    left      : 0;
+    width     : 100%;
+    height    : 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* Màu nền tối với độ trong suốt */
+    z-index   : 1;
+}
+
+.content {
+    color          : #fff;
+    max-width      : 50%;
+    z-index        : 2;
+    display        : flex;
+    flex-direction : column;
+    justify-content: center;
+}
+
+.content h1 {
+    font-size: 2rem;
+    margin   : 0 0 10px;
+}
+
+.content p {
+    font-size: 1.2rem;
+}
+
+.diamond-images {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    width          : 50%;
+    position       : relative;
+}
+
+.diamond-image {
+    width        : 100px;
+    height       : 100px;
+    object-fit   : cover;
+    position     : absolute;
+    border       : 2px solid #fff;
+    border-radius: 8px;
+    z-index      : 1;
+}
+
+.top-left {
+    top      : 0;
+    left     : 10px;
+    transform: rotate(-45deg);
+}
+
+.top-right {
+    top      : 0;
+    right    : 0;
+    transform: rotate(-45deg);
+}
+
+.bottom-left {
+    bottom   : 0;
+    left     : 0;
+    transform: rotate(-45deg);
+}
+
+.bottom-right {
+    bottom   : 0;
+    right    : 0;
+    transform: rotate(-45deg);
+}
+
+.content-section {
+    display  : flex;
+    flex-wrap: wrap;
+    gap      : 20px;
+    padding  : 30px;
+}
+
+.content-column {
+    flex            : 1;
+    min-width       : 250px;
+    max-width       : 500px;
+    padding         : 20px;
+    background-color: #f4f4f4;
+    border-radius   : 8px;
+}
+
+.small-images2 {
+    display       : flex;
+    z-index       : 1;
+    flex-direction: column;
+    gap           : 5px;
+}
+
+.diamond-image2 {
+    width        : 300px;
+    height       : 70px;
+    border       : 3px solid white;
+    box-sizing   : border-box;
+    border-radius: 30px;
+    object-fit   : cover;
+
+
+}
+
+.ngoai {
+    margin-left: 100px;
+}
+
+.small-images3 {
+    height         : auto;
+    display        : flex;
+    gap            : 10px;
+    align-items    : center;
+    justify-content: center;
+}
+
+.diamond-image3 {
+    height       : 300px;
+    width        : 70px;
+    border       : 3px solid white;
+    object-fit   : cover;
+    /* Đảm bảo hình ảnh giữ nguyên tỷ lệ và không bị kéo dãn */
+    border-radius: 50px;
+    z-index      : 1;
+
+}
+
+.len {
+    margin-top: 80px;
+}
+
+.xuong {
+    margin-bottom: 80px;
+}

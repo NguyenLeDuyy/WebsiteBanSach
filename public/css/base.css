@@ -46,11 +46,19 @@ body {
 }
 
 .container {
-    width              : 100%;
-    max-width          : 1140px;
-    /* background-color: var(--color-neutral); */
-    margin-left        : auto;
-    margin-right       : auto;
+    width                    : 100%;
+    /* max-width             : 1140px; */
+    /* background-color      : var(--color-neutral); */
+    margin-left              : auto;
+    margin-right             : auto;
+}
+
+.base-container-for-cart {
+    width                 : 100%;
+    max-width             : 1140px;
+    /* background-color   : var(--color-neutral); */
+    margin-left           : auto;
+    margin-right          : auto;
 }
 
 @media (max-width: 1200px) {

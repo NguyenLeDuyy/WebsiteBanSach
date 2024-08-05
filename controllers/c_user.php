@@ -16,7 +16,7 @@ switch ($_GET['view']) {
             }
         }
         // Hiển thị ra view
-        include_once 'views/t_header.php';
+        include_once 'views/t_header_home_page.php';
         include_once 'views/v_user_login.php';
         include_once 'views/t_footer.php';
         # code...
@@ -38,7 +38,7 @@ switch ($_GET['view']) {
             }
         }
         // Hiển thị ra view
-        include_once 'views/t_header.php';
+        include_once 'views/t_header_home_page.php';
         include_once 'views/v_user_register.php';
         include_once 'views/t_footer.php';
         # code...
@@ -92,7 +92,7 @@ switch ($_GET['view']) {
         }
 
         // Hiển thị ra view
-        include_once 'views/t_header.php';
+        include_once 'views/t_header_home_page.php';
         include_once 'views/v_user_profile.php';
         include_once 'views/t_footer.php';
         break;

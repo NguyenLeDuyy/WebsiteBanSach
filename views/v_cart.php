@@ -1,4 +1,4 @@
-<div class="container">
+<div class="base-container-for-cart">
     <h1>Giỏ hàng</h1>
     <div class="cart-container">
         <table class="cart-table" border="1" style="width:100%">
@@ -18,41 +18,43 @@
                 $tong = 0;
                 $i = 1;
                 foreach ($_SESSION['cart'] as $sp) : ?>
-                    <tr>
-                        <td><?= $i++ ?></td>
-                        <td><img src="public/img/Sach/<?= $sp['cover_image'] ?>" alt=""></td>
-                        <td><?= $sp['title'] ?></td>
-                        <td>
-                            <?php if (isset($sp['discounted_price'])) : ?>
-                                <p>
-                                    <strong><?= number_format($sp['discounted_price']) ?><sup>đ</sup></strong>
-                                    <del><?= number_format($sp['price']) ?><sup>đ</sup></del>
-                                </p>
-                            <?php else : ?>
-                                <p>
-                                    <?= number_format($sp['price']) ?><sup>đ</sup>
-                                </p>
-                            <?php endif; ?>
-                        </td>
-                        <td>
-                            <a href="?ctrl=cart&view=subQuantity&index=<?= $i - 2 ?>&id=<?= $sp['product_id'] ?>">-</a>
-                            <?= $sp['quantity'] ?>
-                            <a href="?ctrl=cart&view=plusQuantity&index=<?= $i - 2 ?>&id=<?= $sp['product_id'] ?>">+</a>
-                        </td>
-                        <td>
-                            <?php if (isset($sp['discounted_price'])) {
+                <tr>
+                    <td><?= $i++ ?></td>
+                    <td><img src="public/img/Sach/<?= $sp['cover_image'] ?>" alt=""></td>
+                    <td><?= $sp['title'] ?></td>
+                    <td>
+                        <?php if (isset($sp['discounted_price'])) : ?>
+                        <p>
+                            <strong><?= number_format($sp['discounted_price']) ?><sup>đ</sup></strong>
+                            <del><?= number_format($sp['price']) ?><sup>đ</sup></del>
+                        </p>
+                        <?php else : ?>
+                        <p>
+                            <?= number_format($sp['price']) ?><sup>đ</sup>
+                        </p>
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <a class="quantity-button"
+                            href="?ctrl=cart&view=subQuantity&index=<?= $i - 2 ?>&id=<?= $sp['product_id'] ?>">-</a>
+                        <?= $sp['quantity'] ?>
+                        <a class="quantity-button"
+                            href="?ctrl=cart&view=plusQuantity&index=<?= $i - 2 ?>&id=<?= $sp['product_id'] ?>">+</a>
+                    </td>
+                    <td>
+                        <?php if (isset($sp['discounted_price'])) {
                                 $thanhTien = $sp['discounted_price'] * $sp['quantity'];
                             } else {
                                 $thanhTien = $sp['price'] * $sp['quantity'];
                             }
                             $tong += $thanhTien;
                             ?>
-                            <?= number_format($thanhTien) ?><sup>đ</sup>
-                        </td>
-                        <td>
-                            <a href="?ctrl=cart&view=removeFromCart&index=<?= $i - 2 ?>&id=<?= $sp['product_id'] ?>">Xóa</a>
-                        </td>
-                    </tr>
+                        <?= number_format($thanhTien) ?><sup>đ</sup>
+                    </td>
+                    <td>
+                        <a href="?ctrl=cart&view=removeFromCart&index=<?= $i - 2 ?>&id=<?= $sp['product_id'] ?>">Xóa</a>
+                    </td>
+                </tr>
                 <?php endforeach; ?>
             </tbody>
             <tfoot>

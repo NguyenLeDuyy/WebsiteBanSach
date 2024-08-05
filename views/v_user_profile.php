@@ -1,9 +1,13 @@
-<div class="container">
+<div class="base-container-for-cart">
     <h1>Hồ sơ của bạn</h1>
     <form class="row user-profile" action="" method="POST" enctype="multipart/form-data">
         <div class="col-25">
             <div class="avatar">
-                <img src="public/img/avatar/<?= $_SESSION['user']['avatar'] ?>" alt="" style="width:100%">
+                <?php if ($_SESSION['user']['avatar'] == null) : ?>
+                <img src="public\img\logo\userDefault.svg" alt="">
+                <?php else : ?>
+                <img src="public/img/avatar/<?= $_SESSION['user']['avatar'] ?>" alt="">
+                <?php endif; ?>
             </div>
             <input type="file" name="avatar" id="">
         </div>
@@ -27,7 +31,7 @@
             <label for="repassword">Nhập lại mật khẩu</label><br>
             <input type="password" name="repassword" id="repassword"><br><br>
 
-            <button class="btn-payment" type="submit">Lưu thay đổi</button>
+            <button class="btn-order" type="submit">Lưu thay đổi</button>
         </div>
     </form>
 </div>

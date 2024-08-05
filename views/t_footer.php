@@ -38,6 +38,12 @@
                     <a href="#"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
+                <div class="infor-web-developer">
+                    <ul>
+                        <li><a href="#">2251120411 - Nguyễn Lê Duy</a></li>
+                        <li><a href="#">2251120420 - Lê Tuấn Khang</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

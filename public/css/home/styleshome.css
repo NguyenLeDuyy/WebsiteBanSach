@@ -1,0 +1,279 @@
+/* 
+.login-button {
+  flex-grow : 0.1;
+  background: none;
+  border    : none;
+  cursor    : pointer;
+  font-size : 20px;
+}
+
+.login-button a {
+  text-decoration: none;
+  color          : black;
+} */
+
+.temp-container {
+  display      : flex;
+  flex         : 1;
+  width        : 100%;
+  border-bottom: 0.2px solid rgb(213, 213, 213);
+  margin-bottom: 15px;
+}
+
+.center-temp-container {
+  width       : 60%;
+  border-left : 0.2px solid rgb(213, 213, 213);
+  border-right: 0.2px solid rgb(213, 213, 213);
+}
+
+.readingBookDay {
+  width     : 100%;
+  height    : 100%;
+  object-fit: cover;
+}
+
+.right-temp-container {
+  width: 20%;
+}
+
+.core-value {
+  height    : 100%;
+  object-fit: cover;
+}
+
+.article-container {
+  position       : relative;
+  width          : 80%;
+  display        : flex;
+  justify-content: space-between;
+  width          : 80%;
+  /* Đặt độ rộng của article là 80% */
+  margin         : 0 auto;
+  /* Căn giữa article */
+}
+
+#toggle-cart-btn {
+  z-index   : 1000;
+  top       : 9%;
+  right     : 1%;
+  position  : fixed;
+  flex-grow : 0.1;
+  background: none;
+  border    : none;
+  cursor    : pointer;
+  padding   : 0;
+}
+
+.cart-button i {
+  font-size: 40px;
+  /* Tăng kích thước icon */
+  color    : var(--color-text);
+}
+
+.menu {
+  font-weight     : bold;
+  display         : flex;
+  text-align      : center;
+  padding         : 10px;
+  background-color: var(--color-secondary);
+  margin          : 0;
+}
+
+.menu__item {
+  flex-grow : 1;
+  list-style: none;
+}
+
+.menu__item a {
+  text-decoration: none;
+  color          : white;
+  padding        : 10px;
+}
+
+.menu__item a:hover {
+  background-color: rgb(169, 130, 116);
+}
+
+aside {
+  float: left;
+  width: 20%;
+}
+
+.book-categories {
+  background-color: #F8F5F1;
+}
+
+.book-categories ul {
+  padding   : 0;
+  margin    : 0;
+  list-style: none;
+}
+
+.book-categories ul li {
+  position: relative;
+  /* Đảm bảo các mục con được định vị chính xác so với mục cha */
+  z-index : 10;
+  /* Thêm thuộc tính z-index để nằm trên slideshow */
+}
+
+.book-categories ul li:hover {
+  background-color: #f0f0f0;
+  /* Màu nền cho hiệu ứng hover */
+}
+
+.book-categories ul ul {
+  position        : absolute;
+  /* Định vị tuyệt đối để dễ dàng điều chỉnh vị trí */
+  display         : none;
+  background-color: white;
+  left            : 100%;
+  /* Đẩy menu con sang bên phải */
+  top             : 0;
+  /* Đặt vị trí menu con ở cùng một hàng ngang với mục cha */
+  z-index         : 20;
+  /* Đảm bảo menu con có z-index cao hơn để nằm trên slideshow */
+}
+
+.book-categories ul ul li {
+  padding: 0;
+  margin : 0;
+}
+
+.book-categories ul ul a {
+  display    : block;
+  white-space: nowrap;
+  /* Ngăn ngừa ngắt dòng */
+  padding    : 10px;
+  /* Thêm padding để nội dung không bị chặt */
+}
+
+.book-categories ul li:hover>ul {
+  display: block;
+}
+
+.book-categories ul li a {
+  display        : block;
+  font-size      : 16px;
+  text-decoration: none;
+  color          : black;
+  padding        : 10px 10px;
+  line-height    : 30px;
+  white-space    : nowrap;
+  /* Ngăn ngừa ngắt dòng */
+  overflow       : hidden;
+  /* Ẩn nội dung vượt quá chiều rộng */
+  text-overflow  : ellipsis;
+  /* Hiển thị dấu chấm (...) nếu nội dung quá dài */
+}
+
+.book-categories ul li a:hover {
+  background-color: #007bff;
+  /* Màu nền cho hiệu ứng hover */
+  color           : white;
+}
+
+.slideShow {
+  width   : 69%;
+  position: absolute;
+  height  : 98%;
+  overflow: hidden;
+  border  : 4px solid #ddd;
+  z-index : 1;
+  /* Đảm bảo slideshow có z-index thấp hơn các menu */
+}
+
+.slideShow__list {
+  display   : flex;
+  transition: transform 0.5s ease-in-out;
+  object-fit: cover;
+  width     : 100%;
+  height    : 100%;
+}
+
+.slideShow__list-item {
+  min-width : 100%;
+  height    : 100%;
+  object-fit: cover;
+}
+
+.slideShow__list a {
+  display  : block;
+  /* Đảm bảo thẻ a bao phủ toàn bộ khu vực ảnh */
+  min-width: 100%;
+  height   : 100%;
+}
+
+.prev,
+.next {
+  position        : absolute;
+  top             : 50%;
+  transform       : translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color           : white;
+  border          : none;
+  padding         : 10px;
+  cursor          : pointer;
+  z-index         : 1000;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+/* Đặt các thuộc tính cho thành phần kế bên slideshow */
+.right-article {
+  position      : absolute;
+  float         : right;
+  width         : 31.9%;
+  height        : 100%;
+  display       : flex;
+  /* Sử dụng Flexbox để sắp xếp hình ảnh */
+  flex-direction: column;
+  /* Sắp xếp các hình ảnh theo chiều dọc */
+  right         : 0;
+}
+
+
+.right-article a {
+  display : block;
+  width   : 100%;
+  /* Chiếm toàn bộ chiều rộng của lớp chứa */
+  height  : 50%;
+  /* Chiếm 50% chiều cao của lớp chứa */
+  overflow: hidden;
+  /* Đảm bảo hình ảnh không bị tràn ra ngoài khung */
+}
+
+/* Đặt các thuộc tính cho hình ảnh bên trong slideShow__list-item2 */
+.right-article a img {
+  height: 96%;
+  width : 98%;
+  /* Chiếm toàn bộ chiều rộng của lớp chứa */
+  border: 4px solid #ddd;
+}
+
+/* Đặt các thuộc tính cho hình ảnh bên trong slideShow__list-item2 */
+
+.headline {
+  display       : flex;
+  flex-direction: column;
+  padding-bottom: 5px;
+}
+
+.headline-title {
+  padding-bottom: 5px;
+}
+
+.headline-name {
+  font-family: "Font Awesome 6";
+}
+
+.headline-link {
+  font-weight    : bold;
+  text-decoration: none;
+  color          : var(--color-text);
+}
