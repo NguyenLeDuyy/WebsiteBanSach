@@ -1,8 +1,8 @@
 <div class="base-container-for-cart">
-    <h1>Thanh toán đơn hàng</h1>
+    <h1 class="title">Thanh toán đơn hàng</h1>
     <div class="payment-row">
         <div class="left-payment">
-            <form class="payment-form" action="">
+            <form class="payment-form" action="" method='POST'>
                 <div class="form-group">
                     <h3>Phương thức giao hàng</h3>
                     <p>Chuyển hàng tới địa chỉ khác hàng</p>
@@ -115,6 +115,7 @@
                     </tr>
                     <tr>
                         <td colspan="3">Tiền cần thanh toán</td>
+                        <?php updateTotalAmountAndStatusPending($cart_id, $tong + 30000) ?>
                         <td><?= number_format($tong + 30000) ?><sup>đ</sup></td>
                     </tr>
                 </tfoot>

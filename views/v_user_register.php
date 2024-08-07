@@ -1,6 +1,6 @@
 <div class="container register-container">
     <div class="register-box">
-        <h2>Đăng ký</h2>
+        <h2 class="title">Đăng ký</h2>
         <form class="register-form" id="registerForm" action="" method="post">
             <label for="fullname">Họ và tên:</label><br>
             <input class="form-control" type=" text" name="fullname" id="fullname"><br>

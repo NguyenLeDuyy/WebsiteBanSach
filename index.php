@@ -22,6 +22,10 @@ switch ($_GET['ctrl']) {
         include_once 'controllers/c_cart.php';
         break;
 
+    case 'order':
+        include_once 'controllers/c_order.php';
+        break;
+
     default:
         header('Location: ?ctrl=page&view=home');
         break;

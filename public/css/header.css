@@ -156,6 +156,7 @@ header {
 .signup-element a {
     box-shadow   : 0 0 1px gray;
     border-radius: 5px;
+    color        : var(--color-primary);
 }
 
 .account-header:hover .box-login-dropdown {

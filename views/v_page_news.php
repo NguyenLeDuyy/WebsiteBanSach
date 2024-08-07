@@ -1,6 +1,6 @@
 <main>
     <section class="news-list">
-        <h2>Tin Tức Mới Nhất</h2>
+        <h2 class="title">Tin Tức Mới Nhất</h2>
         <article>
             <div class="news-item">
                 <div class="news-image">

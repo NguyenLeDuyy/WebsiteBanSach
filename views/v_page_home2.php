@@ -28,7 +28,7 @@
     <div id="wrapper">
         <div class="headline">
             <div class="headline-title">
-                <h3 class="headline-name"><a href="/sanpham/sp.html" class="headline-link">
+                <h3 class="headline-name"><a href="?ctrl=product&view=all" class="headline-link">
                         <i class="fab fa-hotjar headline-icon"></i>
                         SẢN PHẨM NỔI BẬT </a>
                 </h3>
@@ -61,7 +61,10 @@
                             <a href="?ctrl=product&view=detail&id=<?= $sp['id'] ?>" class="product__item-top--thumb">
                                 <img src="public/img/All/<?= $sp['cover_image'] ?>" alt="Book 1">
                             </a>
-                            <button class="buy">Mua ngay</button>
+                            <a href="?ctrl=cart&view=addToCartOnHome&id=<?= $sp['id'] ?>"><button class="addToCart">Thêm vào
+                                    giỏ hàng</button></a>
+                            <a href="?ctrl=cart&view=addToCart&id=<?= $sp['id'] ?>"><button class="buy">Mua
+                                    ngay</button></a>
                         </div>
                         <div class="product__info">
                             <a href="?ctrl=product&view=detail&id=<?= $sp['id'] ?>" class="product__info-name">
@@ -118,3 +121,9 @@
 </script>
 <script src="public/js/slide copy.js" defer></script>
 <script src="public/js/action.js"></script>
+
+<script>
+    function addToCart(productId) {
+        window.location.href("?ctrl=cart&view=addToCart&id=" + productId);
+    }
+</script>

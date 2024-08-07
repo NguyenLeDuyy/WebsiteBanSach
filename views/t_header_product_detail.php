@@ -46,6 +46,9 @@
                                 <a href="?ctrl=user&view=profile">Xin chào, <?= $_SESSION['user']['fullname'] ?></a>
                             </li>
                             <li class="signup-element">
+                                <a href="?ctrl=order&view=order">Đơn hàng đã đặt</a>
+                            </li>
+                            <li class="signup-element">
                                 <a href="?ctrl=user&view=logout">Đăng xuất</a>
                             </li>
                         </ul>

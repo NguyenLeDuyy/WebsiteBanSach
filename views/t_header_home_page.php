@@ -20,8 +20,7 @@
 
     <link rel="stylesheet" href="public/css/footer.css">
     <link rel="stylesheet" href="/sanpham/sp.css">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
 <body>
@@ -34,59 +33,62 @@
         <div class="right-header">
             <ul class="account-and-cart">
                 <?php if (isset($_SESSION['user'])) : ?>
-                <li class="account-header">
-                    <a href="?ctrl=user&view=profile">
-                        <i class="fa-solid fa-user"></i>
-                    </a>
-                    <a href="?ctrl=user&view=profile">
-                        <p>Tài khoản</p>
-                    </a>
-                    <div class="box-login-dropdown">
-                        <ul class="login-dropdown">
-                            <li class="login-element">
-                                <a href="?ctrl=user&view=profile">Xin chào, <?= $_SESSION['user']['fullname'] ?></a>
-                            </li>
-                            <li class="signup-element">
-                                <a href="?ctrl=user&view=logout">Đăng xuất</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="cart-header">
-                    <a href="?ctrl=cart&view=view">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                    <a href="?ctrl=cart&view=view">
-                        <p>Giỏ hàng</p>
-                    </a>
-                </li>
+                    <li class="account-header">
+                        <a href="?ctrl=user&view=profile">
+                            <i class="fa-solid fa-user"></i>
+                        </a>
+                        <a href="?ctrl=user&view=profile">
+                            <p>Tài khoản</p>
+                        </a>
+                        <div class="box-login-dropdown">
+                            <ul class="login-dropdown">
+                                <li class="login-element">
+                                    <a href="?ctrl=user&view=profile">Xin chào, <?= $_SESSION['user']['fullname'] ?></a>
+                                </li>
+                                <li class="signup-element">
+                                    <a href="?ctrl=order&view=order">Đơn hàng đã đặt</a>
+                                </li>
+                                <li class="login-element">
+                                    <a href="?ctrl=user&view=logout">Đăng xuất</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="cart-header">
+                        <a href="?ctrl=cart&view=view">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                        <a href="?ctrl=cart&view=view">
+                            <p>Giỏ hàng</p>
+                        </a>
+                    </li>
                 <?php else : ?>
-                <li class="account-header">
-                    <a href="?ctrl=user&view=login">
-                        <i class="fa-solid fa-user"></i>
-                    </a>
-                    <a href="?ctrl=user&view=login">
-                        <p>Tài khoản</p>
-                    </a>
-                    <div class="box-login-dropdown">
-                        <ul class="login-dropdown">
-                            <li class="login-element">
-                                <a href="?ctrl=user&view=login">Đăng nhập</a>
-                            </li>
-                            <li class="signup-element">
-                                <a href="?ctrl=user&view=register">Đăng ký</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="cart-header">
-                    <a href="?ctrl=user&view=login">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                    <a href="?ctrl=user&view=login">
-                        <p>Giỏ hàng</p>
-                    </a>
-                </li>
+                    <li class="account-header">
+                        <a href="?ctrl=user&view=login">
+                            <i class="fa-solid fa-user"></i>
+                        </a>
+                        <a href="?ctrl=user&view=login">
+                            <p>Tài khoản</p>
+                        </a>
+                        <div class="box-login-dropdown">
+                            <ul class="login-dropdown">
+                                <li class="login-element">
+                                    <a href="?ctrl=user&view=login">Đăng nhập</a>
+                                </li>
+                                <li class="signup-element">
+                                    <a href="?ctrl=user&view=register">Đăng ký</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="cart-header">
+                        <a href="?ctrl=user&view=login">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                        <a href="?ctrl=user&view=login">
+                            <p>Giỏ hàng</p>
+                        </a>
+                    </li>
                 <?php endif; ?>
             </ul>
         </div>

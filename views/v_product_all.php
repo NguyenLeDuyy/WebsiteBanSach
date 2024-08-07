@@ -13,7 +13,10 @@
                 <a href="?ctrl=product&view=detail&id=<?= $sp['id'] ?>" class="product__item-top--thumb">
                     <img src="public/img/All/<?= $sp['cover_image'] ?>" alt="Book 1">
                 </a>
-                <a href="?ctrl=product&view=detail&id=<?= $sp['id'] ?>"><button class="buy">Mua ngay</button></a>
+                <a href="?ctrl=cart&view=addToCartOnHome&id=<?= $sp['id'] ?>"><button class="addToCart">Thêm vào
+                        giỏ hàng</button></a>
+                <a href="?ctrl=cart&view=addToCart&id=<?= $sp['id'] ?>"><button class="buy">Mua
+                        ngay</button></a>
             </div>
             <div class="product__info">
                 <a href="?ctrl=product&view=detail&id=<?= $sp['id'] ?>" class="product__info-name">
@@ -37,7 +40,6 @@
                         <?= number_format($sp['price']) ?><sup>đ</sup>
                     </p>
                     <?php endif; ?>
-
                 </div>
             </div>
         </div>

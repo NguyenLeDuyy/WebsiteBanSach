@@ -133,24 +133,27 @@
 }
 
 .comment {
-    border       : 1px solid #000;
+    margin       : 5px 10px;
+    box-shadow   : 0 0 3px grey;
     padding      : 5px;
     margin-bottom: 5px;
     border-radius: 5px;
 }
 
+.title-comment {
+    margin-left: 10px;
+}
+
 .comment button {
-    padding      : 5px 20px;
-    border-radius: 5px;
-    background   : black;
-    color        : white;
-    border       : 0;
-    cursor       : pointer;
+    padding: 5px 20px;
+
 }
 
 .comment textarea {
-    width: calc(100% - 5px);
-
+    width        : calc(100% - 5px);
+    border       : none;
+    box-shadow   : 0 0 3px grey;
+    border-radius: 5px;
 }
 
 /* Login, Register */
@@ -250,7 +253,8 @@
 
 .user-profile .col-75 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+select {
     width        : 100%;
     margin       : 6px 0;
     padding      : 8px;

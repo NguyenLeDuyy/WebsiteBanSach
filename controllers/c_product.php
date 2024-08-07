@@ -19,6 +19,13 @@ switch ($_GET['view']) {
         // Xử lý dữ liệu
         include_once 'models/m_product.php';
         $sp = product_getById($_GET['id']);
+
+        if ($sp['image_urls'] != null)
+            $other_images = json_decode($sp['image_urls'], true);
+        else
+            $other_images = ["unUpdate.svg", "unUpdate.svg"];
+        // print_r($other_images);
+
         include_once 'models/m_comment.php';
         $dsBL = comment_getByProductId($_GET['id']);
 

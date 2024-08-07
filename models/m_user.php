@@ -22,10 +22,10 @@ function user_checkEmail($email)
     else return false;
 }
 
-function user_updateInfo($user_id, $fullname, $address, $phone_number, $email)
+function user_updateInfo($user_id, $fullname, $address, $phone_number, $email, $city, $district, $ward)
 {
     pdo_execute("UPDATE accounts SET fullname='$fullname', phone='$phone_number', 
-    address='$address', email='$email' WHERE id=$user_id");
+    address='$address', email='$email', city=$city, district=$district, ward=$ward WHERE id=$user_id");
 }
 
 function user_changePassword($user_id, $new_password)

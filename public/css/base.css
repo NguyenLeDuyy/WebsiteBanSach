@@ -61,6 +61,10 @@ body {
     margin-right          : auto;
 }
 
+.title {
+    font-family: "Font Awesome 6";
+}
+
 @media (max-width: 1200px) {
     .container {
         max-width: 960px;

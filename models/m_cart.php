@@ -4,13 +4,14 @@ include_once 'pdo.php';
 
 function cart_getByUserId_Basic($user_id)
 {
-    return pdo_query_one("SELECT * FROM cart WHERE user_id = $user_id");
+    return pdo_query_one("SELECT * FROM cart WHERE user_id = $user_id AND cart_status = 'active'");
 }
 
 function cartDetail_getByUserId($user_id)
 {
     // Chưa chắc có cart_id trong cart_detail nên lấy trong cart
     return pdo_query("SELECT
+        c.cart_status,
         b.id as product_id,
         b.title as product_title,
         b.cover_image,
@@ -36,11 +37,18 @@ function insertCartDetail($cart_id, $product_id)
     "); // Phải set Quantity = 0 vì sau khi addNewCart còn có kiểm tra thêm điều kiện if ($sp['product_id'] == $book_id)
 }
 
+function insertCartDetailWithQuantity($cart_id, $product_id, $quantity)
+{
+    pdo_execute("INSERT INTO cart_detail (`cart_id`,`product_id`, `quantity`) VALUES
+    ($cart_id, $product_id, $quantity);
+    ");
+}
+
 function addNewCart($user_id, $product_id)
 {
     pdo_execute("INSERT INTO cart (`user_id`, `cart_status`) VALUES
     ($user_id, 'active')");
-    $cart = pdo_query_one("SELECT * FROM cart WHERE user_id = $user_id");
+    $cart = pdo_query_one("SELECT * FROM cart WHERE user_id = $user_id AND cart_status = 'active'");
     insertCartDetail($cart['id'], $product_id);
 }
 
@@ -80,4 +88,22 @@ function updateQuantity($cart_id, $product_id, $current_quantity, $operator)
             removeFromCartDetail($cart_id, $product_id);
         }
     }
+}
+
+function updateTotalAmountAndStatusPending($cart_id, $total_amount)
+{
+    pdo_execute("UPDATE cart
+        SET total_amount=$total_amount,
+            cart_status = 'Pending'
+        WHERE id = $cart_id 
+        ");
+}
+
+function updatePaymentAndDeliveryMethod($cart_id, $payment_method, $delivery_method)
+{
+    pdo_execute("UPDATE cart
+        SET payment_method=$payment_method,
+            delivery_method = $delivery_method
+        WHERE id = $cart_id 
+        ");
 }

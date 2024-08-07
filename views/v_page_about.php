@@ -5,7 +5,7 @@
         <div class="background-image">
             <div class="overlay"></div>
             <div class="content">
-                <h1>Chào Mừng Đến Với Trang Web Bán Sách</h1>
+                <h1 class="title">Chào Mừng Đến Với Trang Web Bán Sách</h1>
                 <p>Chúng tôi tự hào mang đến cho bạn một thư viện sách phong phú, từ các tác phẩm văn học cổ điển đến
                     những cuốn sách mới nhất. Tận hưởng trải nghiệm mua sắm trực tuyến dễ dàng và tiện lợi với chúng
                     tôi.</p>

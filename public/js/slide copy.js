@@ -8,7 +8,8 @@ window.onload = function () {
                     <a href="?ctrl=product&view=detail&id=${sp.id}" class="product__item-top--thumb">
                         <img src="public/img/Sach/${sp.cover_image}" alt="${sp.title}">
                     </a>
-                    <a href="?ctrl=product&view=detail&id=${sp.id}" class="buy">Mua ngay</a>
+                    <a href="?ctrl=cart&view=addToCartOnHome&id=${sp.id}"><button class="addToCart">Thêm vào giỏ hàng</button></a>
+                            <a href="?ctrl=cart&view=addToCart&id=${sp.id}"><button class="buy">Mua ngay</button></a>
                 </div>
                 <div class="product__info">
                     <a href="?ctrl=product&view=detail&id=${sp.id}" class="product__info-name">${sp.title}</a>

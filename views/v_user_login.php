@@ -1,6 +1,6 @@
 <div class="container login-container">
     <div class="login-box">
-        <h2>Đăng nhập</h2>
+        <h2 class="title">Đăng nhập</h2>
         <form class="login-form" id="loginForm" action="" method="post">
             <label for="email">Email:</label><br>
             <input class="form-control" type="email" name="email" id="email"><br>
@@ -20,7 +20,7 @@
 
 <script src="public/js/loginValidation.js"></script>
 <script>
-function redirectToRegister() {
-    window.location.href = "?ctrl=user&view=register";
-}
+    function redirectToRegister() {
+        window.location.href = "?ctrl=user&view=register";
+    }
 </script>

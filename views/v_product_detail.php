@@ -1,29 +1,45 @@
 <div class="container">
     <main>
         <div class="containermain">
-            <h2>Dầu Và Máu - Mohammed Bin Salman Và Tham Vọng Tái Thiết Kinh Tế Ả-Rập</h2>
+            <h2 class="title"><?= $sp['title'] ?></h2>
             <hr>
             <div class="container--sp">
                 <div class="wrapper">
                     <div class="large-image">
-                        <img src="public\img\imgproduct\anh1.png" alt="Hình Lớn" id="largeImage">
+                        <img src="public\img\All\<?= $sp['cover_image'] ?>" alt="Hình Lớn" id="largeImage">
                     </div>
                     <div class="small-images">
-                        <img src="public\img\imgproduct\anh1.png" alt="Hình Nhỏ 1" class="small-image">
-                        <img src="public\img\imgproduct\anh4.jpeg" alt="Hình Nhỏ 2" class="small-image">
-                        <img src="public\img\imgproduct\anh5.jpeg" alt="Hình Nhỏ 3" class="small-image">
+                        <img src="public\img\All\<?= $sp['cover_image'] ?>" alt="Hình Nhỏ 1" class="small-image">
+                        <img src="public\img\All\<?= $other_images['0'] ?>" alt="Hình Nhỏ 2" class="small-image">
+                        <img src="public\img\All\<?= $other_images['1'] ?>" alt="Hình Nhỏ 3" class="small-image">
                     </div>
                 </div>
                 <div class="info-basic">
                     <div class="price-container">
                         <p class="price-container__label">Giá bán:
-                            <span class="price-container__current-price">199.200đ</span>
-                            <del class="price-container__old-price">249.000đ</del>
+                            <?php if (isset($sp['discounted_price'])) : ?>
+                            <span
+                                class="price-container__current-price"><?= number_format($sp['discounted_price']) ?>đ</span>
+                            <del class="price-container__old-price"><?= number_format($sp['price']) ?>đ</del>
+                            <?php else : ?>
+                            <span class="price-container__current-price"><?= number_format($sp['price']) ?>đ</span>
+                            <?php endif; ?>
                         </p>
                     </div>
-                    <p class="thrifty">Tiết kiệm: <b> 49.800đ</b>
-                        <span>-20%</span>
+                    <?php if (isset($sp['discounted_price'])) : ?>
+                    <p class="thrifty">Tiết kiệm:
+                        <b><?= number_format($sp['price'] - $sp['discounted_price']) ?>đ</b>
+                        <span>
+                            <?php if (isset($sp['discount_percentage'])) : ?>
+                            -<?= $sp['discount_percentage'] ?>%
+                            <?php else : ?>
+                            -<?= round((($sp['price'] - $sp['discounted_price']) / $sp['price']) * 100) ?>%
+                            <?php endif; ?>
+                        </span>
                     </p>
+                    <?php endif; ?>
+
+
                     <div class="Incentives">
                         <b>KHUYẾN MÃI & ƯU ĐÃI</b>
                         <ol>
@@ -65,7 +81,7 @@
                             <tbody>
                                 <tr>
                                     <td>Tác giả</td>
-                                    <td>Bradley Hope, Justin Scheck</td>
+                                    <td><?= $sp['author'] ?></td>
                                 </tr>
                                 <tr>
                                     <td>Người Dịch</td>
@@ -84,8 +100,8 @@
                                     <td>378</td>
                                 </tr>
                                 <tr>
-                                    <td>Hình thức</td>
-                                    <td>Bìa cứng áo ôm</td>
+                                    <td>Ngày xuất bản</td>
+                                    <td><?= date("d-m-Y", strtotime($sp['published_date'])); ?></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -95,29 +111,34 @@
         </div>
     </main>
     <hr>
+    <div class="container">
+        <main>
+            <div class="containermain">
+                <h3 class="title title-comment">Bình luận</h3>
+                <div class="comment">
+                    <?php if (isset($_SESSION['user'])) : ?>
+                    <form action="?ctrl=comment&view=add" method="post">
+                        <textarea name="comment" id="comment" placeholder="Đánh giá của bạn về sản phẩm này"></textarea>
+                        <input type="hidden" name="product_id" value="<?= $sp['id'] ?>">
+                        <button type="submit" class="btn-order">Gửi</button>
+                    </form>
+                    <?php else : ?>
+                    <p style="text-align:center">
+                        Vui lòng <a href="?ctrl=user&view=login">đăng nhập</a> để đánh giá
+                    </p>
+                    <?php endif; ?>
+                </div>
 
-    <h3>Bình luận</h3>
-    <div class="comment">
-        <?php if (isset($_SESSION['user'])) : ?>
-        <form action="?ctrl=comment&view=add" method="post">
-            <textarea name="comment" id="comment" placeholder="Đánh giá của bạn về sản phẩm này"></textarea>
-            <input type="hidden" name="product_id" value="<?= $sp['id'] ?>">
-            <button type="submit">Gửi</button>
-        </form>
-        <?php else : ?>
-        <p style="text-align:center">
-            Vui lòng <a href="?ctrl=user&view=login">đăng nhập</a> để đánh giá
-        </p>
-        <?php endif; ?>
+                <?php foreach ($dsBL as $bl) : ?>
+                <div class="comment">
+                    <strong><?= $bl['fullname'] ?></strong>
+                    <?= $bl['comment_time'] ?>
+                    <p><?= $bl['comment_content'] ?></p>
+                </div>
+                <?php endforeach; ?>
+            </div>
     </div>
-
-    <?php foreach ($dsBL as $bl) : ?>
-    <div class="comment">
-        <strong><?= $bl['fullname'] ?></strong>
-        <?= $bl['comment_time'] ?>
-        <p><?= $bl['comment_content'] ?></p>
-    </div>
-    <?php endforeach; ?>
+    </main>
 </div>
 
 <script src="public\js\product.js"></script>

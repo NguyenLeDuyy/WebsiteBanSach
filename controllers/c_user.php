@@ -58,18 +58,24 @@ switch ($_GET['view']) {
             $email = $_POST['Email'];
             $password = $_POST['password'];
             $repassword = $_POST['repassword'];
+            $city = $_POST['city'];
+            $district = $_POST['district'];
+            $ward = $_POST['ward'];
 
             // print_r($_FILES);
             // return;
 
             include_once 'models/m_user.php';
-            user_updateInfo($_SESSION['user']['id'], $fullname, $address, $phone_number, $email);
+            user_updateInfo($_SESSION['user']['id'], $fullname, $address, $phone_number, $email, $city, $district, $ward);
             // Cập nhật lại $_SESSION để thấy thay đổi
             // Do trong file v_user_profile lấy thông tin từ session ra để hiển thị
             $_SESSION['user']['fullname'] = $fullname;
             $_SESSION['user']['address'] = $address;
             $_SESSION['user']['phone'] = $phone_number;
             $_SESSION['user']['email'] = $email;
+            $_SESSION['user']['city'] = $city;
+            $_SESSION['user']['district'] = $district;
+            $_SESSION['user']['ward'] = $ward;
 
             if (strlen($password) > 0) { // Có đổi mật khẩu
 
