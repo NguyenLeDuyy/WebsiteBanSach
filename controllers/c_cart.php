@@ -37,48 +37,11 @@ switch ($_GET['view']) {
         break;
 
     case 'addToCartOnHome':
-        // Xử lý dữ liệu
         include_once 'models/m_cart.php';
-        include_once 'models/m_product.php';
-
-        print_r($_SESSION['cart']);
-
-
         if (isset($_SESSION['user'])) {
             $user_id = $_SESSION['user']['id'];
             $book_id = $_GET['id'];
-
-            if (!isset($_SESSION['cart'])) {
-                addNewCart($user_id, $book_id);
-                $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            } else if (count($_SESSION['cart']) == 0 && $_SESSION['cart']['cart_status'] == 'Pending') {
-                addNewCart($user_id, $book_id);
-                $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            } else {
-                addNewCart($user_id, $book_id);
-                $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            }
-
-
-            $info = product_getById($_GET['id']);
-            $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            $cart = cart_getByUserId_Basic($user_id);
-            $cart_id = $cart['id'];
-
-            $inCart = false; // Giả sử chưa có trong giỏ hàng
-            foreach ($_SESSION['cart'] as &$sp) { // Phải truyền tham biến
-                if ($sp['product_id'] == $book_id) { // Đã có SP trong giỏ hàng -> Tăng số lượng
-                    updateQuantity($cart_id, $book_id, $sp['quantity'], '+');
-                    $sp['quantity']++;
-                    $inCart = true;
-                    break;
-                }
-            }
-
-            if (!$inCart) { // Chưa có sản phẩm trong giỏ hàng -> Thêm vào giỏ hàng
-                insertCartDetail($cart_id, $book_id);
-                $_SESSION['cart'] = cartDetail_getByUserId($_SESSION['user']['id']);
-            }
+            handleAddToCart($user_id, $book_id);
         } else {
             $_SESSION['user'] = [
                 "fullname" => "",
@@ -88,39 +51,9 @@ switch ($_GET['view']) {
                 "phone" => "",
             ];
 
+            $user_id = $_SESSION['user']['id'];
             $book_id = $_GET['id'];
-
-            if (!isset($_SESSION['cart'])) {
-                addNewCart($user_id, $book_id);
-                $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            } else if (count($_SESSION['cart']) == 0 && $_SESSION['cart']['cart_status'] == 'Pending') {
-                addNewCart($user_id, $book_id);
-                $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            } else {
-                addNewCart($user_id, $book_id);
-                $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            }
-
-
-            $info = product_getById($_GET['id']);
-            $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            $cart = cart_getByUserId_Basic($user_id);
-            $cart_id = $cart['id'];
-
-            $inCart = false; // Giả sử chưa có trong giỏ hàng
-            foreach ($_SESSION['cart'] as &$sp) { // Phải truyền tham biến
-                if ($sp['product_id'] == $book_id) { // Đã có SP trong giỏ hàng -> Tăng số lượng
-                    updateQuantity($cart_id, $book_id, $sp['quantity'], '+');
-                    $sp['quantity']++;
-                    $inCart = true;
-                    break;
-                }
-            }
-
-            if (!$inCart) { // Chưa có sản phẩm trong giỏ hàng -> Thêm vào giỏ hàng
-                insertCartDetail($cart_id, $book_id);
-                $_SESSION['cart'] = cartDetail_getByUserId($_SESSION['user']['id']);
-            }
+            handleAddToCart($user_id, $book_id);
         }
 
         header('Location: ?ctrl=page&view=home');
@@ -130,44 +63,11 @@ switch ($_GET['view']) {
     case 'addToCart':
         // Xử lý dữ liệu
         include_once 'models/m_cart.php';
-        include_once 'models/m_product.php';
-
 
         if (isset($_SESSION['user'])) {
             $user_id = $_SESSION['user']['id'];
             $book_id = $_GET['id'];
-
-            if (!isset($_SESSION['cart'])) {
-                addNewCart($user_id, $book_id);
-                $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            } else if (count($_SESSION['cart']) == 0 && $_SESSION['cart']['cart_status'] == 'Pending') {
-                addNewCart($user_id, $book_id);
-                $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            } else {
-                addNewCart($user_id, $book_id);
-                $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            }
-
-
-            $info = product_getById($_GET['id']);
-            $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            $cart = cart_getByUserId_Basic($user_id);
-            $cart_id = $cart['id'];
-
-            $inCart = false; // Giả sử chưa có trong giỏ hàng
-            foreach ($_SESSION['cart'] as &$sp) { // Phải truyền tham biến
-                if ($sp['product_id'] == $book_id) { // Đã có SP trong giỏ hàng -> Tăng số lượng
-                    updateQuantity($cart_id, $book_id, $sp['quantity'], '+');
-                    $sp['quantity']++;
-                    $inCart = true;
-                    break;
-                }
-            }
-
-            if (!$inCart) { // Chưa có sản phẩm trong giỏ hàng -> Thêm vào giỏ hàng
-                insertCartDetail($cart_id, $book_id);
-                $_SESSION['cart'] = cartDetail_getByUserId($_SESSION['user']['id']);
-            }
+            handleAddToCart($user_id, $book_id);
         } else {
             $_SESSION['user'] = [
                 "fullname" => "",
@@ -177,40 +77,11 @@ switch ($_GET['view']) {
                 "phone" => "",
             ];
 
+            $user_id = $_SESSION['user']['id'];
             $book_id = $_GET['id'];
-
-            if (!isset($_SESSION['cart'])) {
-                addNewCart($user_id, $book_id);
-                $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            } else if (count($_SESSION['cart']) == 0 && $_SESSION['cart']['cart_status'] == 'Pending') {
-                addNewCart($user_id, $book_id);
-                $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            } else {
-                addNewCart($user_id, $book_id);
-                $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            }
-
-
-            $info = product_getById($_GET['id']);
-            $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            $cart = cart_getByUserId_Basic($user_id);
-            $cart_id = $cart['id'];
-
-            $inCart = false; // Giả sử chưa có trong giỏ hàng
-            foreach ($_SESSION['cart'] as &$sp) { // Phải truyền tham biến
-                if ($sp['product_id'] == $book_id) { // Đã có SP trong giỏ hàng -> Tăng số lượng
-                    updateQuantity($cart_id, $book_id, $sp['quantity'], '+');
-                    $sp['quantity']++;
-                    $inCart = true;
-                    break;
-                }
-            }
-
-            if (!$inCart) { // Chưa có sản phẩm trong giỏ hàng -> Thêm vào giỏ hàng
-                insertCartDetail($cart_id, $book_id);
-                $_SESSION['cart'] = cartDetail_getByUserId($_SESSION['user']['id']);
-            }
+            handleAddToCart($user_id, $book_id);
         }
+
 
         header('Location: ?ctrl=cart&view=view');
 
@@ -276,9 +147,7 @@ switch ($_GET['view']) {
         $cart_id = $cart['id'];
         // print_r($cartItems);
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            echo "Success";
-        }
+
 
         // Hiển thị dữ liệu
         include_once 'views/t_header_home_page.php';
@@ -295,9 +164,22 @@ switch ($_GET['view']) {
         $cartItems = cartDetail_getByUserId($user_id);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $delivery_method = $_POST['delivery_method'];
-            $payment_method = $_POST['payment_method'];
+            include_once 'models/m_user.php';
+            if ($user_id == "") {
+                $_SESSION['user'] = user_registerNoLogin($_POST['fullname'], $_POST['phone'], $_POST['email'], $_POST['address']);
+            } else {
+                $fullname = $_SESSION['user']['fullname'];
+                $address = $_POST['address'];
+                $phone_number = $_POST['phone'];
+                $email = $_POST['email'];
+                $city = $_POST['city'];
+                $district = $_POST['district'];
+                $ward = $_POST['ward'];
+                user_updateInfo($user_id, $fullname, $address, $phone_number, $email, $city, $district, $ward);
+            }
         }
+
+
 
         // Hiển thị dữ liệu
         include_once 'views/t_header_home_page.php';

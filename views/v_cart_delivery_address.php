@@ -5,17 +5,15 @@
             <form class="delivery-form" action="?ctrl=cart&view=payment" method="POST">
                 <p class="form-title">Thông tin người nhận</p>
                 <div class="form-group">
-                    <label for="name">Tên người nhận<sup>*</sup></label>
+                    <label for="fullname">Tên người nhận<sup>*</sup></label>
                     <br>
-                    <input class="form-control" type="text" id="name" name="name" required
-                        value="<?= $_SESSION['user']['fullname'] ?>">
+                    <input class="form-control" type="text" id="fullname" name="fullname" required value="<?= $_SESSION['user']['fullname'] ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="phone">Điện thoại<sup>*</sup></label>
                     <br>
-                    <input class="form-control" type="text" id="phone" name="phone" required
-                        value="<?= $_SESSION['user']['phone'] ?>">
+                    <input class="form-control" type="text" id="phone" name="phone" required value="<?= $_SESSION['user']['phone'] ?>">
                 </div>
 
                 <div class="form-group">
@@ -48,11 +46,14 @@
                 <div class="form-group" id="address-box">
                     <label for="address">Địa chỉ<sup>*</sup></label>
                     <br>
-                    <input class="form-control" type="text" id="address" name="address" required
-                        value="<?= $_SESSION['user']['address'] ?>">
+                    <input class="form-control" type="text" id="address" name="address" required value="<?= $_SESSION['user']['address'] ?>">
                 </div>
 
-                <div class="form-group"></div>
+                <div class="form-group" id="address-box">
+                    <label for="email">Email<sup>*</sup></label>
+                    <br>
+                    <input class="form-control" type="email" id="email" name="email" required value="<?= $_SESSION['user']['email'] ?>">
+                </div>
 
                 <div class="form-group">
                     <a href="?ctrl=cart&view=view" class="cart-comeback">
@@ -81,28 +82,28 @@
                     <?php
                     $tong = 0;
                     foreach ($cartItems as $sp) : ?>
-                    <tr>
-                        <td><?php echo $sp['product_title']; ?></td>
-                        <td><?php echo $sp['quantity']; ?></td>
-                        <?php if (isset($sp['discounted_price'])) : ?>
-                        <td>
-                            <strong><?= number_format($sp['discounted_price']) ?><sup>đ</sup></strong>
-                            <del><?= number_format($sp['price']) ?><sup>đ</sup></del>
-                        </td>
-                        <?php else : ?>
-                        <td><?= number_format($sp['price']) ?><sup>đ</sup></td>
-                        <?php endif; ?>
-                        <td>
-                            <?php if (isset($sp['discounted_price'])) {
+                        <tr>
+                            <td><?php echo $sp['product_title']; ?></td>
+                            <td><?php echo $sp['quantity']; ?></td>
+                            <?php if (isset($sp['discounted_price'])) : ?>
+                                <td>
+                                    <strong><?= number_format($sp['discounted_price']) ?><sup>đ</sup></strong>
+                                    <del><?= number_format($sp['price']) ?><sup>đ</sup></del>
+                                </td>
+                            <?php else : ?>
+                                <td><?= number_format($sp['price']) ?><sup>đ</sup></td>
+                            <?php endif; ?>
+                            <td>
+                                <?php if (isset($sp['discounted_price'])) {
                                     $thanhTien = $sp['discounted_price'] * $sp['quantity'];
                                 } else {
                                     $thanhTien = $sp['price'] * $sp['quantity'];
                                 }
                                 $tong += $thanhTien;
                                 ?>
-                            <?= number_format($thanhTien) ?><sup>đ</sup>
-                        </td>
-                    </tr>
+                                <?= number_format($thanhTien) ?><sup>đ</sup>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
                 </tbody>
                 <tfoot>

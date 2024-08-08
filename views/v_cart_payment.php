@@ -2,12 +2,13 @@
     <h1 class="title">Thanh toán đơn hàng</h1>
     <div class="payment-row">
         <div class="left-payment">
-            <form class="payment-form" action="" method='POST'>
+            <form class="payment-form" action="?ctrl=order&view=orderProcess" method='POST'>
                 <div class="form-group">
                     <h3>Phương thức giao hàng</h3>
                     <p>Chuyển hàng tới địa chỉ khác hàng</p>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" id="delivery-express" name="delivery_method" value="express" checked>
+                        <input class="form-check-input" type="radio" id="delivery-express" name="delivery_method"
+                            value="express" checked>
                         <label class="form-check-label" for="delivery-express">Giao hàng chuyển phát nhanh</label>
                     </div>
                 </div>
@@ -19,7 +20,8 @@
                     <p>Mọi giao dịch đều được bảo mật và mã hóa. Thông tin thẻ tín dụng sẽ không bao giờ được lưu lại.
                     </p>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" id="payment-credit" name="payment_method" value="credit" checked>
+                        <input class="form-check-input" type="radio" id="payment-credit" name="payment_method"
+                            value="credit" checked>
                         <div class="bank-line">
                             <label class="form-check-label" for="payment-credit">Thanh toán bằng thẻ tín dụng
                                 (OnePay)</label>
@@ -40,7 +42,8 @@
                         </div>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" id="payment-momo" name="payment_method" value="momo">
+                        <input class="form-check-input" type="radio" id="payment-momo" name="payment_method"
+                            value="momo">
                         <div class="bank-line">
                             <label class="form-check-label" for="payment-momo">Thanh toán Momo</label>
                             <img class="momo" src="public/img/bank/Logo-MoMo-Transparent.webp" alt="">
@@ -63,6 +66,7 @@
                     </a>
                     <button type="submit" class="btn-order btn-finish" onclick="alert('Đã đặt hàng thành công!')">Hoàn
                         tất</button>
+
                 </div>
             </form>
         </div>
@@ -80,28 +84,28 @@
                     <?php
                     $tong = 0;
                     foreach ($cartItems as $sp) : ?>
-                        <tr>
-                            <td><?php echo $sp['product_title']; ?></td>
-                            <td><?php echo $sp['quantity']; ?></td>
-                            <?php if (isset($sp['discounted_price'])) : ?>
-                                <td>
-                                    <strong><?= number_format($sp['discounted_price']) ?><sup>đ</sup></strong>
-                                    <del><?= number_format($sp['price']) ?><sup>đ</sup></del>
-                                </td>
-                            <?php else : ?>
-                                <td><?= number_format($sp['price']) ?><sup>đ</sup></td>
-                            <?php endif; ?>
-                            <td>
-                                <?php if (isset($sp['discounted_price'])) {
+                    <tr>
+                        <td><?php echo $sp['product_title']; ?></td>
+                        <td><?php echo $sp['quantity']; ?></td>
+                        <?php if (isset($sp['discounted_price'])) : ?>
+                        <td>
+                            <strong><?= number_format($sp['discounted_price']) ?><sup>đ</sup></strong>
+                            <del><?= number_format($sp['price']) ?><sup>đ</sup></del>
+                        </td>
+                        <?php else : ?>
+                        <td><?= number_format($sp['price']) ?><sup>đ</sup></td>
+                        <?php endif; ?>
+                        <td>
+                            <?php if (isset($sp['discounted_price'])) {
                                     $thanhTien = $sp['discounted_price'] * $sp['quantity'];
                                 } else {
                                     $thanhTien = $sp['price'] * $sp['quantity'];
                                 }
                                 $tong += $thanhTien;
                                 ?>
-                                <?= number_format($thanhTien) ?><sup>đ</sup>
-                            </td>
-                        </tr>
+                            <?= number_format($thanhTien) ?><sup>đ</sup>
+                        </td>
+                    </tr>
                     <?php endforeach; ?>
                 </tbody>
                 <tfoot>
@@ -114,8 +118,8 @@
                         <td>30,000<sup>đ</sup></td>
                     </tr>
                     <tr>
+                        <input type="hidden" name="total_amount" value="<?= $tong + 30000 ?>">
                         <td colspan="3">Tiền cần thanh toán</td>
-                        <?php updateTotalAmountAndStatusPending($cart_id, $tong + 30000) ?>
                         <td><?= number_format($tong + 30000) ?><sup>đ</sup></td>
                     </tr>
                 </tfoot>

@@ -37,3 +37,13 @@ function user_changeAvatar($user_id, $avatar)
 {
     pdo_execute("UPDATE accounts SET avatar='$avatar' WHERE id=$user_id");
 }
+
+
+function user_registerNoLogin($fullname, $phone_number, $email, $address)
+{
+    return pdo_execute("INSERT INTO accounts (`fullname`, `username`, `phone_number`, `email`, `address`) VALUES 
+    ('$fullname', '$fullname', '$phone_number', '$email', '$address')");
+
+    $user = pdo_query_one("SELECT * FROM accounts ORDER BY id DESC LIMIT 1");
+    return $user;
+}
