@@ -76,7 +76,7 @@ switch ($_GET['view']) {
         }
 
         $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-        print_r($_SESSION['user']);
+        // print_r($_SESSION['user']);
 
         // Hiển thị dữ liệu
         include_once 'views/t_header_home_page.php';
