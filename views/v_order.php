@@ -11,26 +11,26 @@
 <body>
     <div class="container">
         <h1 class="title">Danh sách đơn hàng</h1>
-        <table border="1" style="width:100%">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Ngày đặt hàng</th>
-                    <th>Tổng tiền</th>
-                    <th>Trạng thái</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($orders as $order) : ?>
+        <?php foreach ($_SESSION['order'] as $order) : ?>
+            <table border="1" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ngày đặt hàng</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
                     <tr>
                         <td><?= $order['id'] ?></td>
                         <td><?= $order['order_date'] ?></td>
                         <td><?= number_format($order['total_amount']) ?><sup>đ</sup></td>
                         <td><?= $order['status_order'] ?></td>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        <?php endforeach; ?>
     </div>
 </body>
 

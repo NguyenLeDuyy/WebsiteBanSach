@@ -83,30 +83,32 @@
                 <tbody>
                     <?php
                     $tong = 0;
-                    foreach ($cartItems as $sp) : ?>
-                    <tr>
-                        <td><?php echo $sp['product_title']; ?></td>
-                        <td><?php echo $sp['quantity']; ?></td>
-                        <?php if (isset($sp['discounted_price'])) : ?>
-                        <td>
-                            <strong><?= number_format($sp['discounted_price']) ?><sup>đ</sup></strong>
-                            <del><?= number_format($sp['price']) ?><sup>đ</sup></del>
-                        </td>
-                        <?php else : ?>
-                        <td><?= number_format($sp['price']) ?><sup>đ</sup></td>
-                        <?php endif; ?>
-                        <td>
-                            <?php if (isset($sp['discounted_price'])) {
+                    if (isset($cartItems))
+                        foreach ($cartItems as $sp) : ?>
+                        <tr>
+                            <td><?php echo $sp['product_title']; ?></td>
+                            <td><?php echo $sp['quantity']; ?></td>
+                            <?php if (isset($sp['discounted_price'])) : ?>
+                                <td>
+                                    <strong><?= number_format($sp['discounted_price']) ?><sup>đ</sup></strong>
+                                    <del><?= number_format($sp['price']) ?><sup>đ</sup></del>
+                                </td>
+                            <?php else : ?>
+                                <td><?= number_format($sp['price']) ?><sup>đ</sup></td>
+                            <?php endif; ?>
+                            <td>
+                                <?php if (isset($sp['discounted_price'])) {
                                     $thanhTien = $sp['discounted_price'] * $sp['quantity'];
                                 } else {
                                     $thanhTien = $sp['price'] * $sp['quantity'];
                                 }
                                 $tong += $thanhTien;
                                 ?>
-                            <?= number_format($thanhTien) ?><sup>đ</sup>
-                        </td>
-                    </tr>
+                                <?= number_format($thanhTien) ?><sup>đ</sup>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
+                    }
                 </tbody>
                 <tfoot>
                     <tr>

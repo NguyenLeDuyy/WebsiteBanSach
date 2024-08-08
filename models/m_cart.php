@@ -16,6 +16,7 @@ function cartDetail_getByUserId($user_id)
 {
     // Chưa chắc có cart_id trong cart_detail nên lấy trong cart
     return pdo_query("SELECT
+        c.id as card_id,
         c.cart_status,
         b.id as product_id,
         b.title as product_title,
@@ -47,7 +48,7 @@ function addNewCart($user_id, $product_id)
     pdo_execute("INSERT INTO cart (`user_id`, `cart_status`) VALUES
     ($user_id, 'active')");
     $cart = pdo_query_one("SELECT * FROM cart WHERE user_id = $user_id AND cart_status = 'active' ORDER BY id DESC LIMIT 1");
-    insertCartDetailWithQuantity($cart['id'], $product_id, 0);
+    insertCartDetailWithQuantity($cart['id'], $product_id, 1);
 
     return $cart['id'];
 }
@@ -79,7 +80,7 @@ function handleAddToCart($user_id, $book_id)
             }
 
             if (!$inCart) { // Chưa có sản phẩm trong giỏ hàng -> Thêm vào giỏ hàng
-                insertCartDetailWithQuantity($cart_id, $book_id, 0);
+                insertCartDetailWithQuantity($cart_id, $book_id, 1);
             }
         }
     }
@@ -126,11 +127,10 @@ function updateQuantity($cart_id, $product_id, $current_quantity, $operator)
     }
 }
 
-function updateTotalAmountAndStatusPending($cart_id, $total_amount)
+function updateStatusPending($cart_id)
 {
     pdo_execute("UPDATE cart
-        SET total_amount=$total_amount,
-            cart_status = 'Pending'
+        SET cart_status = 'Pending'
         WHERE id = $cart_id 
         ");
 }

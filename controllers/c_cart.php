@@ -38,6 +38,7 @@ switch ($_GET['view']) {
 
     case 'addToCartOnHome':
         include_once 'models/m_cart.php';
+
         if (isset($_SESSION['user'])) {
             $user_id = $_SESSION['user']['id'];
             $book_id = $_GET['id'];
