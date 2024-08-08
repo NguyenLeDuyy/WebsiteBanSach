@@ -53,42 +53,6 @@ function addNewCart($user_id, $product_id)
     return $cart['id'];
 }
 
-function handleAddToCart($user_id, $book_id)
-{
-    // Kiểm tra xem người dùng đã có giỏ hàng nào chưa
-    $cart = cart_getByUserId_Basic($user_id);
-
-    if (!$cart) {
-        // Nếu chưa có giỏ hàng nào, tạo một giỏ hàng mới
-        $cart_id = addNewCart($user_id, $book_id);
-    } else {
-        // Nếu đã có giỏ hàng, kiểm tra trạng thái của giỏ hàng
-        if ($cart['cart_status'] == 'Pending') {
-            // Nếu giỏ hàng đang ở trạng thái 'Pending', tạo một giỏ hàng mới
-            $cart_id = addNewCart($user_id, $book_id);
-        } else {
-            // Nếu giỏ hàng đang ở trạng thái 'active', thêm sản phẩm vào giỏ hàng đó
-            $cart_id = $cart['id'];
-            $inCart = false; // Giả sử chưa có trong giỏ hàng
-            foreach ($_SESSION['cart'] as &$sp) { // Phải truyền tham biến
-                if ($sp['product_id'] == $book_id) { // Đã có SP trong giỏ hàng -> Tăng số lượng
-                    updateQuantity($cart_id, $book_id, $sp['quantity'], '+');
-                    $sp['quantity']++;
-                    $inCart = true;
-                    break;
-                }
-            }
-
-            if (!$inCart) { // Chưa có sản phẩm trong giỏ hàng -> Thêm vào giỏ hàng
-                insertCartDetailWithQuantity($cart_id, $book_id, 1);
-            }
-        }
-    }
-
-    // Cập nhật lại giỏ hàng trong session
-    $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-}
-
 function removeFromCartDetail($cart_id, $product_id)
 {
     pdo_execute("DELETE FROM cart_detail

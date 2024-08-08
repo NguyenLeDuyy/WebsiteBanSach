@@ -20,12 +20,13 @@
 
     <link rel="stylesheet" href="public/css/footer.css">
     <link rel="stylesheet" href="/sanpham/sp.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
 <body>
     <header>
-        <button class="bg"></button>
+        <a href="?ctrl=page&view=home"><button class="bg"></button></a>
         <div class="search-container">
             <input type="text" placeholder="Tìm kiếm...">
             <button type="submit"><i class="fas fa-search"></i></button>
@@ -54,14 +55,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="cart-header">
-                        <a href="?ctrl=cart&view=view">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </a>
-                        <a href="?ctrl=cart&view=view">
-                            <p>Giỏ hàng</p>
-                        </a>
-                    </li>
+
                 <?php else : ?>
                     <li class="account-header">
                         <a href="?ctrl=user&view=login">
@@ -81,15 +75,16 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="cart-header">
-                        <a href="?ctrl=user&view=login">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </a>
-                        <a href="?ctrl=user&view=login">
-                            <p>Giỏ hàng</p>
-                        </a>
-                    </li>
+
                 <?php endif; ?>
+                <li class="cart-header">
+                    <a href="?ctrl=cart&view=view">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                    <a href="?ctrl=cart&view=view">
+                        <p>Giỏ hàng</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </header>

@@ -64,7 +64,7 @@
                         <p>
                             <<< Quay lại địa chỉ giao hàng</p>
                     </a>
-                    <button type="submit" class="btn-order btn-finish" onclick="submitOrder()">Hoàn tất</button>
+                    <button type="submit" class="btn-order btn-finish">Hoàn tất</button>
 
                 </div>
             </form>
@@ -129,16 +129,3 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script src="views/city_district_ward.js"></script>
 </div>
-<script>
-    function submitOrder() {
-        const totalAmount = document.getElementById('total_amount').value;
-        axios.post('?ctrl=order&view=orderProcess', {
-                total_amount: totalAmount,
-                delivery_method: 'fast_delivery', // Thay thế bằng giá trị thực tế
-                payment_method: 'credit_card' // Thay thế bằng giá trị thực tế
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
-    }
-</script>

@@ -3,6 +3,7 @@
 // Vd: Trang chủ, Liên hiện, Giới thiệu
 switch ($_GET['view']) {
     case 'home':
+        // unset($_SESSION['user']);
         // Xử lý dữ liệu
         include_once 'models/m_product.php';
         $dsSP = product_getAll();

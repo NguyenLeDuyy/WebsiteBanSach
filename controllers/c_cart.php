@@ -1,5 +1,55 @@
 <?php
 
+function handleAddToCart($user_id, $book_id)
+{
+    // Kiểm tra xem người dùng đã có giỏ hàng nào chưa
+    $cart = cart_getByUserId_Basic($user_id);
+
+    if (!$cart) {
+        // Nếu chưa có giỏ hàng nào, tạo một giỏ hàng mới
+        $cart_id = addNewCart($user_id, $book_id);
+    } else {
+        // Nếu đã có giỏ hàng, kiểm tra trạng thái của giỏ hàng
+        if ($cart['cart_status'] == 'Pending') {
+            // Nếu giỏ hàng đang ở trạng thái 'Pending', tạo một giỏ hàng mới
+            $cart_id = addNewCart($user_id, $book_id);
+        } else {
+            // Nếu giỏ hàng đang ở trạng thái 'active', thêm sản phẩm vào giỏ hàng đó
+            $cart_id = $cart['id'];
+            $inCart = false; // Giả sử chưa có trong giỏ hàng
+            foreach ($_SESSION['cart'] as &$sp) { // Phải truyền tham biến
+                if ($sp['product_id'] == $book_id) { // Đã có SP trong giỏ hàng -> Tăng số lượng
+                    updateQuantity($cart_id, $book_id, $sp['quantity'], '+');
+                    $sp['quantity']++;
+                    $inCart = true;
+                    break;
+                }
+            }
+
+            if (!$inCart) { // Chưa có sản phẩm trong giỏ hàng -> Thêm vào giỏ hàng
+                insertCartDetailWithQuantity($cart_id, $book_id, 1);
+            }
+        }
+    }
+
+    // Cập nhật lại giỏ hàng trong session
+    $_SESSION['cart'] = cartDetail_getByUserId($user_id);
+}
+
+function create_temp_user()
+{
+    $tempUserID = currentIdUser() + 1;
+    $email = "temp_user_" . $tempUserID . "@example.com";
+    $user = user_register("", $email, "");
+    return user_getById($user['id']);
+}
+
+function get_cart_for_user($user_id)
+{
+    $_SESSION['cart'] = cartDetail_getByUserId($user_id);
+    return cart_getByUserId_Basic($user_id);
+}
+
 switch ($_GET['view']) {
     case 'view':
         // Xử lý dữ liệu
@@ -12,22 +62,21 @@ switch ($_GET['view']) {
         // include_once 'models/m_product.php';
 
         if (isset($_SESSION['user'])) {
+            if (!isset($_SESSION['user']['id'])) {
+                include_once 'models/m_user.php';
+                $tempUser = create_temp_user();
+                $_SESSION['user'] = $tempUser;
+            }
             $user_id = $_SESSION['user']['id'];
-            $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            $cart = cart_getByUserId_Basic($user_id);
         } else {
-            $_SESSION['user'] = [
-                "fullname" => "",
-                "username" => "",
-                "password" => "",
-                "email" => "",
-                "phone" => "",
-            ];
-
+            include_once 'models/m_user.php';
+            $tempUser = create_temp_user();
+            $_SESSION['user'] = $tempUser;
             $user_id = $_SESSION['user']['id'];
-            $_SESSION['cart'] = cartDetail_getByUserId($user_id);
-            $cart = cart_getByUserId_Basic($user_id);
         }
+
+        $_SESSION['cart'] = cartDetail_getByUserId($user_id);
+        print_r($_SESSION['user']);
 
         // Hiển thị dữ liệu
         include_once 'views/t_header_home_page.php';
@@ -164,21 +213,15 @@ switch ($_GET['view']) {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             include_once 'models/m_user.php';
-            if ($user_id == "") {
-                $_SESSION['user'] = user_registerNoLogin($_POST['fullname'], $_POST['phone'], $_POST['email'], $_POST['address']);
-            } else {
-                $fullname = $_SESSION['user']['fullname'];
-                $address = $_POST['address'];
-                $phone_number = $_POST['phone'];
-                $email = $_POST['email'];
-                $city = $_POST['city'];
-                $district = $_POST['district'];
-                $ward = $_POST['ward'];
-                user_updateInfo($user_id, $fullname, $address, $phone_number, $email, $city, $district, $ward);
-            }
 
-            if (isset($_POST['tongtien'])) echo "Có tổng tiền";
-            else "Không có tổng tiền";
+            $fullname = $_SESSION['user']['fullname'];
+            $address = $_POST['address'];
+            $phone_number = $_POST['phone'];
+            $email = $_POST['email'];
+            $city = $_POST['city'];
+            $district = $_POST['district'];
+            $ward = $_POST['ward'];
+            user_updateInfo($user_id, $fullname, $address, $phone_number, $email, $city, $district, $ward);
         }
 
         // Hiển thị dữ liệu

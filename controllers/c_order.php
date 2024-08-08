@@ -1,6 +1,23 @@
 <?php
-// Quản lý những trang không liên quan đến nhau
-// Vd: Trang chủ, Liên hiện, Giới thiệu
+
+function calculateTotalAmnount($listCartDetail, $delivery_method)
+{
+    $total_amount = 0;
+    foreach ($listCartDetail as $cart) {
+        if ($cart['discounted_price'] != null) {
+            $total_amount += $cart['discounted_price'];
+        } else {
+            $total_amount += $cart['price'];
+        }
+    }
+
+    if ($delivery_method == "express") {
+        $total_amount += 30000;
+    }
+
+    return $total_amount;
+}
+
 switch ($_GET['view']) {
     case 'order':
         // Xử lý dữ liệu
@@ -19,18 +36,9 @@ switch ($_GET['view']) {
         include_once 'models/m_cart.php';
         $user_id = $_SESSION['user']['id'];
 
-
-        print_r("<pre>");
-        print_r($_SESSION['cart']);
-        print_r("</pre>");
-        $total_amount = 0;
-        foreach ($_SESSION['cart'] as $cart) {
-            if ($cart['discounted_price'] != null) {
-                $total_amount += $cart['discounted_price'];
-            } else {
-                $total_amount += $cart['price'];
-            }
-        }
+        // print_r("<pre>");
+        // print_r($_SESSION['cart']);
+        // print_r("</pre>");
 
         $cart_id = $_SESSION['cart'][0]['cart_id'];
         if ($cart_id) {
@@ -43,12 +51,7 @@ switch ($_GET['view']) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $delivery_method = $_POST['delivery_method'];
             $payment_method = $_POST['payment_method'];
-
-            if ($delivery_method == "express") {
-                $total_amount += 30000;
-            }
-
-            if ($total_amount == null) echo "Tổng bằng null";
+            $total_amount = calculateTotalAmnount($_SESSION['cart'], $delivery_method);
 
             $cart = cart_getByUserId_NewPending($_SESSION['user']['id']);
             // print_r($cart);
@@ -58,7 +61,7 @@ switch ($_GET['view']) {
                 $order_id = createNewOrder($user_id, $cart_id, $total_amount, $payment_method, $delivery_method);
                 $_SESSION['order'] = order_getById($order_id);
 
-                print_r($_SESSION['order']);
+                // print_r($_SESSION['order']);
             } else {
                 echo "Không tìm thấy đơn hàng.";
             }

@@ -11,8 +11,8 @@ function user_login($email, $password)
 
 function user_register($fullname, $email, $password)
 {
-    return pdo_execute("INSERT INTO accounts (`fullname`, `username`, `password`, `email`) VALUES 
-    ('$fullname', '$fullname', '$password', '$email')");
+    pdo_execute("INSERT INTO accounts (`fullname`, `username`, `password`, `email`) VALUES ('$fullname', '$fullname', '$password', '$email')");
+    return pdo_query_one("SELECT * FROM accounts WHERE email='$email'");
 }
 
 function user_checkEmail($email)
@@ -22,7 +22,7 @@ function user_checkEmail($email)
     else return false;
 }
 
-function user_updateInfo($user_id, $fullname, $address, $phone_number, $email, $city, $district, $ward)
+function user_updateInfo($user_id, $fullname, $address, $phone_number, $email, $city = null, $district = null, $ward = null)
 {
     pdo_execute("UPDATE accounts SET fullname='$fullname', phone='$phone_number', 
     address='$address', email='$email', city=$city, district=$district, ward=$ward WHERE id=$user_id");
@@ -38,12 +38,14 @@ function user_changeAvatar($user_id, $avatar)
     pdo_execute("UPDATE accounts SET avatar='$avatar' WHERE id=$user_id");
 }
 
-
-function user_registerNoLogin($fullname, $phone_number, $email, $address)
+function user_getById($user_id)
 {
-    return pdo_execute("INSERT INTO accounts (`fullname`, `username`, `phone_number`, `email`, `address`) VALUES 
-    ('$fullname', '$fullname', '$phone_number', '$email', '$address')");
+    return pdo_query_one("SELECT * FROM accounts WHERE id=$user_id");
+}
 
-    $user = pdo_query_one("SELECT * FROM accounts ORDER BY id DESC LIMIT 1");
-    return $user;
+function currentIdUser()
+{
+    $arr_id = pdo_query_one("SELECT id FROM accounts ORDER BY id DESC LIMIT 1");
+    // Vì khi trả về sẽ là Array ( [id] => 14 )
+    return $arr_id['id'];
 }
