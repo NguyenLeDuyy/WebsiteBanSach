@@ -145,10 +145,7 @@ switch ($_GET['view']) {
         $user_id = $_SESSION['user']['id'];
         $cartItems = cartDetail_getByUserId($user_id);
         $cart = cart_getByUserId_Basic($user_id);
-        $cart_id = $cart['id'];
         // print_r($cartItems);
-
-
 
         // Hiển thị dữ liệu
         include_once 'views/t_header_home_page.php';
@@ -161,7 +158,8 @@ switch ($_GET['view']) {
         include_once 'models/m_cart.php';
         $user_id = $_SESSION['user']['id'];
         $cart = cart_getByUserId_Basic($user_id);
-        $cart_id = $cart['id'];
+        // print_r($cart);
+        // $cart_id = $cart['id'];
         $cartItems = cartDetail_getByUserId($user_id);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -178,9 +176,10 @@ switch ($_GET['view']) {
                 $ward = $_POST['ward'];
                 user_updateInfo($user_id, $fullname, $address, $phone_number, $email, $city, $district, $ward);
             }
+
+            if (isset($_POST['tongtien'])) echo "Có tổng tiền";
+            else "Không có tổng tiền";
         }
-
-
 
         // Hiển thị dữ liệu
         include_once 'views/t_header_home_page.php';

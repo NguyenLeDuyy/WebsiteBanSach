@@ -13,7 +13,7 @@ function order_getById($order_id)
 
 function order_getByUserId($user_id)
 {
-    return pdo_query_one("SELECT * FROM orders WHERE user_id = $user_id");
+    return pdo_query("SELECT * FROM orders WHERE user_id = $user_id");
 }
 
 function createNewOrder($user_id, $cart_id, $total_amount, $payment_method, $delivery_method)

@@ -64,13 +64,12 @@
                         <p>
                             <<< Quay lại địa chỉ giao hàng</p>
                     </a>
-                    <button type="submit" class="btn-order btn-finish" onclick="alert('Đã đặt hàng thành công!')">Hoàn
-                        tất</button>
+                    <button type="submit" class="btn-order btn-finish" onclick="submitOrder()">Hoàn tất</button>
 
                 </div>
             </form>
         </div>
-        <div class="right-delivery">
+        <div class=" right-delivery">
             <table class="delivery-table">
                 <thead>
                     <tr>
@@ -108,7 +107,7 @@
                             </td>
                         </tr>
                     <?php endforeach; ?>
-                    }
+
                 </tbody>
                 <tfoot>
                     <tr>
@@ -120,7 +119,6 @@
                         <td>30,000<sup>đ</sup></td>
                     </tr>
                     <tr>
-                        <input type="hidden" name="total_amount" value="<?= $tong + 30000 ?>">
                         <td colspan="3">Tiền cần thanh toán</td>
                         <td><?= number_format($tong + 30000) ?><sup>đ</sup></td>
                     </tr>
@@ -130,8 +128,17 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script src="views/city_district_ward.js"></script>
-    <script src="views/city_district_ward.js"></script>
 </div>
-<!-- <script>
-console.log("Hello World");
-</script> -->
+<script>
+    function submitOrder() {
+        const totalAmount = document.getElementById('total_amount').value;
+        axios.post('?ctrl=order&view=orderProcess', {
+                total_amount: totalAmount,
+                delivery_method: 'fast_delivery', // Thay thế bằng giá trị thực tế
+                payment_method: 'credit_card' // Thay thế bằng giá trị thực tế
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    }
+</script>

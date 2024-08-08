@@ -16,7 +16,7 @@ function cartDetail_getByUserId($user_id)
 {
     // Chưa chắc có cart_id trong cart_detail nên lấy trong cart
     return pdo_query("SELECT
-        c.id as card_id,
+        c.id as cart_id,
         c.cart_status,
         b.id as product_id,
         b.title as product_title,
