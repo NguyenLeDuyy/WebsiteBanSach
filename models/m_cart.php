@@ -35,13 +35,6 @@ function cartDetail_getByUserId($user_id)
     ");
 }
 
-function insertCartDetail($cart_id, $product_id)
-{
-    pdo_execute("INSERT INTO cart_detail (`cart_id`,`product_id`, `quantity`) VALUES
-    ($cart_id, $product_id, 0)
-    "); // Phải set Quantity = 0 vì sau khi addNewCart còn có kiểm tra thêm điều kiện if ($sp['product_id'] == $book_id)
-}
-
 function insertCartDetailWithQuantity($cart_id, $product_id, $quantity)
 {
     pdo_execute("INSERT INTO cart_detail (`cart_id`,`product_id`, `quantity`) VALUES
@@ -54,7 +47,7 @@ function addNewCart($user_id, $product_id)
     pdo_execute("INSERT INTO cart (`user_id`, `cart_status`) VALUES
     ($user_id, 'active')");
     $cart = pdo_query_one("SELECT * FROM cart WHERE user_id = $user_id AND cart_status = 'active' ORDER BY id DESC LIMIT 1");
-    insertCartDetail($cart['id'], $product_id);
+    insertCartDetailWithQuantity($cart['id'], $product_id, 0);
 
     return $cart['id'];
 }
@@ -86,7 +79,7 @@ function handleAddToCart($user_id, $book_id)
             }
 
             if (!$inCart) { // Chưa có sản phẩm trong giỏ hàng -> Thêm vào giỏ hàng
-                insertCartDetail($cart_id, $book_id);
+                insertCartDetailWithQuantity($cart_id, $book_id, 0);
             }
         }
     }
@@ -106,7 +99,7 @@ function removeFromCartDetail($cart_id, $product_id)
 function removeAllFromCart($user_id, $cart_id)
 {
     pdo_execute("DELETE FROM cart_detail WHERE cart_id = $cart_id");
-    pdo_execute("DELETE FROM cart WHERE user_id = $user_id");
+    pdo_execute("DELETE FROM cart WHERE user_id = $user_id AND cart_status = 'active'");
 }
 
 function updateQuantity($cart_id, $product_id, $current_quantity, $operator)
