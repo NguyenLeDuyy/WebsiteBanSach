@@ -23,7 +23,6 @@ switch ($_GET['view']) {
         // Xử lý dữ liệu
         include_once 'models/m_order.php';
         $_SESSION['order'] = order_getByUserId($_SESSION['user']['id']);
-        // print_r($_SESSION['order']);
 
         // Hiển thị ra view
         include_once 'views/t_header_home_page.php';
@@ -52,16 +51,15 @@ switch ($_GET['view']) {
             $delivery_method = $_POST['delivery_method'];
             $payment_method = $_POST['payment_method'];
             $total_amount = calculateTotalAmnount($_SESSION['cart'], $delivery_method);
-
             $cart = cart_getByUserId_NewPending($_SESSION['user']['id']);
-            // print_r($cart);
 
             if ($cart) {
                 //create new order
                 $order_id = createNewOrder($user_id, $cart_id, $total_amount, $payment_method, $delivery_method);
+                foreach ($_SESSION['cart'] as $sp) {
+                    insertOrderDetail($order_id, $sp['product_id'], $sp['quantity']);
+                }
                 $_SESSION['order'] = order_getById($order_id);
-
-                // print_r($_SESSION['order']);
             } else {
                 echo "Không tìm thấy đơn hàng.";
             }
@@ -69,6 +67,18 @@ switch ($_GET['view']) {
 
         header('Location: ?ctrl=order&view=order');
 
+        break;
+    case 'orderDetail':
+        // Xử lý dữ liệu
+        include_once 'models/m_order.php';
+        $order = order_getById($_GET['id']);
+        $order_detail = orderDetail_getByOrderId($_SESSION['user']['id'], $order['id']);
+        // print_r($order_detail);
+
+        // Hiển thị ra view
+        include_once 'views/t_header_home_page.php';
+        include_once 'views/v_order_detail.php';
+        include_once 'views/t_footer.php';
         break;
 
     default:

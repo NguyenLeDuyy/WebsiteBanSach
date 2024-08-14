@@ -54,6 +54,7 @@ switch ($_GET['view']) {
     case 'view':
         // Xử lý dữ liệu
         // unset($_SESSION['cart']);
+        // unset($_SESSION['user']);
         // print_r($_SESSION['cart']);
         include_once 'models/m_cart.php';
 
@@ -86,25 +87,27 @@ switch ($_GET['view']) {
         break;
 
     case 'addToCartOnHome':
+        // Xử lý dữ liệu
         include_once 'models/m_cart.php';
 
         if (isset($_SESSION['user'])) {
+            if (!isset($_SESSION['user']['id'])) {
+                include_once 'models/m_user.php';
+                $tempUser = create_temp_user();
+                $_SESSION['user'] = $tempUser;
+            }
             $user_id = $_SESSION['user']['id'];
-            $book_id = $_GET['id'];
-            handleAddToCart($user_id, $book_id);
         } else {
-            $_SESSION['user'] = [
-                "fullname" => "",
-                "username" => "",
-                "password" => "",
-                "email" => "",
-                "phone" => "",
-            ];
-
+            include_once 'models/m_user.php';
+            $tempUser = create_temp_user();
+            $_SESSION['user'] = $tempUser;
             $user_id = $_SESSION['user']['id'];
-            $book_id = $_GET['id'];
-            handleAddToCart($user_id, $book_id);
         }
+
+        $_SESSION['cart'] = cartDetail_getByUserId($user_id);
+        $book_id = $_GET['id'];
+
+        handleAddToCart($user_id, $book_id);
 
         header('Location: ?ctrl=page&view=home');
 
@@ -115,23 +118,26 @@ switch ($_GET['view']) {
         include_once 'models/m_cart.php';
 
         if (isset($_SESSION['user'])) {
+            if (!isset($_SESSION['user']['id'])) {
+                include_once 'models/m_user.php';
+                $tempUser = create_temp_user();
+                $_SESSION['user'] = $tempUser;
+            }
             $user_id = $_SESSION['user']['id'];
-            $book_id = $_GET['id'];
-            handleAddToCart($user_id, $book_id);
         } else {
-            $_SESSION['user'] = [
-                "fullname" => "",
-                "username" => "",
-                "password" => "",
-                "email" => "",
-                "phone" => "",
-            ];
-
+            include_once 'models/m_user.php';
+            $tempUser = create_temp_user();
+            $_SESSION['user'] = $tempUser;
             $user_id = $_SESSION['user']['id'];
-            $book_id = $_GET['id'];
-            handleAddToCart($user_id, $book_id);
         }
 
+        $_SESSION['cart'] = cartDetail_getByUserId($user_id);
+        $book_id = $_GET['id'];
+
+        handleAddToCart(
+            $user_id,
+            $book_id
+        );
 
         header('Location: ?ctrl=cart&view=view');
 
@@ -214,7 +220,7 @@ switch ($_GET['view']) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             include_once 'models/m_user.php';
 
-            $fullname = $_SESSION['user']['fullname'];
+            $fullname = $_POST['fullname'];
             $address = $_POST['address'];
             $phone_number = $_POST['phone'];
             $email = $_POST['email'];

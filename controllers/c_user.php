@@ -10,6 +10,7 @@ switch ($_GET['view']) {
             if ($user) { // Đăng nhập thành công
                 echo "Đăng nhập thành công";
                 $_SESSION['user'] = $user;
+                // $_SESSION['user']['role']
                 header('Location: ?ctrl=page&view=home');
             } else { // Đăng nhập thất bại
                 // echo "Email hoặc mật khẩu không khớp!";
