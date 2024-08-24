@@ -1,6 +1,3 @@
-<?php include 'sidebar.php'; ?>
-
-
 <body>
     <div class="main-content">
         <div class="main-content__header">
@@ -16,15 +13,15 @@
                     </div>
                     <div class="overview-card">
                         <h3>Số Sản Phẩm</h3>
-                        <p>75</p>
+                        <p><?= $total_products; ?></p>
                     </div>
                     <div class="overview-card">
                         <h3>Doanh Thu</h3>
-                        <p>1,500,000 VNĐ</p>
+                        <p><?= number_format($total_amount); ?> VNĐ</p>
                     </div>
                     <div class="overview-card">
                         <h3>Người Dùng</h3>
-                        <p>250</p>
+                        <p><?= $total_users; ?></p>
                     </div>
                 </div>
             </section>
@@ -35,25 +32,21 @@
                         <tr class="orders-table__header">
                             <th class="orders-table__cell orders-table__cell--header">ID Đơn Hàng</th>
                             <th class="orders-table__cell orders-table__cell--header">Khách Hàng</th>
+                            <th class="orders-table__cell orders-table__cell--header">Tổng tiền</th>
                             <th class="orders-table__cell orders-table__cell--header">Tình Trạng</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="orders-table__row">
-                            <td class="orders-table__cell">001</td>
-                            <td class="orders-table__cell">Nguyễn Văn A</td>
-                            <td class="orders-table__cell">Đang giao hàng</td>
-                        </tr>
-                        <tr class="orders-table__row">
-                            <td class="orders-table__cell">002</td>
-                            <td class="orders-table__cell">Trần Thị B</td>
-                            <td class="orders-table__cell">Chưa thanh toán</td>
-                        </tr>
-                        <tr class="orders-table__row">
-                            <td class="orders-table__cell">003</td>
-                            <td class="orders-table__cell">Lê Văn C</td>
-                            <td class="orders-table__cell">Đã thanh toán</td>
-                        </tr>
+                        <?php foreach ($listOrders as $order) : ?>
+                            <tr class="orders-table__row">
+                                <td class="orders-table__cell"><?= $order['id'] ?></td>
+                                <td class="orders-table__cell"><?= $order['fullname'] ?></td>
+                                <td class="orders-table__cell"><?= number_format($order['total_amount']) ?> VNĐ</td>
+                                <td class="orders-table__cell">
+                                    <?= (($order['status']) == 'Processing') ? "Đang xử lý" : ((($order['status']) == 'Pending') ? "Đang chờ xử lý" : "Đang giao hàng") ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </section>

@@ -2,6 +2,11 @@
 // Lấy dữ liệu liên quan đến sản phẩm 
 include_once 'pdo.php';
 
+function user_countAll()
+{
+    return pdo_query_one("SELECT count(*) FROM accounts");
+}
+
 function user_login($email, $password)
 {
     // Do email và password là chuỗi => phải thêm dấu ''

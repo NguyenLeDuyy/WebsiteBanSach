@@ -1,6 +1,25 @@
 <?php
 // Lấy dữ liệu liên quan đến sản phẩm 
 include_once 'pdo.php';
+
+function order_countAll()
+{
+    return pdo_query_one("SELECT count(*) FROM orders");
+}
+
+function order_totalCountAllWithStatusProcessingAndDelivered()
+{
+    return pdo_query_one("SELECT SUM(total_amount) FROM orders WHERE status='Processing' OR status='Delivered'");
+}
+
+function order_getAllForAdminDashBoard()
+{
+    return pdo_query("SELECT o.id, a.fullname as fullname, status, total_amount FROM orders o
+     INNER JOIN accounts a ON a.id = o.user_id
+     WHERE o.total_amount>0
+     ORDER BY o.id DESC");
+}
+
 function order_getAll()
 {
     return pdo_query("SELECT * FROM orders");
@@ -52,4 +71,9 @@ function orderDetail_getByOrderId($user_id, $order_id)
         AND
         o.user_id = $user_id
     ");
+}
+
+function changePaymentStatus($order_id)
+{
+    pdo_execute("UPDATE orders SET payment_status='Đã thanh toán' WHERE id=$order_id AND status!='Pending'");
 }

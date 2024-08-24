@@ -46,13 +46,46 @@ switch ($_GET['view']) {
 
     case 'dashboard':
         // Xử lý dữ liệu
+        include_once 'models/m_order.php';
+        $total_orders = order_countAll();
+        $total_orders = $total_orders['count(*)'];
+
+        include_once 'models/m_product.php';
+        $total_products = order_countAll();
+        $total_products = $total_products['count(*)'];
+
+        $total_amount = order_totalCountAllWithStatusProcessingAndDelivered();
+        $total_amount = $total_amount['SUM(total_amount)'];
+
+        include_once 'models/m_user.php';
+        $total_users = user_countAll();
+        $total_users = $total_users['count(*)'];
+
+        $listOrders = order_getAllForAdminDashBoard();
+
         // Kiểm tra đã đăng nhập và là admin
-        print_r($_SESSION['user']);
         if (!(isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin')) {
             header('Location: index.php');
         }
         // Hiển thị ra view
-        include_once 'views/v_page_dashboard.php';
+        include_once 'views/t_headerAdmin.php';
+        include_once 'views/t_asideAdmin.php';
+        include_once 'views/v_page_dashboardAdmin.php';
+        break;
+
+    case 'orders':
+        // Xử lý dữ liệu
+        include_once 'models/m_order.php';
+        $listOrders = order_getAllForAdminDashBoard();
+
+        // Kiểm tra đã đăng nhập và là admin
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin')) {
+            header('Location: index.php');
+        }
+        // Hiển thị ra view
+        include_once 'views/t_headerAdmin.php';
+        include_once 'views/t_asideAdmin.php';
+        include_once 'views/v_page_ordersAdmin.php';
         break;
 
     default:

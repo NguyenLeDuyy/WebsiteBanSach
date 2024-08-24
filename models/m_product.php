@@ -1,6 +1,12 @@
 <?php
 // Lấy dữ liệu liên quan đến sản phẩm 
 include_once 'pdo.php';
+
+function product_countAll()
+{
+    return pdo_query_one("SELECT count(*) FROM books");
+}
+
 function product_getAll()
 {
     return pdo_query("SELECT * FROM books");
