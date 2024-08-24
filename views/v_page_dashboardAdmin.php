@@ -34,18 +34,20 @@
                             <th class="orders-table__cell orders-table__cell--header">Khách Hàng</th>
                             <th class="orders-table__cell orders-table__cell--header">Tổng tiền</th>
                             <th class="orders-table__cell orders-table__cell--header">Tình Trạng</th>
+                            <th class="orders-table__cell orders-table__cell--header">Thanh toán</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($listOrders as $order) : ?>
-                            <tr class="orders-table__row">
-                                <td class="orders-table__cell"><?= $order['id'] ?></td>
-                                <td class="orders-table__cell"><?= $order['fullname'] ?></td>
-                                <td class="orders-table__cell"><?= number_format($order['total_amount']) ?> VNĐ</td>
-                                <td class="orders-table__cell">
-                                    <?= (($order['status']) == 'Processing') ? "Đang xử lý" : ((($order['status']) == 'Pending') ? "Đang chờ xử lý" : "Đang giao hàng") ?>
-                                </td>
-                            </tr>
+                        <tr class="orders-table__row">
+                            <td class="orders-table__cell"><?= $order['id'] ?></td>
+                            <td class="orders-table__cell"><?= $order['fullname'] ?></td>
+                            <td class="orders-table__cell"><?= number_format($order['total_amount']) ?> VNĐ</td>
+                            <td class="orders-table__cell">
+                                <?= (($order['status']) == 'Processing') ? "Đang xử lý" : ((($order['status']) == 'Pending') ? "Đang chờ xử lý" : "Đang giao hàng") ?>
+                            </td>
+                            <td class="orders-table__cell"><?= $order['payment_status'] ?></td>
+                        </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>

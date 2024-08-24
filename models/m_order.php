@@ -14,7 +14,7 @@ function order_totalCountAllWithStatusProcessingAndDelivered()
 
 function order_getAllForAdminDashBoard()
 {
-    return pdo_query("SELECT o.id, a.fullname as fullname, status, total_amount FROM orders o
+    return pdo_query("SELECT o.id, a.fullname as fullname, status, total_amount, payment_status FROM orders o
      INNER JOIN accounts a ON a.id = o.user_id
      WHERE o.total_amount>0
      ORDER BY o.id DESC");

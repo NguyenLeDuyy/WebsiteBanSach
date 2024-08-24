@@ -12,34 +12,40 @@
                         <th class="orders-table__cell orders-table__cell--header">Khách Hàng</th>
                         <th class="orders-table__cell orders-table__cell--header">Tổng tiền</th>
                         <th class="orders-table__cell orders-table__cell--header">Tình Trạng</th>
+                        <th class="orders-table__cell orders-table__cell--header">Thanh toán</th>
                         <th class="orders-table__cell orders-table__cell--header">Thao Tác</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($listOrders as $order) : ?>
-                        <tr class="orders-table__row">
-                            <td class="orders-table__cell"><?= $order['id'] ?></td>
-                            <td class="orders-table__cell"><?= $order['fullname'] ?></td>
-                            <td class="orders-table__cell"><?= number_format($order['total_amount']) ?> VNĐ</td>
-                            <td class="orders-table__cell ">
-                                <form method="post" action="update_order_status.php" class="orders-table__form">
-                                    <input type="hidden" name="order_id" value="001">
-                                    <select name="status" class="orders-table__select">
-                                        <option value="chưa thanh toán"
-                                            <?php if (($order['status']) == 'Processing') echo "Đang xử lý" ?>>
-                                            Đang xử lý</option>
-                                        <option value="đang giao hàng">Đang giao hàng</option>
-                                        <option value="đã thanh toán">Đã thanh toán</option>
-                                    </select>
-                                </form>
-                            </td>
-                            <td class="orders-table__cell ">
-                                <form method="post" action="update_order_status.php">
-                                    <input type="hidden" name="order_id" value="001">
-                                    <button type="submit" class="orders-table__button">Cập nhật</button>
-                                </form>
-                            </td>
-                        </tr>
+                    <tr class="orders-table__row">
+                        <td class="orders-table__cell"><?= $order['id'] ?></td>
+                        <td class="orders-table__cell"><?= $order['fullname'] ?></td>
+                        <td class="orders-table__cell"><?= number_format($order['total_amount']) ?> VNĐ</td>
+                        <td class="orders-table__cell ">
+                            <form method="post" action="update_order_status.php" class="orders-table__form">
+                                <input type="hidden" name="order_id" value="001">
+                                <select name="status" class="orders-table__select">
+                                    <option value="Pending"
+                                        <?php if (($order['status']) == 'Pending') echo "selected" ?>>
+                                        Đang chờ xử lý</option>
+                                    <option value="Processing"
+                                        <?php if (($order['status']) == 'Processing') echo "selected" ?>>
+                                        Đang xử lý</option>
+                                    <option value="Delivered"
+                                        <?php if (($order['status']) == 'Delivered') echo "selected" ?>>Đã giao hàng
+                                    </option>
+                                </select>
+                            </form>
+                        </td>
+                        <td class="orders-table__cell"><?= $order['payment_status'] ?></td>
+                        <td class="orders-table__cell ">
+                            <form method="post" action="update_order_status.php">
+                                <input type="hidden" name="order_id" value="001">
+                                <button type="submit" class="orders-table__button">Cập nhật</button>
+                            </form>
+                        </td>
+                    </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>

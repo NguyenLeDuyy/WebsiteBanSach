@@ -86,6 +86,7 @@ switch ($_GET['view']) {
         include_once 'views/t_headerAdmin.php';
         include_once 'views/t_asideAdmin.php';
         include_once 'views/v_page_ordersAdmin.php';
+        include_once 'views/t_footerAdmin.php';
         break;
 
     default:

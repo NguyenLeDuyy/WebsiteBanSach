@@ -7,5 +7,7 @@
     <title>Nhà sách Duy Khang</title>
     <link rel="stylesheet" href="public\css\admin.css">
     <link rel="stylesheet" href="public\css\base.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <div class="admin-container">

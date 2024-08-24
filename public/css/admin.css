@@ -15,6 +15,22 @@
     left            : 0;
     padding         : 20px;
     box-sizing      : border-box;
+    transition      : all 0.3s ease;
+}
+
+.btn-show-hide {
+    cursor: pointer;
+}
+
+.icon-bar {
+    font-size : 20px;
+    position  : absolute;
+    top       : 10px;
+    left      : 10px;
+    z-index   : 1;
+    color     : var(--color-neutral);
+    transition: all 0.3s ease;
+    display   : block;
 }
 
 .sidebar h2 {
@@ -54,6 +70,7 @@
     min-height      : 100vh;
     display         : flex;
     flex-direction  : column;
+    transition      : all 0.3s ease;
 }
 
 /* Nội dung chính */
