@@ -44,6 +44,17 @@ switch ($_GET['view']) {
         include_once 'views/t_footer.php';
         break;
 
+    case 'dashboard':
+        // Xử lý dữ liệu
+        // Kiểm tra đã đăng nhập và là admin
+        print_r($_SESSION['user']);
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin')) {
+            header('Location: index.php');
+        }
+        // Hiển thị ra view
+        include_once 'views/v_page_dashboard.php';
+        break;
+
     default:
         # code...
         break;
