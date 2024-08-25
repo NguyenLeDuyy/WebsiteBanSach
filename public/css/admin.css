@@ -258,6 +258,7 @@ fieldset button:hover {
     border-radius: 5px;
     border       : 1px solid #ccc;
     margin-bottom: 5px;
+    width        : auto;
 }
 
 

@@ -81,6 +81,58 @@ switch ($_GET['view']) {
         include_once 'views/t_footer.php';
         break;
 
+
+    case 'orderDetailAdmin':
+        // Xử lý dữ liệu
+        include_once 'models/m_order.php';
+        $order = order_getById($_GET['id']);
+        $order_detail = orderDetail_getByOrderIdFromAdmin($order['id']);
+        // print_r($order_detail);
+
+        // Hiển thị ra view
+        include_once 'views/t_headerAdmin.php';
+        include_once 'views/t_asideAdmin.php';
+        include_once 'views/v_order_detailAdmin.php';
+        include_once 'views/t_footerAdmin.php';
+        break;
+
+    case 'orderAdmin':
+        // Xử lý dữ liệu
+        include_once 'models/m_order.php';
+        $listOrders = order_getAllForAdminDashBoard();
+
+        // Kiểm tra đã đăng nhập và là admin
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin')) {
+            header('Location: index.php');
+        }
+        // Hiển thị ra view
+        include_once 'views/t_headerAdmin.php';
+        include_once 'views/t_asideAdmin.php';
+        include_once 'views/v_page_ordersAdmin.php';
+        include_once 'views/t_footerAdmin.php';
+        break;
+
+    case 'updateStatus':
+        // Kiểm tra đã đăng nhập và là admin
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin')) {
+            header('Location: index.php');
+            exit;
+        }
+
+        // Xử lý dữ liệu
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $order_id = $_POST['order_id'];
+            $status = $_POST['status'];
+
+            // Gọi hàm cập nhật trạng thái đơn hàng
+            include_once 'models/m_order.php';
+            order_updateStatus($order_id, $status);
+        }
+
+        // Chuyển hướng về trang quản lý đơn hàng
+        header('Location: ?ctrl=order&view=orderAdmin');
+        exit;
+
     default:
         # code...
         break;

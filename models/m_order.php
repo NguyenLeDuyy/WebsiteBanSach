@@ -73,7 +73,36 @@ function orderDetail_getByOrderId($user_id, $order_id)
     ");
 }
 
+function orderDetail_getByOrderIdFromAdmin($order_id)
+{
+    // Chưa chắc có cart_id trong cart_detail nên lấy trong cart
+    return pdo_query("SELECT
+        o.id as order_id,
+        o.status,
+        b.id as product_id,
+        b.title,
+        b.cover_image,
+        bd.quantity,
+        b.price,
+        b.discounted_price
+    FROM
+        order_detail bd
+    INNER JOIN orders o ON bd.order_id = o.id
+    INNER JOIN books b ON bd.product_id = b.id
+    WHERE
+        o.id = $order_id
+    ");
+}
+
 function changePaymentStatus($order_id)
 {
     pdo_execute("UPDATE orders SET payment_status='Đã thanh toán' WHERE id=$order_id AND status!='Pending'");
+}
+
+function order_updateStatus($order_id, $status)
+{
+    if ($status == 'Pending')
+        pdo_execute("UPDATE orders SET status='$status', payment_status='Chưa thanh toán' WHERE id=$order_id");
+    else
+        pdo_execute("UPDATE orders SET status='$status', payment_status='Đã thanh toán' WHERE id=$order_id");
 }

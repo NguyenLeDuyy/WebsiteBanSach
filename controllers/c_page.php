@@ -73,21 +73,7 @@ switch ($_GET['view']) {
         include_once 'views/v_page_dashboardAdmin.php';
         break;
 
-    case 'orders':
-        // Xử lý dữ liệu
-        include_once 'models/m_order.php';
-        $listOrders = order_getAllForAdminDashBoard();
 
-        // Kiểm tra đã đăng nhập và là admin
-        if (!(isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin')) {
-            header('Location: index.php');
-        }
-        // Hiển thị ra view
-        include_once 'views/t_headerAdmin.php';
-        include_once 'views/t_asideAdmin.php';
-        include_once 'views/v_page_ordersAdmin.php';
-        include_once 'views/t_footerAdmin.php';
-        break;
 
     default:
         # code...
