@@ -138,7 +138,7 @@ input[type="password"] {
     padding      : 10px;
     border-radius: 5px;
     border       : 1px solid #ccc;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 button {
@@ -246,8 +246,6 @@ fieldset button:hover {
     padding: 10px;
 }
 
-
-
 .orders-table__form {
 
     margin-bottom: 10px;
@@ -260,8 +258,6 @@ fieldset button:hover {
     margin-bottom: 5px;
     width        : auto;
 }
-
-
 
 .orders-table__button {
     background-color: #3498db;
@@ -381,6 +377,15 @@ fieldset button:hover {
     background-color: #c0392b;
 }
 
+.users-table__button--showHide {
+    color           : var(--color-text);
+    background-color: #fffb19;
+}
+
+.users-table__button--showHide:hover {
+    background-color: #cecc4a;
+}
+
 /* Thông tin đăng xuất */
 .logout-info {
     margin-bottom: 20px;
@@ -419,4 +424,9 @@ fieldset button:hover {
 
 .btn-secondary:hover {
     background-color: #7f8c8d;
+}
+
+.updateForm {
+    max-width: auto;
+    margin   : 0;
 }

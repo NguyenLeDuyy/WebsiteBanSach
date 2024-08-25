@@ -1,7 +1,7 @@
-<div id="sidebar" class="sidebar">
+<div id="sidebar" class="sidebar" style="display:block">
     <h2>Bảng Điều Khiển</h2>
     <ul>
-        <li><a href="admin.php?ctrl=page&view=dashboard">Tổng Quan</a></li>
+        <li><a href=" admin.php?ctrl=page&view=dashboard">Tổng Quan</a></li>
         <li><a href="admin.php?ctrl=user&view=userAdmin">Người Dùng</a></li>
         <li><a href="admin.php?ctrl=order&view=orderAdmin">Đơn Hàng</a></li>
         <li><a href="admin.php?ctrl=page&view=products">Sản Phẩm</a></li>

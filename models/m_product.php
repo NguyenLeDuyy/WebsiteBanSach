@@ -9,17 +9,17 @@ function product_countAll()
 
 function product_getAll()
 {
-    return pdo_query("SELECT * FROM books");
+    return pdo_query("SELECT * FROM books WHERE AnHien='1' ");
 }
 
 function product_getByCategory($category_id)
 {
-    return pdo_query("SELECT * FROM books WHERE category_id = $category_id");
+    return pdo_query("SELECT * FROM books WHERE category_id = $category_id AND AnHien='1' ");
 }
 
 function product_getByCategoryWithLimit($category_id, $limit = 8)
 {
-    return pdo_query("SELECT * FROM books WHERE category_id = $category_id LIMIT $limit");
+    return pdo_query("SELECT * FROM books WHERE category_id = $category_id AND AnHien='1' LIMIT $limit");
 }
 
 function product_getById($product_id)
@@ -29,5 +29,5 @@ function product_getById($product_id)
 
 function product_getFeatured($limit = 8)
 {
-    return pdo_query("SELECT * FROM books WHERE discounted_price IS NOT NULL ORDER BY discounted_price DESC LIMIT $limit");
+    return pdo_query("SELECT * FROM books WHERE discounted_price IS NOT NULL AND AnHien='1' ORDER BY discounted_price DESC LIMIT $limit");
 }

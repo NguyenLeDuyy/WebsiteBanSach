@@ -46,7 +46,7 @@
     cursor         : pointer;
 }
 
-#myBtn {
+#addNewUserBtn {
     text-align   : right;
     margin-bottom: 10px;
 }
@@ -78,9 +78,8 @@
 
 .btn-sumbit-new-user {
     display        : flex;
-    justify-content: end;
-    max-width      : 77%;
     margin         : 19.92px auto;
+    justify-content: center;
 }
 
 /* Modal Content */

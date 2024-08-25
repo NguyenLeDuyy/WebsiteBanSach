@@ -105,10 +105,11 @@ switch ($_GET['view']) {
         if (!(isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin')) {
             header('Location: index.php');
         }
+
         // Hiển thị ra view
         include_once 'views/t_headerAdmin.php';
         include_once 'views/t_asideAdmin.php';
-        include_once 'views/v_page_ordersAdmin.php';
+        include_once 'views/v_order_Admin.php';
         include_once 'views/t_footerAdmin.php';
         break;
 

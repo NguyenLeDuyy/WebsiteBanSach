@@ -35,9 +35,11 @@
                             <?php endif; ?>
                         </td>
                         <td>
-                            <a class="quantity-button" href="?ctrl=cart&view=subQuantity&index=<?= $i - 2 ?>&id=<?= $sp['product_id'] ?>">-</a>
+                            <a class="quantity-button"
+                                href="?ctrl=cart&view=subQuantity&index=<?= $i - 2 ?>&id=<?= $sp['product_id'] ?>">-</a>
                             <?= $sp['quantity'] ?>
-                            <a class="quantity-button" href="?ctrl=cart&view=plusQuantity&index=<?= $i - 2 ?>&id=<?= $sp['product_id'] ?>">+</a>
+                            <a class="quantity-button"
+                                href="?ctrl=cart&view=plusQuantity&index=<?= $i - 2 ?>&id=<?= $sp['product_id'] ?>">+</a>
                         </td>
                         <td>
                             <?php if (isset($sp['discounted_price'])) {
@@ -54,6 +56,7 @@
                         </td>
                     </tr>
                 <?php endforeach; ?>
+                ?>
             </tbody>
             <tfoot>
                 <td colspan="5">Tổng cộng</td>

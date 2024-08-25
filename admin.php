@@ -25,4 +25,7 @@ switch ($_GET['ctrl']) {
     case 'order':
         include_once 'controllers/c_order.php';
         break;
+    default:
+        header('Location: ?ctrl=page&view=dashboard');
+        break;
 }

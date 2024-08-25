@@ -106,8 +106,8 @@ switch ($_GET['view']) {
 
     case 'userAdmin':
         // Xử lý dữ liệu
-        include_once 'models/m_order.php';
-        $listOrders = order_getAllForAdminDashBoard();
+        include_once 'models/m_user.php';
+        $listUser = user_getAllForAdmin();
 
         // Kiểm tra đã đăng nhập và là admin
         if (!(isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin')) {
@@ -117,7 +117,7 @@ switch ($_GET['view']) {
         include_once 'views/t_headerAdmin.php';
         include_once 'views/t_asideAdmin.php';
         include_once 'views/v_page_userAdmin.php';
-        include_once 'views/t_modalUser.php';
+        include_once 'views/t_modalAddUser.php';
         include_once 'views/t_footerAdmin.php';
         break;
 
@@ -135,8 +135,65 @@ switch ($_GET['view']) {
         include_once 'views/t_headerAdmin.php';
         include_once 'views/t_asideAdmin.php';
         include_once 'views/v_page_userAdmin.php';
-        include_once 'views/t_modalUser.php';
+        include_once 'views/t_modalAddUser.php';
         include_once 'views/t_footerAdmin.php';
+        break;
+
+    case 'addUserFromAdmin':
+        // Xử lý dữ liệu
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            include_once 'models/m_user.php';
+            if (user_checkEmail($_POST['email'])) { // Kiểm tra email có trùng không?
+                echo "Email đã được sử dụng! Không thể đăng ký!";
+            } else {
+                if ($_POST['password'] != $_POST['repassword']) { // Kieemr tra mật khẩu có khớp không?
+                    echo "Mật khẩu không khớp";
+                } else {
+                    $user = user_registerFromAdmin($_POST['fullname'], $_POST['username'], $_POST['email'], $_POST['password'], $_POST['address'], $_POST['phone']);
+                    header("Location: ?ctrl=user&view=userAdmin");
+                }
+            }
+        }
+
+    case 'userUpdateAdmin':
+        // Xử lý dữ liệu
+        include_once 'models/m_user.php';
+        $user_id = $_GET['id'];
+        $user = user_getById($user_id);
+
+        // Hiển thị ra view
+        include_once 'views/t_headerAdmin.php';
+        include_once 'views/t_asideAdmin.php';
+        include_once 'views/v_user_updateAdmin.php';
+        include_once 'views/t_modalAddUser.php';
+        include_once 'views/t_footerAdmin.php';
+        break;
+
+    case 'userUpdateAdminHandle':
+        // Xử lý dữ liệu
+        include_once 'models/m_user.php';
+        $user_id = $_GET['id'];
+        $fullname = $_POST['fullname'];
+        $email = $_POST['email'];
+        $role = $_POST['role'];
+        $ShowHide = $_POST['ShowHide'];
+        $address = $_POST['address'];
+        $phone = $_POST['phone'];
+
+        user_updateInfo($user_id, $fullname, $address, $phone, $email, $role);
+
+        // Hiển thị ra view
+        header('Location: ?ctrl=user&view=userAdmin');
+        break;
+
+    case 'userShowHideAdmin':
+        // Xử lý dữ liệu
+        include_once 'models/m_user.php';
+        $user_id = $_GET['id'];
+        user_updateShowHide($user_id);
+
+        // Hiển thị ra view
+        header('Location: ?ctrl=user&view=userAdmin');
         break;
 
     default:
