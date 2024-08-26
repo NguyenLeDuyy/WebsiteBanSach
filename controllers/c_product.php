@@ -108,7 +108,6 @@ switch ($_GET['view']) {
                 move_uploaded_file($_FILES['cover_image']['tmp_name'], "public/img/All/" . $_FILES['cover_image']['name']);
                 $cover_image = $_FILES['cover_image']['name'];
             }
-            $cover_image = $_FILES['cover_image']['name'];
 
             // Handle additional images upload
             // if (isset($_FILES['image_urls']) && !empty($_FILES['image_urls']['name'][0])) {
@@ -139,6 +138,58 @@ switch ($_GET['view']) {
         product_updateShowHide($product_id);
 
         // Hiển thị ra view
+        header('Location: ?ctrl=product&view=productAdmin');
+        break;
+
+    case 'productUpdateAdmin':
+        // Xử lý dữ liệu
+        include_once 'models/m_product.php';
+        include_once 'models/m_categories.php';
+        $book_id = $_GET['id'];
+        $book = product_getById($book_id);
+        $categories = categories_getAll();
+
+        // Hiển thị ra view
+        include_once 'views/t_headerAdmin.php';
+        include_once 'views/t_asideAdmin.php';
+        include_once 'views/t_icon_ShowHideSideBarAdmin.php';
+        include_once 'views/v_product_updateAdmin.php';
+        include_once 'views/t_footerAdmin.php';
+
+        break;
+
+    case 'updateProductFromAdminHanlde':
+        // Xử lý dữ liệu
+        include_once 'models/m_product.php';
+        include_once 'models/m_categories.php';
+        $book_id = $_GET['id'];
+        $book = product_getById($book_id);
+        $categories = categories_getAll();
+
+
+        $title = $_POST['title'];
+        $author = $_POST['author'];
+        $price = $_POST['price'];
+        $discounted_price = $_POST['discounted_price'] ?? null;
+        $published_date = $_POST['published_date'];
+        $description = $_POST['description'] ?? null;
+        $discount_percentage = $_POST['discount_percentage'] ?? null;
+        $category_id = $_POST['category_id'];
+        $status = $_POST['status'];
+        $cover_image = $book['cover_image']; // Giữ nguyên giá trị hiện tại của cover_image
+
+        settype($category_id, "int");
+        settype($price, "int");
+        settype($discounted_price, "int");
+
+        // Handle cover image upload
+        if ($_FILES["cover_image"]['error'] == 0) {
+            move_uploaded_file($_FILES['cover_image']['tmp_name'], "public/img/All/" . $_FILES['cover_image']['name']);
+            $cover_image = $_FILES['cover_image']['name'];
+        }
+
+        product_updateInfo($book_id, $title, $author, $price, $discounted_price, $published_date, $description, $cover_image, $discount_percentage, $category_id, $status);
+
         header('Location: ?ctrl=product&view=productAdmin');
         break;
 

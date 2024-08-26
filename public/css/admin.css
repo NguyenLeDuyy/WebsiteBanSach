@@ -19,16 +19,15 @@
 }
 
 .btn-show-hide {
-    cursor: pointer;
+    cursor  : pointer;
+    position: fixed;
 }
 
 .icon-bar {
     font-size : 20px;
     position  : absolute;
-    top       : 10px;
-    left      : 10px;
     z-index   : 1;
-    color     : var(--color-neutral);
+    color     : var(--color-text);
     transition: all 0.3s ease;
     display   : block;
 }
@@ -298,10 +297,6 @@ fieldset button:hover {
     width: 15%;
 }
 
-.products-table__row td:nth-child(9) {
-    height: 100%;
-}
-
 .products-table__cell {
     padding: 10px;
 }
@@ -310,7 +305,10 @@ fieldset button:hover {
     display        : flex;
     gap            : 10px;
     justify-content: center;
+    /* Căn giữa theo chiều ngang */
     align-items    : center;
+    /* Căn giữa theo chiều dọc */
+    height         : 20vh;
 }
 
 .products-table__button {
@@ -320,6 +318,10 @@ fieldset button:hover {
     text-decoration : none;
     border-radius   : 5px;
     cursor          : pointer;
+    display         : inline-flex;
+    /* Đảm bảo các thẻ <a> có cùng chiều cao */
+    align-items     : center;
+    /* Căn giữa theo chiều dọc */
 }
 
 .products-table__button:hover {
@@ -439,6 +441,9 @@ fieldset button:hover {
 }
 
 .updateForm {
-    max-width: auto;
-    margin   : 0;
+    width         : 100%;
+    margin        : 0;
+    display       : flex;
+    flex-direction: column;
+
 }

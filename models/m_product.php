@@ -66,3 +66,20 @@ function product_updateShowHide($product_id)
 {
     pdo_execute("UPDATE books SET AnHien = IF(AnHien='1', '0', '1') WHERE id=$product_id");
 }
+
+function product_updateInfo($product_id, $title, $author, $price, $discounted_price, $published_date, $description, $cover_image, $discount_percentage, $category_id, $status = 'Còn hàng', $AnHien = '1')
+{
+    pdo_execute("UPDATE books SET 
+                title = '$title', 
+                author = '$author', 
+                price = $price, 
+                discounted_price = $discounted_price, 
+                published_date = '$published_date', 
+                description = '$description', 
+                cover_image = '$cover_image', 
+                discount_percentage = $discount_percentage, 
+                category_id = $category_id, 
+                status = '$status', 
+                AnHien = '$AnHien'
+            WHERE id = $product_id");
+}

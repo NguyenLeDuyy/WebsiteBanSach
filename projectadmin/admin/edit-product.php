@@ -45,13 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sửa Sản Phẩm</title>
-</head>
+
 <body>
     <h1>Sửa Sản Phẩm</h1>
     <form method="POST">
@@ -76,53 +70,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Lưu</button>
     </form>
 </body>
+
 </html>
 <style>
-/* Định dạng cho phần tử form */
-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-}
+    /* Định dạng cho phần tử form */
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
 
-/* Định dạng cho các nhãn */
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-}
+    /* Định dạng cho các nhãn */
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
 
-/* Định dạng cho các trường nhập */
-input[type="text"],
-input[type="number"],
-input[type="date"] {
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
+    /* Định dạng cho các trường nhập */
+    input[type="text"],
+    input[type="number"],
+    input[type="date"] {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
 
-/* Định dạng cho nút bấm */
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-}
+    /* Định dạng cho nút bấm */
+    button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
 
-button:hover {
-    background-color: #45a049;
-}
-
+    button:hover {
+        background-color: #45a049;
+    }
 </style>

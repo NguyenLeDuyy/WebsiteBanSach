@@ -1,6 +1,6 @@
 <body>
     <div class="main-content">
-        <h2>Cập nhật người dùng</h2>
+        <h2 class="title">Cập nhật người dùng</h2>
         <form action="?ctrl=user&view=userUpdateAdminHandle&id=<?= $user['id'] ?>" class="updateForm" method="POST">
             <div class="modal-body">
                 <label for="fullname">Họ và tên:</label>

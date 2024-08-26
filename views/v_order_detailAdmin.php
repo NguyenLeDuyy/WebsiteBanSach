@@ -1,21 +1,21 @@
 <div class="main-content">
     <div class="base-container-for-cart">
-        <h1 class="title">Chi tiết đơn hàng</h1>
+        <h1 class="title title">Chi tiết đơn hàng</h1>
         <div class="cart-container">
             <table class="cart-table" border="1" style="width:100%">
                 <div class="hello-row">
                     <h3 class="cart-hello title">Trạng thái:
                         <?php if ($order['status'] == 'Pending') : ?>
-                            <span>Đang chờ xử lý</span>
+                        <span>Đang chờ xử lý</span>
                         <?php elseif ($order['status'] == 'Processing') : ?>
 
-                            <span>Đang xử lý</span>
+                        <span>Đang xử lý</span>
                         <?php elseif ($order['status'] == 'Delivered') : ?>
-                            <span>Đã giao cho đơn vị vận chuyển</span>
+                        <span>Đã giao cho đơn vị vận chuyển</span>
                         <?php elseif ($order['status'] == 'Finish') : ?>
-                            <span>Đã giao</span>
+                        <span>Đã giao</span>
                         <?php else : ?>
-                            <span>Đã hủy</span>
+                        <span>Đã hủy</span>
                         <?php endif; ?>
                     </h3>
                 </div>
@@ -33,36 +33,36 @@
                     $tong = 0;
                     $i = 1;
                     foreach ($order_detail as $sp) : ?>
-                        <tr>
-                            <td><?= $i++ ?></td>
-                            <td><img src="public/img/All/<?= $sp['cover_image'] ?>" alt=""></td>
-                            <td style="width:30%"><?= $sp['title'] ?></td>
-                            <td>
-                                <?php if (isset($sp['discounted_price'])) : ?>
-                                    <p>
-                                        <strong><?= number_format($sp['discounted_price']) ?><sup>đ</sup></strong>
-                                        <del><?= number_format($sp['price']) ?><sup>đ</sup></del>
-                                    </p>
-                                <?php else : ?>
-                                    <p>
-                                        <?= number_format($sp['price']) ?><sup>đ</sup>
-                                    </p>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <?= $sp['quantity'] ?>
-                            </td>
-                            <td>
-                                <?php if (isset($sp['discounted_price'])) {
+                    <tr>
+                        <td><?= $i++ ?></td>
+                        <td><img src="public/img/All/<?= $sp['cover_image'] ?>" alt=""></td>
+                        <td style="width:30%"><?= $sp['title'] ?></td>
+                        <td>
+                            <?php if (isset($sp['discounted_price'])) : ?>
+                            <p>
+                                <strong><?= number_format($sp['discounted_price']) ?><sup>đ</sup></strong>
+                                <del><?= number_format($sp['price']) ?><sup>đ</sup></del>
+                            </p>
+                            <?php else : ?>
+                            <p>
+                                <?= number_format($sp['price']) ?><sup>đ</sup>
+                            </p>
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <?= $sp['quantity'] ?>
+                        </td>
+                        <td>
+                            <?php if (isset($sp['discounted_price'])) {
                                     $thanhTien = $sp['discounted_price'] * $sp['quantity'];
                                 } else {
                                     $thanhTien = $sp['price'] * $sp['quantity'];
                                 }
                                 $tong += $thanhTien;
                                 ?>
-                                <?= number_format($thanhTien) ?><sup>đ</sup>
-                            </td>
-                        </tr>
+                            <?= number_format($thanhTien) ?><sup>đ</sup>
+                        </td>
+                    </tr>
                     <?php endforeach; ?>
                 </tbody>
                 <tfoot>
@@ -80,14 +80,14 @@
     </script>
 
     <script>
-        $.ajax({
-            type: "method",
-            url: "url",
-            data: "data",
-            dataType: "dataType",
-            success: function(response) {
+    $.ajax({
+        type: "method",
+        url: "url",
+        data: "data",
+        dataType: "dataType",
+        success: function(response) {
 
-            }
-        });
+        }
+    });
     </script>
 </div>
