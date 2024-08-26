@@ -1,4 +1,3 @@
-<?php include 'sidebar.php'; ?>
 <!DOCTYPE html>
 <html lang="vi">
 
