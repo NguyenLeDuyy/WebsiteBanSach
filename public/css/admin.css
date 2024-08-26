@@ -276,6 +276,7 @@ fieldset button:hover {
 .products-table {
     width          : 100%;
     border-collapse: collapse;
+    text-align     : center;
 }
 
 .products-table__header {
@@ -287,6 +288,7 @@ fieldset button:hover {
 .products-table__header th {
     padding      : 10px;
     border-bottom: 2px solid #ddd;
+    text-align   : center;
 }
 
 .products-table__row {
