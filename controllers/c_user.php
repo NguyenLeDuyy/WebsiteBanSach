@@ -10,8 +10,10 @@ switch ($_GET['view']) {
             if ($user) { // Đăng nhập thành công
                 echo "Đăng nhập thành công";
                 $_SESSION['user'] = $user;
-                // $_SESSION['user']['role']
-                header('Location: ?ctrl=page&view=home');
+                if ($_SESSION['user']['role'] == 'user')
+                    header('Location: ?ctrl=page&view=home');
+                else
+                    header('Location: admin.php?ctrl=page&view=dashboard');
             } else { // Đăng nhập thất bại
                 // echo "Email hoặc mật khẩu không khớp!";
             }
@@ -116,7 +118,8 @@ switch ($_GET['view']) {
         // Hiển thị ra view
         include_once 'views/t_headerAdmin.php';
         include_once 'views/t_asideAdmin.php';
-        include_once 'views/v_page_userAdmin.php';
+        include_once 'views/t_icon_ShowHideSideBarAdmin.php';
+        include_once 'views/v_user_Admin.php';
         include_once 'views/t_modalAddUser.php';
         include_once 'views/t_footerAdmin.php';
         break;

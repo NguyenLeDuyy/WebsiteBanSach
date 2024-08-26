@@ -46,7 +46,8 @@
     cursor         : pointer;
 }
 
-#addNewUserBtn {
+#addNewUserBtn,
+#addNewProductBtn {
     text-align   : right;
     margin-bottom: 10px;
 }
@@ -67,6 +68,25 @@
 /* Modal Body */
 .modal-body {
     padding: 2px 16px;
+}
+
+.modal-body label {
+    display      : block;
+    margin-bottom: 8px;
+    font-weight  : bold;
+}
+
+.modal-body input[type="text"],
+.modal-body input[type="number"],
+.modal-body input[type="date"],
+.modal-body input[type="file"],
+.modal-body textarea {
+    width        : 100%;
+    padding      : 10px;
+    margin-bottom: 20px;
+    border       : 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing   : border-box;
 }
 
 /* Modal Footer */

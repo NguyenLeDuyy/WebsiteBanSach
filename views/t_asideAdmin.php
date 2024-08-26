@@ -4,9 +4,9 @@
         <li><a href=" admin.php?ctrl=page&view=dashboard">Tổng Quan</a></li>
         <li><a href="admin.php?ctrl=user&view=userAdmin">Người Dùng</a></li>
         <li><a href="admin.php?ctrl=order&view=orderAdmin">Đơn Hàng</a></li>
-        <li><a href="admin.php?ctrl=page&view=products">Sản Phẩm</a></li>
-        <li><a href="admin.php?ctrl=page&view=account-setting">Cài Đặt</a></li>
-        <li><a href="admin.php?ctrl=page&view=logout">Đăng Xuất</a></li>
+        <li><a href="admin.php?ctrl=product&view=productAdmin">Sản Phẩm</a></li>
+        <li><a href="index.php?ctrl=page&view=home">Về trang chủ</a></li>
+        <li><a href="admin.php?ctrl=user&view=logout">Đăng Xuất</a></li>
     </ul>
 </div>
 <script>

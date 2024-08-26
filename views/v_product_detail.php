@@ -55,9 +55,14 @@
                         <span id="quantity">1</span>
                         <button id="cong" onclick="cong()">+</button>
                     </div>
-                    <a href="?ctrl=cart&view=addToCart&id=<?= $sp['id'] ?>"><button class="buy" onclick="buyNow()">MUA
-                            NGAY</button></a>
-                    <div class="chinhsach">
+                    <a href="?ctrl=cart&view=addToCart&id=<?= $sp['id'] ?>" class="row-btn-and-status">
+                        <button class="buy" onclick="buyNow()">MUA NGAY</button>
+                        <div class="productStatus" style="color:<?= ($sp['status'] == 'Còn hàng'?'green':'red') ?>">Tình
+                            trạng:
+                            <span><?= $sp['status'] ?></span>
+                        </div>
+                    </a>
+                    <div class=" chinhsach">
                         <div class="one-hundred-per">
                             <i class="fa-solid fa-check-double"></i>
                             <p> 100% sách bản quyền</p>

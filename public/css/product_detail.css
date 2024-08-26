@@ -149,6 +149,12 @@ h2 {
     background-color: #c6c5c5ee;
 }
 
+.row-btn-and-status {
+    display        : flex;
+    justify-content: space-between;
+    text-decoration: none;
+}
+
 .buy {
     padding         : 10px;
     color           : white;
@@ -157,7 +163,10 @@ h2 {
     box-shadow      : 0 4px 8px rgba(0, 0, 0, 0.1);
     border          : none;
     border-radius   : 5px;
+}
 
+.productStatus {
+    margin-top: 15px;
 }
 
 .buy:hover {

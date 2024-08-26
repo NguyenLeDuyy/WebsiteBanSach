@@ -48,6 +48,100 @@ switch ($_GET['view']) {
         include_once 'views/t_footer.php';
         break;
 
+    case 'productAdmin':
+        // Xử lý dữ liệu
+        include_once 'models/m_product.php';
+        include_once 'models/m_categories.php';
+        $dsSP = product_getAllForAdmin();
+        $categories = categories_getAll();
+
+        // Hiển thị dữ liệu
+        include_once 'views/t_headerAdmin.php';
+        include_once 'views/t_asideAdmin.php';
+        include_once 'views/t_icon_ShowHideSideBarAdmin.php';
+        include_once 'views/v_product_admin.php';
+        include_once 'views/t_modalAddProduct.php';
+        include_once 'views/t_footerAdmin.php';
+        break;
+
+    case 'updateStatus':
+        // Kiểm tra đã đăng nhập và là admin
+        if (!(isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin')) {
+            header('Location: index.php');
+            exit;
+        }
+
+        // Xử lý dữ liệu
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $book_id = $_POST['book_id'];
+            $status = $_POST['status'];
+
+            // Gọi hàm cập nhật trạng thái đơn hàng
+            include_once 'models/m_product.php';
+            product_updateStatus($book_id, $status);
+        }
+
+        // Chuyển hướng về trang quản lý đơn hàng
+        header('Location: ?ctrl=product&view=productAdmin');
+        exit;
+
+    case 'addProductFromAdmin':
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $title = $_POST['title'];
+            $author = $_POST['author'];
+            $price = $_POST['price'];
+            $discounted_price = $_POST['discounted_price'] ?? null;
+            $published_date = $_POST['published_date'];
+            $description = $_POST['description'] ?? null;
+            $discount_percentage = $_POST['discount_percentage'] ?? null;
+            $category_id = $_POST['category_id'];
+            $cover_image = '';
+            $image_urls = '';
+
+            settype($category_id, "int");
+            settype($price, "int");
+            settype($discounted_price, "int");
+
+            print_r($_FILES["cover_image"]);
+            // Handle cover image upload
+            if ($_FILES["cover_image"]['error'] == 0) {
+                move_uploaded_file($_FILES['cover_image']['tmp_name'], "public/img/All/" . $_FILES['cover_image']['name']);
+                $cover_image = $_FILES['cover_image']['name'];
+            }
+            $cover_image = $_FILES['cover_image']['name'];
+
+            // Handle additional images upload
+            // if (isset($_FILES['image_urls']) && !empty($_FILES['image_urls']['name'][0])) {
+            //     $image_urls_array = [];
+            //     foreach ($_FILES['image_urls']['name'] as $key => $name) {
+            //         $target_file = $target_dir . basename($name);
+            //         if (move_uploaded_file($_FILES["image_urls"]["tmp_name"][$key], "public/img/All/" . $_FILES['avatar']['name'])) {
+            //             $image_urls_array[] = basename($name);
+            //         } else {
+            //             $message = "Sorry, there was an error uploading file $name.";
+            //         }
+            //     }
+            //     $image_urls = json_encode($image_urls_array);
+            // } else {
+            //     $image_urls = json_encode([]); // Set as empty array if no images uploaded
+            // }
+
+            include_once 'models/m_product.php';
+            product_AddFromAdmin($title, $author, $price, $discounted_price, $published_date, $description, $cover_image, $discount_percentage, $category_id);
+        }
+        header('Location: ?ctrl=product&view=productAdmin');
+        break;
+
+    case 'productShowHideAdmin':
+        // Xử lý dữ liệu
+        include_once 'models/m_product.php';
+        $product_id = $_GET['id'];
+        product_updateShowHide($product_id);
+
+        // Hiển thị ra view
+        header('Location: ?ctrl=product&view=productAdmin');
+        break;
+
     default:
         # code...
         break;

@@ -42,27 +42,7 @@ $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($books as $book): ?>
-                        <tr class="products-table__row">
-                            <td class="products-table__cell"><?php echo htmlspecialchars($book['id']); ?></td>
-                            <td class="products-table__cell"><?php echo htmlspecialchars($book['title']); ?></td>
-                            <td class="products-table__cell"><?php echo htmlspecialchars($book['author']); ?></td>
-                            <td class="products-table__cell"><?php echo number_format($book['price'], 0, ',', '.'); ?> VNĐ</td>
-                            <td class="products-table__cell"><?php echo $book['discounted_price'] ? number_format($book['discounted_price'], 0, ',', '.') . ' VNĐ' : 'Không có'; ?></td>
-                            <td class="products-table__cell"><?php echo htmlspecialchars($book['published_date']); ?></td>
-                            <td class="products-table__cell">
-                                <?php if ($book['cover_image']): ?>
-                                    <img src="../uploads/<?php echo htmlspecialchars($book['cover_image']); ?>" alt="<?php echo htmlspecialchars($book['title']); ?>" width="100">
-                                <?php else: ?>
-                                    Chưa có ảnh
-                                <?php endif; ?>
-                            </td>
-                            <td class="products-table__cell products-table__cell--actions">
-                            <a href="?controller=edit-product&id=<?php echo htmlspecialchars($book['id']); ?>" class="products-table__button">Sửa</a>
-                            <a href="admin/delete-product.php?id=<?php echo htmlspecialchars($book['id']); ?>" class="products-table__button products-table__button--delete" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">Xóa</a>
 
-                        </tr>
-                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
