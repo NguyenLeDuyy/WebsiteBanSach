@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 08, 2024 at 06:34 PM
+-- Generation Time: Aug 26, 2024 at 03:36 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -36,29 +36,49 @@ CREATE TABLE `accounts` (
   `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `role` enum('user','admin') DEFAULT 'user',
+<<<<<<< HEAD
+  `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `city` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `district` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `ward` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `AnHien` enum('1','0') NOT NULL DEFAULT '1' COMMENT '1: Hiện, 0: ẩn'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+=======
   `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `city` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `district` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `ward` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+>>>>>>> 911b0fe517d44129d356ec30f2a37ec4d02dc172
 
 --
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`id`, `fullname`, `username`, `password`, `email`, `avatar`, `created_at`, `role`, `phone`, `address`, `city`, `district`, `ward`) VALUES
-(1, 'Nguyễn Thị Alice', 'alice', '123456', 'alice@example.com', 'IMG_1619.JPG', '2024-07-22 07:47:10', 'user', '0123456788', '123 Alice St, Wonderland', '', '', ''),
-(2, 'Trần Văn Bob', 'bob', '123456', 'bob@example.com', '2251120411_NguyenLeDuy_CN22H.jpg', '2024-07-22 07:47:10', 'admin', '0987654321', '456 Bob Ave, Exampletown', '', '', ''),
-(3, 'Phùng Thanh Charlie', 'charlie', '123456', 'charlie@example.com', 'IMG_1570.jpg', '2024-07-22 07:47:10', 'user', '0111222333', '789 Charlie Blvd, Samplecity', '', '', ''),
-(4, 'Nguyễn Thị Draven', 'Draven', '123456', 'Draven@example.com', 'IMG_1598.jpg', '2024-07-22 09:18:53', 'user', NULL, NULL, '', '', ''),
-(8, 'Nguyễn Văn Tèo', 'Nguyễn Văn Tèo', '123456', 'teo@gmail.com', 'IMG_1604.jpg', '2024-07-22 10:01:15', 'user', NULL, NULL, '', '', ''),
-(10, '', '', '', '', NULL, '2024-08-05 11:00:33', 'user', NULL, NULL, '', '', ''),
-(11, 'Nguyễn Lê Duy', 'Nguyễn Lê Duy', '123456', 'duy123@gmail.com', 'rubiks-cube-digital-art-wallpaper.jpg', '2024-08-05 11:04:24', 'user', '', '', '', '', ''),
-(12, 'Lê Duy', 'Lê Duy', '123456', 'leduy@gmail.com', '', '2024-08-05 11:41:14', 'user', '123', '1234', '2', '26', '724'),
-(13, 'Dyuy', 'Dyuy', '123456', 'led@gm.com', NULL, '2024-08-06 03:41:04', 'user', NULL, NULL, '', '', ''),
-(14, '123456', '123456', '123456', '123@gmail.com', NULL, '2024-08-08 07:38:04', 'user', '123', '123', '4', '43', '1321'),
-(21, '123', '', '123456', 'temp_user_15@example.com', '', '2024-08-08 18:25:13', 'user', '123', '123', '4', '45', '1366');
+INSERT INTO `accounts` (`id`, `fullname`, `username`, `password`, `email`, `avatar`, `created_at`, `role`, `phone`, `address`, `city`, `district`, `ward`, `AnHien`) VALUES
+(1, 'Nguyễn Thị Alice', 'alice', '123456', 'alice@example.com', 'IMG_1619.JPG', '2024-07-22 07:47:10', 'admin', '0123456788', '123 Alice St, Wonderland', '', '', '', '1'),
+(2, 'Trần Văn Bob', 'bob', '123456', 'bob@example.com', '2251120411_NguyenLeDuy_CN22H.jpg', '2024-07-22 07:47:10', 'admin', '0987654321', '456 Bob Ave, Exampletown', '', '', '', '0'),
+(3, 'Phùng Thanh Charlie', 'charlie', '123456', 'charlie@example.com', 'IMG_1570.jpg', '2024-07-22 07:47:10', 'admin', '0111222333', '789 Charlie Blvd, Samplecity', '', '', '', '1'),
+(4, 'Nguyễn Thị Draven', 'Draven', '123456', 'Draven@example.com', 'IMG_1598.jpg', '2024-07-22 09:18:53', 'user', NULL, NULL, '', '', '', '1'),
+(8, 'Nguyễn Văn Tèo', 'Nguyễn Văn Tèo', '123456', 'teo@gmail.com', 'IMG_1604.jpg', '2024-07-22 10:01:15', 'user', NULL, NULL, '', '', '', '1'),
+(10, '', '', '', '', NULL, '2024-08-05 11:00:33', 'user', NULL, NULL, '', '', '', '1'),
+(11, 'Nguyễn Lê Duy', 'Nguyễn Lê Duy', '123456', 'duy123@gmail.com', 'rubiks-cube-digital-art-wallpaper.jpg', '2024-08-05 11:04:24', 'user', '', '', '', '', '', '1'),
+(12, 'Lê Duy', 'Lê Duy', '123456', 'leduy@gmail.com', '', '2024-08-05 11:41:14', 'user', '123', '1234', '12', '106', '3415', '1'),
+(13, 'Dyuy', 'Dyuy', '123456', 'led@gm.com', NULL, '2024-08-06 03:41:04', 'user', NULL, NULL, '', '', '', '1'),
+(14, '123456', '123456', '123456', '123@gmail.com', NULL, '2024-08-08 07:38:04', 'user', '123', '123', '4', '43', '1321', '1'),
+(21, '123', '', '123456', 'temp_user_15@example.com', '', '2024-08-08 18:25:13', 'user', '123', '123', '4', '45', '1366', '1'),
+(22, '', '', '', 'temp_user_22@example.com', NULL, '2024-08-13 01:17:10', 'user', NULL, NULL, NULL, NULL, NULL, '1'),
+(23, '', '', '', 'temp_user_23@example.com', NULL, '2024-08-13 01:21:45', 'user', NULL, NULL, NULL, NULL, NULL, '1'),
+(24, '', '', '', 'temp_user_24@example.com', NULL, '2024-08-13 01:21:48', 'user', NULL, NULL, NULL, NULL, NULL, '1'),
+(25, '', '', '', 'temp_user_25@example.com', NULL, '2024-08-13 01:24:01', 'user', NULL, NULL, NULL, NULL, NULL, '1'),
+(26, '', '', '', 'temp_user_26@example.com', NULL, '2024-08-13 01:29:51', 'user', '0919925645', '123', '4', '47', '1462', '1'),
+(27, '', '', '', 'temp_user_27@example.com', NULL, '2024-08-13 01:39:28', 'user', NULL, NULL, NULL, NULL, NULL, '1'),
+(28, '123', '', '', 'temp_user_28@example.com', NULL, '2024-08-13 01:39:42', 'user', '123', '123', '2', '27', '781', '1'),
+(29, '', '', '', 'temp_user_29@example.com', NULL, '2024-08-14 02:47:57', 'user', NULL, NULL, NULL, NULL, NULL, '1'),
+(30, 'admin', 'admin', '123456', 'admin@gmail.com', NULL, '2024-08-23 18:26:18', 'admin', '123', '123', '4', '42', '1296', '1'),
+(31, 'fullname', 'username', '123456', 'user@gmail.com', NULL, '2024-08-25 06:17:22', 'user', '123', '123', NULL, NULL, NULL, '1');
 
 -- --------------------------------------------------------
 
@@ -77,33 +97,41 @@ CREATE TABLE `books` (
   `cover_image` varchar(255) DEFAULT NULL,
   `image_urls` json DEFAULT NULL,
   `discount_percentage` decimal(10,0) DEFAULT NULL,
+<<<<<<< HEAD
+  `category_id` int DEFAULT NULL,
+  `status` enum('Còn hàng','Hết hàng') NOT NULL DEFAULT 'Còn hàng',
+  `AnHien` enum('0','1') NOT NULL DEFAULT '1' COMMENT '0: ẩn, 1: hiện'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+=======
   `category_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+>>>>>>> 911b0fe517d44129d356ec30f2a37ec4d02dc172
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`id`, `title`, `author`, `price`, `discounted_price`, `published_date`, `description`, `cover_image`, `image_urls`, `discount_percentage`, `category_id`) VALUES
-(1, 'Harry Potter and the Philosopher\'s Stone', 'J.K. Rowling', 459770, NULL, '1997-06-26', 'A young wizard\'s journey begins.', 'harry_potter_1.jpg', NULL, NULL, 1),
-(2, 'To Kill a Mockingbird', 'Harper Lee', 322770, 280000, '1960-07-11', 'A novel about racial injustice in the Deep South.', 'to_kill_a_mockingbird.jpg', NULL, NULL, 2),
-(3, '1984', 'George Orwell', 321270, 276000, '1949-06-08', 'A dystopian novel set in a totalitarian society.', '1984.jpg', NULL, NULL, 3),
-(4, 'Pride and Prejudice', 'Jane Austen', 298770, 252000, '1813-01-28', 'A romantic novel about the manners and matrimonial machinations among the British gentry of the early 19th century.', 'pride_and_prejudice.jpg', NULL, NULL, 1),
-(5, 'The Great Gatsby', 'F. Scott Fitzgerald', 252270, NULL, '1925-04-10', 'A novel about the American dream and the roaring twenties.', 'the_great_gatsby.jpg', NULL, NULL, 5),
-(6, 'Moby-Dick', 'Herman Melville', 357650, 335000, '1851-10-18', 'The narrative of Captain Ahab\'s obsessive quest to kill the white whale, Moby Dick.', 'moby_dick.jpg', NULL, NULL, 3),
-(7, 'War and Peace', 'Leo Tolstoy', 482270, 437000, '1869-01-01', 'A historical novel that intertwines the lives of families during the Napoleonic Wars.', 'war_and_peace.jpg', '[\"war_and_peace_2.jpg\", \"war_and_peace_3.jpg\", \"war_and_peace_4.jpg\"]', NULL, 4),
-(8, 'The Catcher in the Rye', 'J.D. Salinger', 310500, 287500, '1951-07-16', 'A story about teenage alienation and angst.', 'catcher_in_the_rye.jpg', NULL, NULL, 2),
-(9, 'The Hobbit', 'J.R.R. Tolkien', 598770, 529770, '1937-09-21', 'A fantasy novel about the adventures of Bilbo Baggins.', 'the_hobbit.jpg', NULL, NULL, 1),
-(10, 'Fahrenheit 451', 'Ray Bradbury', 391770, 367770, '1953-10-19', 'A novel about a future American society where books are outlawed and \"firemen\" burn any that are found.', 'fahrenheit_451.jpg', NULL, NULL, 3),
-(11, 'Bộ Sách \"Who Is - Là Ai\" - Mang Các Con Khám Phá Bảo Tàng Chân Dung Những Vĩ Nhân Đã Làm Thay Đổi Thế Giới (Combo 19 Cuốn)', 'Various Authors', 63200, 79000, '2023-01-01', 'A collection of biographies of influential figures who changed the world.', 'who_is_la_ai.jpg', NULL, 20, 4),
-(12, 'Combo Vô Cùng Tàn Nhẫn Vô Cùng Yêu Thương - BẢN ĐẶC BIỆT (Bộ 4 Tập)', 'Various Authors', 63200, 79000, '2023-02-01', 'A special edition combo of the \"Vô Cùng Tàn Nhẫn Vô Cùng Yêu Thương\" series.', 'vo_cung_tan_nhan_vo_cung_yeu_thuong.jpeg', NULL, 20, 4),
-(13, 'Tri Thức Về Vạn Vật - Một Thế Giới Trực Quan Chưa Từng Thấy', 'Various Authors', 63200, 79000, '2023-03-01', 'An illustrated guide to the knowledge of everything.', 'tri_thuc_ve_van_vat.jpg', NULL, 20, 4),
-(14, 'Tiểu Học Vui - Vững Bước Lớp 5 - 101 Câu Đố Rèn Trí Não Luyện Kỹ Năng', 'Various Authors', 63200, 79000, '2023-04-01', '101 puzzles to train the brain and develop skills for 5th graders.', 'tieu_hoc_vui_lop_5.png', NULL, 20, 4),
-(15, 'Tiểu Học Vui - Tăng Tốc Lớp 4 - 101 Câu Đố Rèn Trí Não Luyện Kỹ Năng', 'Various Authors', 63200, 79000, '2023-05-01', '101 puzzles to train the brain and develop skills for 4th graders.', 'tieu_hoc_vui_lop_4.png', NULL, 20, 4),
-(16, 'Hiểu Về Cảm Xúc Và Hành Vi Của Trẻ - Con Không Thích Nhường!', 'Various Authors', 47200, 59000, '2023-06-01', 'Understanding children\'s emotions and behaviors.', 'con_khong_thich_nhuong.png', NULL, 20, 4),
-(17, 'Tư Duy Logic - Trò Chơi Tư Duy Cho Trẻ (Dành Cho Bé Từ 5 Tuổi)', 'Various Authors', 63200, 79000, '2023-07-01', 'Logical thinking games for children aged 5 and above.', 'tu_duy_logic.png', NULL, 20, 4),
-(18, 'Rèn Luyện Sự Tập Trung - Trò Chơi Tư Duy Cho Trẻ (Dành Cho Bé Từ 5 Tuổi)', 'Various Authors', 39800, 49000, '2023-08-01', 'Focus training games for children aged 5 and above.', 'ren_luyen_su_tap_trung.jpeg', NULL, 20, 4),
-(19, 'Dầu Và Máu - Mohammed Bin Salman Và Tham Vọng Tái Thiết Kinh Tế Ả-Rập', 'Bradley Hope, Justin Scheck', 249000, 199200, '2022-11-07', 'Dầu Và Máu không chỉ là một cuốn sách đơn thuần về chính trị và kinh tế, mà còn là một tác phẩm văn học, là một câu chuyện tuyệt vời về quyền lực, tham vọng và những biến động của thế giới hiện đại. Nhiều câu chuyện trong cuốn sách có thể còn gây nhiều tranh cãi, nhưng đây cũng là một cái nhìn mới cho độc giả, một cơ hội để hiểu rõ hơn về những sức mạnh và mâu thuẫn địa chính trị đang định hình thế giới xung quanh chúng ta. Cuốn sách cũng làm cho độc giả hiểu hơn về một Trung Đông phát triển về kinh tế và đang dần độc lập về chính trị nơi tôi cũng đã có dịp ghé thăm và làm việc lâu dài.', 'dauVaMau1.png', '[\"dauVaMau2.png\", \"dauVaMau3.jpeg\", \"dauVaMau4.jpeg\"]', 20, 2);
+INSERT INTO `books` (`id`, `title`, `author`, `price`, `discounted_price`, `published_date`, `description`, `cover_image`, `image_urls`, `discount_percentage`, `category_id`, `status`, `AnHien`) VALUES
+(1, 'Harry Potter and the Philosopher\'s Stone', 'J.K. Rowling', 459770, NULL, '1997-06-26', 'A young wizard\'s journey begins.', 'harry_potter_1.jpg', NULL, NULL, 1, 'Còn hàng', '1'),
+(2, 'To Kill a Mockingbird', 'Harper Lee', 322770, 280000, '1960-07-11', 'A novel about racial injustice in the Deep South.', 'to_kill_a_mockingbird.jpg', NULL, NULL, 2, 'Còn hàng', '1'),
+(3, '1984', 'George Orwell', 321270, 276000, '1949-06-08', 'A dystopian novel set in a totalitarian society.', '1984.jpg', NULL, NULL, 3, 'Còn hàng', '1'),
+(4, 'Pride and Prejudice', 'Jane Austen', 298770, 252000, '1813-01-28', 'A romantic novel about the manners and matrimonial machinations among the British gentry of the early 19th century.', 'pride_and_prejudice.jpg', NULL, NULL, 1, 'Còn hàng', '1'),
+(5, 'The Great Gatsby', 'F. Scott Fitzgerald', 252270, NULL, '1925-04-10', 'A novel about the American dream and the roaring twenties.', 'the_great_gatsby.jpg', NULL, NULL, 5, 'Còn hàng', '1'),
+(6, 'Moby-Dick', 'Herman Melville', 357650, 335000, '1851-10-18', 'The narrative of Captain Ahab\'s obsessive quest to kill the white whale, Moby Dick.', 'moby_dick.jpg', NULL, NULL, 3, 'Còn hàng', '1'),
+(7, 'War and Peace', 'Leo Tolstoy', 482270, 437000, '1869-01-01', 'A historical novel that intertwines the lives of families during the Napoleonic Wars.', 'war_and_peace.jpg', '[\"war_and_peace_2.jpg\", \"war_and_peace_3.jpg\", \"war_and_peace_4.jpg\"]', NULL, 4, 'Còn hàng', '1'),
+(8, 'The Catcher in the Rye', 'J.D. Salinger', 310500, 287500, '1951-07-16', 'A story about teenage alienation and angst.', 'catcher_in_the_rye.jpg', NULL, NULL, 2, 'Còn hàng', '1'),
+(9, 'The Hobbit', 'J.R.R. Tolkien', 598770, 529770, '1937-09-21', 'A fantasy novel about the adventures of Bilbo Baggins.', 'the_hobbit.jpg', NULL, NULL, 1, 'Còn hàng', '1'),
+(10, 'Fahrenheit 451', 'Ray Bradbury', 391770, 367770, '1953-10-19', 'A novel about a future American society where books are outlawed and \"firemen\" burn any that are found.', 'fahrenheit_451.jpg', NULL, NULL, 3, 'Còn hàng', '1'),
+(11, 'Bộ Sách \"Who Is - Là Ai\" - Mang Các Con Khám Phá Bảo Tàng Chân Dung Những Vĩ Nhân Đã Làm Thay Đổi Thế Giới (Combo 19 Cuốn)', 'Various Authors', 63200, 79000, '2023-01-01', 'A collection of biographies of influential figures who changed the world.', 'who_is_la_ai.jpg', NULL, 20, 4, 'Còn hàng', '1'),
+(12, 'Combo Vô Cùng Tàn Nhẫn Vô Cùng Yêu Thương - BẢN ĐẶC BIỆT (Bộ 4 Tập)', 'Various Authors', 63200, 79000, '2023-02-01', 'A special edition combo of the \"Vô Cùng Tàn Nhẫn Vô Cùng Yêu Thương\" series.', 'vo_cung_tan_nhan_vo_cung_yeu_thuong.jpeg', NULL, 20, 4, 'Còn hàng', '1'),
+(13, 'Tri Thức Về Vạn Vật - Một Thế Giới Trực Quan Chưa Từng Thấy', 'Various Authors', 63200, 79000, '2023-03-01', 'An illustrated guide to the knowledge of everything.', 'tri_thuc_ve_van_vat.jpg', NULL, 20, 4, 'Còn hàng', '1'),
+(14, 'Tiểu Học Vui - Vững Bước Lớp 5 - 101 Câu Đố Rèn Trí Não Luyện Kỹ Năng', 'Various Authors', 63200, 79000, '2023-04-01', '101 puzzles to train the brain and develop skills for 5th graders.', 'tieu_hoc_vui_lop_5.png', NULL, 20, 4, 'Còn hàng', '1'),
+(15, 'Tiểu Học Vui - Tăng Tốc Lớp 4 - 101 Câu Đố Rèn Trí Não Luyện Kỹ Năng', 'Various Authors', 63200, 79000, '2023-05-01', '101 puzzles to train the brain and develop skills for 4th graders.', 'tieu_hoc_vui_lop_4.png', NULL, 20, 4, 'Còn hàng', '1'),
+(16, 'Hiểu Về Cảm Xúc Và Hành Vi Của Trẻ - Con Không Thích Nhường!', 'Various Authors', 47200, 59000, '2023-06-01', 'Understanding children\'s emotions and behaviors.', 'con_khong_thich_nhuong.png', NULL, 20, 4, 'Còn hàng', '1'),
+(17, 'Tư Duy Logic - Trò Chơi Tư Duy Cho Trẻ (Dành Cho Bé Từ 5 Tuổi)', 'Various Authors', 63200, 79000, '2023-07-01', 'Logical thinking games for children aged 5 and above.', 'tu_duy_logic.png', NULL, 20, 4, 'Còn hàng', '1'),
+(18, 'Rèn Luyện Sự Tập Trung - Trò Chơi Tư Duy Cho Trẻ (Dành Cho Bé Từ 5 Tuổi)', 'Various Authors', 39800, 49000, '2023-08-01', 'Focus training games for children aged 5 and above.', 'ren_luyen_su_tap_trung.jpeg', NULL, 20, 4, 'Còn hàng', '1'),
+(19, 'Dầu Và Máu - Mohammed Bin Salman Và Tham Vọng Tái Thiết Kinh Tế Ả-Rập', 'Bradley Hope, Justin Scheck', 249000, 199200, '2022-11-07', 'Dầu Và Máu không chỉ là một cuốn sách đơn thuần về chính trị và kinh tế, mà còn là một tác phẩm văn học, là một câu chuyện tuyệt vời về quyền lực, tham vọng và những biến động của thế giới hiện đại. Nhiều câu chuyện trong cuốn sách có thể còn gây nhiều tranh cãi, nhưng đây cũng là một cái nhìn mới cho độc giả, một cơ hội để hiểu rõ hơn về những sức mạnh và mâu thuẫn địa chính trị đang định hình thế giới xung quanh chúng ta. Cuốn sách cũng làm cho độc giả hiểu hơn về một Trung Đông phát triển về kinh tế và đang dần độc lập về chính trị nơi tôi cũng đã có dịp ghé thăm và làm việc lâu dài.', 'dauVaMau1.png', '[\"dauVaMau2.png\", \"dauVaMau3.jpeg\", \"dauVaMau4.jpeg\"]', 20, 2, 'Còn hàng', '1'),
+(48, 'Tôi tên là ...', 'JK Rowling', 120000, 60000, '2004-12-12', 'Đây là quyển sách để trả lời câu hỏi \"Tôi là ai...\"', '4x6_Nguyễn Lê Duy.jpg', NULL, 50, 2, 'Hết hàng', '1');
 
 -- --------------------------------------------------------
 
@@ -146,7 +174,17 @@ INSERT INTO `cart` (`id`, `user_id`, `created_at`, `updated_at`, `cart_status`) 
 (99, 14, '2024-08-08 13:45:22', '2024-08-08 13:45:33', 'Pending'),
 (100, 14, '2024-08-08 14:01:41', '2024-08-08 14:02:04', 'Pending'),
 (101, 14, '2024-08-08 14:05:32', '2024-08-08 14:05:54', 'Pending'),
-(104, 21, '2024-08-08 18:26:24', '2024-08-08 18:26:38', 'Pending');
+(104, 21, '2024-08-08 18:26:24', '2024-08-08 18:26:38', 'Pending'),
+(105, 24, '2024-08-13 01:23:34', '2024-08-13 01:23:34', 'active'),
+(106, 26, '2024-08-13 01:31:14', '2024-08-13 01:33:02', 'Pending'),
+(107, 28, '2024-08-13 01:39:42', '2024-08-13 01:43:15', 'Pending'),
+(108, 28, '2024-08-13 01:43:55', '2024-08-13 03:47:09', 'Pending'),
+(109, 12, '2024-08-14 03:27:03', '2024-08-14 03:27:15', 'Pending'),
+(110, 12, '2024-08-14 03:53:31', '2024-08-14 03:53:42', 'Pending'),
+(111, 12, '2024-08-14 03:54:03', '2024-08-14 03:54:21', 'Pending'),
+(112, 12, '2024-08-14 04:04:16', '2024-08-14 04:04:32', 'Pending'),
+(113, 12, '2024-08-14 04:23:51', '2024-08-14 04:24:18', 'Pending'),
+(114, 30, '2024-08-24 04:41:04', '2024-08-24 04:45:09', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -193,7 +231,23 @@ INSERT INTO `cart_detail` (`id`, `cart_id`, `product_id`, `quantity`) VALUES
 (139, 100, 9, 1),
 (140, 101, 14, 1),
 (141, 101, 19, 1),
-(142, 104, 7, 1);
+(142, 104, 7, 1),
+(143, 105, 7, 1),
+(144, 106, 19, 2),
+(145, 106, 4, 1),
+(146, 107, 10, 1),
+(147, 108, 9, 1),
+(149, 108, 12, 1),
+(150, 108, 10, 1),
+(151, 109, 7, 1),
+(152, 110, 7, 1),
+(153, 111, 10, 1),
+(154, 111, 6, 1),
+(155, 112, 7, 1),
+(156, 112, 16, 1),
+(157, 113, 8, 1),
+(158, 113, 19, 1),
+(159, 114, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -1015,6 +1069,7 @@ CREATE TABLE `orders` (
   `total_amount` int NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'Pending',
   `payment_method` varchar(255) NOT NULL,
+  `payment_status` enum('Chưa thanh toán','Đã thanh toán') NOT NULL DEFAULT 'Chưa thanh toán',
   `delivery_method` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1022,18 +1077,25 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `order_date`, `cart_id`, `total_amount`, `status`, `payment_method`, `delivery_method`) VALUES
-(1, 14, '2024-08-08 16:49:00', 87, 0, 'Pending', 'credit', 'express'),
-(2, 14, '2024-08-08 16:56:56', 87, 0, 'Pending', 'credit', 'express'),
-(3, 14, '2024-08-08 16:57:47', 87, 0, 'Pending', 'credit', 'express'),
-(4, 14, '2024-08-08 16:58:49', 87, 0, 'Processing', 'credit', 'express'),
-(5, 14, '2024-08-08 17:20:39', 88, 0, 'Pending', 'credit', 'express'),
-(6, 14, '2024-08-08 21:04:51', 100, 864770, 'Processing', 'credit', 'express'),
-(7, 14, '2024-08-08 21:05:11', 100, 864770, 'Delivered', 'credit', 'express'),
-(8, 14, '2024-08-08 21:05:54', 101, 278200, 'Pending', '', ''),
-(9, 14, '2024-08-08 21:05:54', 101, 278200, 'Pending', 'credit', 'express'),
-(10, 14, '2024-08-08 21:10:45', 101, 308200, 'Pending', 'credit', 'express'),
-(11, 21, '2024-08-09 01:26:38', 104, 467000, 'Pending', 'credit', 'express');
+INSERT INTO `orders` (`id`, `user_id`, `order_date`, `cart_id`, `total_amount`, `status`, `payment_method`, `payment_status`, `delivery_method`) VALUES
+(1, 14, '2024-08-08 16:49:00', 87, 0, 'Pending', 'credit', 'Chưa thanh toán', 'express'),
+(2, 14, '2024-08-08 16:56:56', 87, 0, 'Pending', 'credit', 'Chưa thanh toán', 'express'),
+(3, 14, '2024-08-08 16:57:47', 87, 0, 'Pending', 'credit', 'Chưa thanh toán', 'express'),
+(4, 14, '2024-08-08 16:58:49', 87, 0, 'Processing', 'credit', 'Đã thanh toán', 'express'),
+(5, 14, '2024-08-08 17:20:39', 88, 0, 'Pending', 'credit', 'Chưa thanh toán', 'express'),
+(6, 14, '2024-08-08 21:04:51', 100, 864770, 'Processing', 'credit', 'Đã thanh toán', 'express'),
+(7, 14, '2024-08-08 21:05:11', 100, 864770, 'Delivered', 'credit', 'Đã thanh toán', 'express'),
+(8, 14, '2024-08-08 21:05:54', 101, 278200, 'Pending', 'cod', 'Chưa thanh toán', ''),
+(9, 14, '2024-08-08 21:05:54', 101, 278200, 'Pending', 'credit', 'Chưa thanh toán', 'express'),
+(10, 14, '2024-08-08 21:10:45', 101, 308200, 'Pending', 'credit', 'Chưa thanh toán', 'express'),
+(11, 21, '2024-08-09 01:26:38', 104, 467000, 'Pending', 'credit', 'Chưa thanh toán', 'express'),
+(12, 26, '2024-08-13 08:33:02', 106, 481200, 'Pending', 'momo', 'Chưa thanh toán', 'express'),
+(13, 28, '2024-08-13 08:43:15', 107, 397770, 'Pending', 'atm', 'Chưa thanh toán', 'express'),
+(14, 28, '2024-08-13 10:47:09', 108, 1006540, 'Pending', 'atm', 'Chưa thanh toán', 'express'),
+(15, 12, '2024-08-14 10:27:15', 109, 467000, 'Pending', 'credit', 'Chưa thanh toán', 'express'),
+(18, 12, '2024-08-14 11:04:32', 112, 526000, 'Pending', 'credit', 'Chưa thanh toán', 'express'),
+(19, 12, '2024-08-14 11:24:18', 113, 516700, 'Pending', 'credit', 'Chưa thanh toán', 'express'),
+(20, 30, '2024-08-24 11:45:09', 114, 467000, 'Processing', 'credit', 'Đã thanh toán', 'express');
 
 -- --------------------------------------------------------
 
@@ -1047,6 +1109,17 @@ CREATE TABLE `order_detail` (
   `product_id` int NOT NULL,
   `quantity` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_detail`
+--
+
+INSERT INTO `order_detail` (`id`, `order_id`, `product_id`, `quantity`) VALUES
+(3, 18, 7, 1),
+(4, 18, 16, 1),
+(5, 19, 8, 1),
+(6, 19, 19, 1),
+(7, 20, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -11829,25 +11902,25 @@ ALTER TABLE `wards`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT for table `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -11877,13 +11950,13 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `province`
