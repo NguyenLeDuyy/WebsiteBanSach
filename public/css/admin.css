@@ -294,13 +294,23 @@ fieldset button:hover {
     border-bottom: 1px solid #ddd;
 }
 
+.products-table__row td:nth-child(2) {
+    width: 15%;
+}
+
+.products-table__row td:nth-child(9) {
+    height: 100%;
+}
+
 .products-table__cell {
     padding: 10px;
 }
 
 .products-table__cell--actions {
-    display: flex;
-    gap    : 10px;
+    display        : flex;
+    gap            : 10px;
+    justify-content: center;
+    align-items    : center;
 }
 
 .products-table__button {
@@ -379,11 +389,13 @@ fieldset button:hover {
 
 .users-table__button--showHide {
     color           : var(--color-text);
-    background-color: #fffb19;
+    background-color: #ffc519;
+    width           : 12%;
+    text-align      : center;
 }
 
 .users-table__button--showHide:hover {
-    background-color: #cecc4a;
+    background-color: #9f790a;
 }
 
 /* Thông tin đăng xuất */

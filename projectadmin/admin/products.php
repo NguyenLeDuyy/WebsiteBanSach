@@ -35,10 +35,10 @@
                         <td class="products-table__cell">100.000 VNĐ</td>
                         <td class="products-table__cell products-table__cell--actions">
                             <a href="edit-product.php?id=001" class="products-table__button">Sửa</a>
-                            <a href="delete-product.php?id=001" class="products-table__button products-table__button--delete">Xóa</a>
+                            <a href="delete-product.php?id=001"
+                                class="products-table__button products-table__button--delete">Xóa</a>
                         </td>
                     </tr>
-                    <!-- Thêm các hàng sản phẩm giả khác ở đây -->
                 </tbody>
             </table>
         </div>

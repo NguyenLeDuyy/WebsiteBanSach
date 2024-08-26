@@ -42,11 +42,19 @@ function pdo_query_one($sql)
     return $stmt->fetch();
 }
 
-function pdo_execute($sql)
+function pdo_get_connection()
 {
     global $conn;
     connect();
+    return $conn;
+}
+
+function pdo_execute($sql, $params = [])
+{
+    $conn = pdo_get_connection();
     $stmt = $conn->prepare($sql);
+    foreach ($params as $key => &$val) {
+        $stmt->bindParam($key, $val);
+    }
     $stmt->execute();
-    return $conn->lastInsertId();
 }
