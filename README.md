@@ -5,7 +5,7 @@ Here is a suggested structure for your README.md file for the "WebsiteBanSach" p
 # WebsiteBanSach
 
 ## Description
-WebsiteBanSach is an online book-selling platform that allows users to browse, search, and purchase books. The platform is built using PHP, CSS, Hack, JavaScript, and HTML.
+WebsiteBanSach is an online book-selling platform that allows users to browse, search, and purchase books. The platform is built using PHP, CSS, JavaScript, and HTML.
 
 ## Project Link
 [WebsiteBanSach](https://github.com/NguyenLeDuyy/WebsiteBanSach)
@@ -16,7 +16,6 @@ WebsiteBanSach is an online book-selling platform that allows users to browse, s
 ## Technologies Used
 - PHP (57.4%)
 - CSS (22.3%)
-- Hack (12.3%)
 - JavaScript (7.5%)
 - HTML (0.5%)
 
@@ -36,30 +35,6 @@ WebsiteBanSach is an online book-selling platform that allows users to browse, s
    ```bash
    cd WebsiteBanSach
    ```
-3. Install dependencies:
-   ```bash
-   composer install
-   npm install
-   ```
-4. Set up the environment variables:
-   ```bash
-   cp .env.example .env
-   ```
-   Update the `.env` file with your database and other configuration.
-
-5. Run the migration to set up the database:
-   ```bash
-   php artisan migrate
-   ```
-
-6. Start the development server:
-   ```bash
-   php artisan serve
-   ```
-
-## Usage
-- Visit `http://localhost:8000` to access the website.
-- Register or log in to start browsing and purchasing books.
 
 ## Contributing
 1. Fork the repository.
@@ -76,9 +51,6 @@ WebsiteBanSach is an online book-selling platform that allows users to browse, s
    git push origin feature/your-feature-name
    ```
 5. Open a pull request.
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
 For any inquiries or feedback, please contact [Nguyen Le Duy](mailto:your-email@example.com).
