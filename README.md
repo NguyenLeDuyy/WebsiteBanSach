@@ -64,6 +64,8 @@ $username = "root";        // Tên đăng nhập MySQL của bạn
 $password = "";            // Mật khẩu MySQL của bạn
 ```
 
+**⚠️ Lưu ý bảo mật**: Trong môi trường production, hãy sử dụng mật khẩu mạnh và cấu hình thông tin xác thực database an toàn. Không commit thông tin database thực vào repository.
+
 ### 4. Chạy ứng dụng
 
 1. Đặt project vào thư mục web server (htdocs cho XAMPP, www cho WAMP)
