@@ -85,6 +85,7 @@ WebsiteBanSach/
 ├── controllers/          # Controllers xử lý logic nghiệp vụ
 │   ├── c_cart.php       # Quản lý giỏ hàng
 │   ├── c_comment.php    # Quản lý bình luận
+│   ├── c_news.php       # Quản lý tin tức
 │   ├── c_order.php      # Quản lý đơn hàng
 │   ├── c_page.php       # Quản lý trang
 │   ├── c_product.php    # Quản lý sản phẩm
@@ -93,12 +94,17 @@ WebsiteBanSach/
 │   ├── m_cart.php
 │   ├── m_categories.php
 │   ├── m_comment.php
+│   ├── m_news.php
 │   ├── m_order.php
 │   ├── m_product.php
 │   ├── m_user.php
 │   └── pdo.php          # Kết nối database
 ├── views/               # Views hiển thị giao diện
-│   ├── t_header*.php    # Headers
+│   ├── t_header*.php    # Headers (user & admin)
+│   ├── t_aside*.php     # Sidebars
+│   ├── t_footer*.php    # Footers
+│   ├── t_modal*.php     # Modal dialogs
+│   ├── v_page*.php      # Trang chính (home, about, dashboard)
 │   ├── v_cart*.php      # Trang giỏ hàng
 │   ├── v_order*.php     # Trang đơn hàng
 │   ├── v_product*.php   # Trang sản phẩm
